@@ -5,17 +5,15 @@ using UnityEngine;
 public class Asticul : MonoBehaviour
 {
     public Vector2 worldCenter;
+    public Vector2 toWorldCenter;
     public float gForce;
 
-    public float acceleration;
-    public float stopForce;
-    public float maxSpeed;
+    public float speed;
     public float jumpForce;
 
     private float angle;
     private Rigidbody2D rb;
-    private Vector2 toWorldCenter;
-    private bool isJumping;
+    private Vector2 gravityForce;
 
     private void Start()
     {
@@ -27,56 +25,26 @@ public class Asticul : MonoBehaviour
         toWorldCenter = worldCenter - rb.position;
         angle = Vector2.SignedAngle(Vector2.up, -toWorldCenter);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        Debug.DrawRay(rb.position, transform.right * .55f, Color.red);
-        //Debug.DrawRay(rb.position, rb.velocity, Color.green);
+        Debug.DrawRay(rb.position, transform.right * .51f, Color.red);
 
         if (!OnGround())
         {
-            rb.AddForce(-transform.up * gForce);
-            isJumping = true;
-        }
-
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            if(rb.velocity.sqrMagnitude < maxSpeed * maxSpeed)
-                rb.AddForce(transform.right * acceleration);
-        }
-        else if (Input.GetAxis("Horizontal") < 0)
-        {
-            if (rb.velocity.sqrMagnitude < maxSpeed * maxSpeed)
-                rb.AddForce(-transform.right * acceleration);
+            gravityForce -= (Vector2)transform.up * gForce * Time.deltaTime;
         }
         else
         {
-            float leftOrRight = Vector2.Dot(rb.velocity, transform.right);
-            if(leftOrRight <= -0.1f)
-            {
-                rb.AddForce(transform.right * stopForce);
-            }
-            else if (leftOrRight >= 0.1f)
-            {
-                rb.AddForce(-transform.right * stopForce);
-            }
-            else
-            {
-                if(!isJumping)
-                {
-                    rb.velocity = Vector2.zero;
-                }
-            }
+            gravityForce = Vector2.zero;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround())
+        if(Input.GetKey(KeyCode.Space))
         {
-            // Les deux manières si dessous fonctionnent
-            //rb.velocity += (Vector2)transform.up * jumpForce;
-            rb.AddForce((Vector2)transform.up * jumpForce, ForceMode2D.Impulse);
-            isJumping = true;
+            rb.AddForce(transform.up* jumpForce);
         }
+        rb.velocity = (Vector2)((transform.right * speed) * Input.GetAxis("Horizontal") - transform.up * 0.075f * Mathf.Abs(Input.GetAxis("Horizontal"))) + gravityForce;
+
     }
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(rb.position, -transform.up, 0.55f);
+        return Physics2D.Raycast(rb.position, -transform.up, 0.51f);
     }
 }
