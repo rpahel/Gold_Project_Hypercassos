@@ -35,7 +35,10 @@ public class Asticul : MonoBehaviour
         {
             gravityForce = Vector2.zero;
         }
-
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(transform.up* jumpForce);
+        }
         rb.velocity = (Vector2)((transform.right * speed) * Input.GetAxis("Horizontal") - transform.up * 0.075f * Mathf.Abs(Input.GetAxis("Horizontal"))) + gravityForce;
 
     }
