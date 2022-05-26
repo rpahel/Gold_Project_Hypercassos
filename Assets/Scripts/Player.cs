@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Asticul : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("Physics stuff")]
     public Vector2 worldCenter;
