@@ -688,7 +688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldCenter: {x: 0, y: -10}
   toWorldCenter: {x: 0, y: 0}
-  gForce: 10
+  gForce: 30
   speed: 10
   jumpForce: 20
 --- !u!1 &900356515
