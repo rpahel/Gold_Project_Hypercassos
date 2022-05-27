@@ -5,33 +5,20 @@ using UnityEngine;
 public class LevelBehaviour : MonoBehaviour
 {
     public GameLevel levelObject;
-    private List<GameObject> levelLayers;
-    public GameObject currentLayerObj;
+    private List<LayerBehaviour> levelLayers;
+
+    [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
+    public float layerSpawnRate;
 
     private int currentLayer;
-
-    private float alpha;
-    private float scale;
-
-    private bool growing;
 
     private void Start()
     {
         currentLayer = 1;
-        levelLayers = new List<GameObject>();
+        levelLayers = new List<LayerBehaviour>();
 
         // Set each layer position and scale
         StartCoroutine(LayerSetup());
-    }
-
-    private void FixedUpdate()
-    {
-        if (currentLayerObj && growing)
-        {
-            alpha += Time.fixedDeltaTime * 5f;
-            alpha = Mathf.Clamp01(alpha);
-            currentLayerObj.transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(scale, scale, 1f), alpha);
-        }
     }
 
     private void Update()
@@ -39,29 +26,27 @@ public class LevelBehaviour : MonoBehaviour
         // Up a layer
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-
+            LayerUp();
         }
 
         // Down a layer
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-
+            //LayerDown();
         }
     }
 
     IEnumerator LayerSetup()
     {
-        growing = true;
-
+        yield return new WaitForSeconds(0.1f);
+        
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
         {
-            yield return new WaitForSeconds(0.5f);
-            GameObject cloneLevelLayer = Instantiate(levelObject.levelLayers[layerIndex], gameObject.transform);
-            cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
-            alpha = 0;
-            currentLayerObj = cloneLevelLayer;
-            scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
+            LayerBehaviour cloneLevelLayer = Instantiate(levelObject.levelLayers[layerIndex], gameObject.transform).GetComponent<LayerBehaviour>();
             cloneLevelLayer.transform.localPosition = new Vector3(0, 0, 1f * layerIndex);
+            cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
+            float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
+            cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
             if (layerIndex != currentLayer)
             {
                 cloneLevelLayer.GetComponent<CircleCollider2D>().enabled = false;
@@ -72,14 +57,19 @@ public class LevelBehaviour : MonoBehaviour
             }
 
             levelLayers.Add(cloneLevelLayer);
+            yield return new WaitForSeconds(layerSpawnRate);
         }
 
         for (int layerIndex = currentLayer + 1; layerIndex < levelLayers.Count; layerIndex++)
         {
-            levelLayers[layerIndex].GetComponent<LayerBehaviour>().Hide();
+            levelLayers[layerIndex].Hide();
         }
 
-        growing = false;
-        currentLayerObj = null;
+        levelLayers[0].GreyOut();
+    }
+
+    private void LayerUp()
+    {
+
     }
 }

@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class LayerBehaviour : MonoBehaviour
 {
+    public LayerParameters layerParameters;
+
     [SerializeField] private GameObject greyed;
     [SerializeField] private GameObject cache;
 
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
     
+    private Vector3 targetScale;
+    private Vector3 initialScale;
+
     private float iniGreyedAlpha;
     private float iniCacheAlpha;
-    private float alpha;
 
     private bool hiding;
     private bool discovering;
     private bool greying;
     private bool focusing;
+    private bool growing;
+    private bool shrinking;
+
+    public bool isGrowing { get { return growing; } private set { growing = value; } }
+    public bool isShrinking { get { return shrinking; } private set { shrinking = value; } }
 
     private void Start()
     {
@@ -44,9 +53,19 @@ public class LayerBehaviour : MonoBehaviour
             Focusing();
         }
 
-        if(greying)
+        if (greying)
         {
             GreyingOut();
+        }
+
+        if (growing)
+        {
+            Growing();
+        }
+
+        if (shrinking)
+        {
+            Shrinking();
         }
     }
 
@@ -56,15 +75,15 @@ public class LayerBehaviour : MonoBehaviour
     public void Hide()
     {
         hiding = true;
-        alpha = 0;
+        layerParameters.Alpha = 0;
     }
 
     private void Hiding()
     {
         cache.SetActive(true);
-        alpha += Time.fixedDeltaTime;
-        alpha = Mathf.Clamp01(alpha);
-        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp( 0, iniCacheAlpha, alpha));
+        layerParameters.Alpha += Time.fixedDeltaTime;
+        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
+        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp( 0, iniCacheAlpha, layerParameters.Alpha));
         if (cacheRenderer.color.a >= iniCacheAlpha)
         {
             hiding = false;
@@ -77,7 +96,7 @@ public class LayerBehaviour : MonoBehaviour
     public void Discover()
     {
         discovering = true;
-        alpha = 0;
+        layerParameters.Alpha = 0;
     }
 
     private void Discovering()
@@ -88,9 +107,9 @@ public class LayerBehaviour : MonoBehaviour
             return;
         }
 
-        alpha += Time.fixedDeltaTime;
-        alpha = Mathf.Clamp01(alpha);
-        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(iniCacheAlpha, 0, alpha));
+        layerParameters.Alpha += Time.fixedDeltaTime;
+        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
+        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(iniCacheAlpha, 0, layerParameters.Alpha));
         if(cacheRenderer.color.a <= 0)
         {
             discovering = false;
@@ -104,7 +123,7 @@ public class LayerBehaviour : MonoBehaviour
     public void Focus()
     {
         focusing = true;
-        alpha = 0;
+        layerParameters.Alpha = 0;
     }
 
     private void Focusing()
@@ -115,9 +134,9 @@ public class LayerBehaviour : MonoBehaviour
             return;
         }
 
-        alpha += Time.fixedDeltaTime;
-        alpha = Mathf.Clamp01(alpha);
-        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(iniGreyedAlpha, 0, alpha));
+        layerParameters.Alpha += Time.fixedDeltaTime;
+        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
+        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(iniGreyedAlpha, 0, layerParameters.Alpha));
         if (greyedRenderer.color.a <= 0)
         {
             focusing = false;
@@ -126,23 +145,67 @@ public class LayerBehaviour : MonoBehaviour
     }
 
     ///<summary>
-    /// Unhides the layer (greys it).
+    /// Hides the layer (greys it).
     ///</summary>
     public void GreyOut()
     {
         greying = true;
-        alpha = 0;
+        layerParameters.Alpha = 0;
     }
 
     private void GreyingOut()
     {
         greyed.SetActive(true);
-        alpha += Time.fixedDeltaTime;
-        alpha = Mathf.Clamp01(alpha);
-        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(0, iniGreyedAlpha, alpha));
+        layerParameters.Alpha += Time.fixedDeltaTime;
+        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
+        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(0, iniGreyedAlpha, layerParameters.Alpha));
         if (greyedRenderer.color.a >= iniGreyedAlpha)
         {
             greying = false;
+        }
+    }
+
+    ///<summary>
+    /// Grows the layer to the desired scale.
+    ///</summary>
+    public void Grow(Vector3 scale)
+    {
+        isGrowing = true;
+        layerParameters.Beta = 0;
+        initialScale = transform.localScale;
+        targetScale = scale;
+    }
+
+    private void Growing()
+    {
+        layerParameters.Beta += Time.fixedDeltaTime * (1f/ layerParameters.ScaleSpeed);
+        layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
+        transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
+        if(transform.localScale.magnitude >= targetScale.magnitude)
+        {
+            isGrowing = false;
+        }
+    }
+
+    ///<summary>
+    /// Shrinks the layer to the desired scale.
+    ///</summary>
+    public void Shrink(Vector3 scale)
+    {
+        isShrinking = true;
+        layerParameters.Beta = 0;
+        initialScale = transform.localScale;
+        targetScale = scale;
+    }
+
+    private void Shrinking()
+    {
+        layerParameters.Beta += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed);
+        layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
+        transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
+        if (transform.localScale.magnitude >= targetScale.magnitude)
+        {
+            isShrinking = false;
         }
     }
 }
