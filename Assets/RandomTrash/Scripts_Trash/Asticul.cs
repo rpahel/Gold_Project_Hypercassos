@@ -59,7 +59,7 @@ public class Asticul : MonoBehaviour
         Vector2 move = (transform.right * speed) * Input.GetAxis("Horizontal");
         Vector2 correction = transform.up * 0.075f * Mathf.Abs(Input.GetAxis("Horizontal"));
         rb.velocity = (move - correction) + gravityForce;
-        if(Input.GetAxis("Horizontal")<0.1)
+        if(Input.GetAxis("Horizontal")<=0)
         {
             sprite.flipX = false;
         }

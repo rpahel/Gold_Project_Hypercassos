@@ -11,7 +11,7 @@ public class FollowTest : MonoBehaviour
     void FixedUpdate()
     {
         positionList.Add(transform.position);
-        if(positionList.Count > distance)
+        if(positionList.Count > distance&&follow!=null)
         {
             positionList.RemoveAt(0);
             follow.transform.position = positionList[0];
