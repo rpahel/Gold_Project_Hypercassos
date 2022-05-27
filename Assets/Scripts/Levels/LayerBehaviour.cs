@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class LayerBehaviour : MonoBehaviour
 {
+    [Tooltip("Layer Parameters must go here.")]
     public LayerParameters layerParameters;
 
+    [Tooltip("The gameObject that will act as a veil to grey out the layer.")]
     [SerializeField] private GameObject greyed;
+    [Tooltip("The gameObject that will act as a cover to hide the layer.")]
     [SerializeField] private GameObject cache;
 
     private SpriteRenderer greyedRenderer;
@@ -27,6 +30,24 @@ public class LayerBehaviour : MonoBehaviour
 
     public bool isGrowing { get { return growing; } private set { growing = value; } }
     public bool isShrinking { get { return shrinking; } private set { shrinking = value; } }
+
+    private void Awake()
+    {
+        if (!layerParameters)
+        {
+            throw new System.Exception("No Layer Parameters assigned to the Layer gameObject");
+        }
+
+        if (!greyed)
+        {
+            throw new System.Exception("No Greyed gameObject assigned to the Layer gameObject");
+        }
+
+        if (!cache)
+        {
+            throw new System.Exception("No Cache gameObject assigned to the Layer gameObject");
+        }
+    }
 
     private void Start()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelBehaviour : MonoBehaviour
 {
+    [Tooltip("Your level must go here.")]
     public GameLevel levelObject;
     private List<LayerBehaviour> levelLayers;
 
@@ -11,6 +12,14 @@ public class LevelBehaviour : MonoBehaviour
     public float layerSpawnRate;
 
     private int currentLayer;
+
+    private void Awake()
+    {
+        if (!levelObject)
+        {
+            throw new System.Exception("No Level Object assigned to the Level gameObject");
+        }
+    }
 
     private void Start()
     {
