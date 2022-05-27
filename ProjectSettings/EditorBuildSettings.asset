@@ -12,7 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/GP/Menu/MainMenu.unity
     guid: f683184a1c5efdc4ab2d71763af08f0d
   - enabled: 1
-    path: Assets/Scenes/GP/RomainM.unity
-    guid: 3bf22c8a89f06dd44ab2a050ba1a0ce2
+    path: Assets/Scenes/GP/Menu/LevelSelection.unity
+    guid: 4d00ba4273557244391a284edba380f9
+  - enabled: 1
+    path: Assets/Scenes/GP/TestLevel/Level 1.unity
+    guid: 622a50094bbebdf439e149fd6edccf4f
+  - enabled: 1
+    path: Assets/Scenes/GP/TestLevel/Level 2.unity
+    guid: 579ef98c759a2d7448ba6f0be5af8e04
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: b475f9eaa6647aa42a214b0492627197, type: 2}
