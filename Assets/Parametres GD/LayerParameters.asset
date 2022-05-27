@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b108d50a0e85544580d75bd10139aae, type: 3}
   m_Name: LayerParameters
   m_EditorClassIdentifier: 
-  scaleSpeed: 0.2
+  scaleSpeed: 0.4

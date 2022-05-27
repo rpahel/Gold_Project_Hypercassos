@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LayerBehaviour : MonoBehaviour
 {
-    [Tooltip("Layer Parameters must go here.")]
-    public LayerParameters layerParameters;
+    [Tooltip("Layer Parameters must go here."), SerializeField]
+    private LayerParameters layerParameters;
 
     [Tooltip("The gameObject that will act as a veil to grey out the layer.")]
     [SerializeField] private GameObject greyed;
@@ -14,12 +14,15 @@ public class LayerBehaviour : MonoBehaviour
 
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
-    
+
+    private Collider2D coll;
+
     private Vector3 targetScale;
     private Vector3 initialScale;
 
     private float iniGreyedAlpha;
     private float iniCacheAlpha;
+    public float ScaleSpeed { get { return layerParameters.ScaleSpeed; } }
 
     private bool hiding;
     private bool discovering;
@@ -27,9 +30,7 @@ public class LayerBehaviour : MonoBehaviour
     private bool focusing;
     private bool growing;
     private bool shrinking;
-
-    public bool isGrowing { get { return growing; } private set { growing = value; } }
-    public bool isShrinking { get { return shrinking; } private set { shrinking = value; } }
+    public bool isScaling { get { return (shrinking || growing); } }
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class LayerBehaviour : MonoBehaviour
     {
         greyedRenderer = greyed.GetComponent<SpriteRenderer>();
         cacheRenderer = cache.GetComponent<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
         iniGreyedAlpha = greyedRenderer.color.a;
         iniCacheAlpha = cacheRenderer.color.a;
     }
@@ -191,7 +193,7 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Grow(Vector3 scale)
     {
-        isGrowing = true;
+        growing = true;
         layerParameters.Beta = 0;
         initialScale = transform.localScale;
         targetScale = scale;
@@ -199,12 +201,22 @@ public class LayerBehaviour : MonoBehaviour
 
     private void Growing()
     {
+        coll.enabled = false;
         layerParameters.Beta += Time.fixedDeltaTime * (1f/ layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
         transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
-        if(transform.localScale.magnitude >= targetScale.magnitude)
+        if(transform.localScale.sqrMagnitude >= targetScale.sqrMagnitude)
         {
-            isGrowing = false;
+            growing = false;
+            float check = 0.676f * Mathf.Exp(0.394f);
+            if (targetScale.x == check)
+            {
+                coll.enabled = true;
+            }
+            else
+            {
+                coll.enabled = false;
+            }
         }
     }
 
@@ -213,7 +225,7 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Shrink(Vector3 scale)
     {
-        isShrinking = true;
+        shrinking = true;
         layerParameters.Beta = 0;
         initialScale = transform.localScale;
         targetScale = scale;
@@ -221,12 +233,22 @@ public class LayerBehaviour : MonoBehaviour
 
     private void Shrinking()
     {
+        coll.enabled = false;
         layerParameters.Beta += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
         transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
-        if (transform.localScale.magnitude >= targetScale.magnitude)
+        if (transform.localScale.sqrMagnitude <= targetScale.sqrMagnitude)
         {
-            isShrinking = false;
+            shrinking = false;
+            float check = 0.676f * Mathf.Exp(0.394f);
+            if (targetScale.x == check)
+            {
+                coll.enabled = true;
+            }
+            else
+            {
+                coll.enabled = false;
+            }
         }
     }
 }

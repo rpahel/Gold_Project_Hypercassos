@@ -19,6 +19,11 @@ public class LevelBehaviour : MonoBehaviour
         {
             throw new System.Exception("No Level Object assigned to the Level gameObject");
         }
+
+        if(levelObject.levelLayers.Length == 0)
+        {
+            throw new System.Exception("No Level Layers in the levelLayers array of the assigned Level Object.");
+        }
     }
 
     private void Start()
@@ -35,13 +40,27 @@ public class LevelBehaviour : MonoBehaviour
         // Up a layer
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            LayerUp();
+            if(currentLayer == levelLayers.Count - 1)
+            {
+                Debug.Log("You are at the top layer.");
+            }
+            else
+            {
+                StartCoroutine(LayerUp());
+            }
         }
 
         // Down a layer
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            //LayerDown();
+            if (currentLayer == 1)
+            {
+                Debug.Log("You are at the bottom layer.");
+            }
+            else
+            {
+                StartCoroutine(LayerDown());
+            }
         }
     }
 
@@ -77,8 +96,57 @@ public class LevelBehaviour : MonoBehaviour
         levelLayers[0].GreyOut();
     }
 
-    private void LayerUp()
+    IEnumerator LayerUp()
     {
+        float timeToWait = 1f;
+        currentLayer++;
 
+        for(int l = 0; l < levelLayers.Count; l++)
+        {
+            float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
+            
+            levelLayers[l].Shrink(new Vector3(scale, scale, 1f));
+
+            if (l != currentLayer)
+            {
+                levelLayers[l].GreyOut();
+            }
+            else
+            {
+                levelLayers[l].Discover();
+                levelLayers[l].Focus();
+            }
+
+            timeToWait = levelLayers[l].ScaleSpeed;
+        }
+
+        yield return new WaitForSeconds(timeToWait);
+    }
+
+    IEnumerator LayerDown()
+    {
+        float timeToWait = 1f;
+        currentLayer--;
+
+        for (int l = 0; l < levelLayers.Count; l++)
+        {
+            float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
+
+            levelLayers[l].Grow(new Vector3(scale, scale, 1f));
+
+            if (l != currentLayer)
+            {
+                levelLayers[l].GreyOut();
+            }
+            else
+            {
+                levelLayers[l].Discover();
+                levelLayers[l].Focus();
+            }
+
+            timeToWait = levelLayers[l].ScaleSpeed;
+        }
+
+        yield return new WaitForSeconds(timeToWait);
     }
 }
