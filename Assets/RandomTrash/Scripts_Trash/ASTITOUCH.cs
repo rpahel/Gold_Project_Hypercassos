@@ -59,19 +59,33 @@ public class ASTITOUCH : MonoBehaviour
         //    rb.AddForce(transform.up* jumpForce);
         //}
 
+        // à polish, on peut faire des fonctions de ces conneries
         // Smooth movement
         if(Input.touchCount > 0) // Touch controls
         {
             float xPos = Input.GetTouch(0).position.x;
-            if (xPos > (3 * (Screen.width / 5f)) || Input.GetAxis("Horizontal") > 0f)
+            if (xPos > (3 * (Screen.width / 5f)))
             {
                 sens += Time.deltaTime * acceleration;
                 sens = Mathf.Clamp(sens, 0f, 1f);
             }
-            else if (xPos < (2 * (Screen.width / 5f)) || Input.GetAxis("Horizontal") < 0f)
+            else if (xPos < (2 * (Screen.width / 5f)))
             {
                 sens -= Time.deltaTime * acceleration;
                 sens = Mathf.Clamp(sens, -1f, 0f);
+            }
+            else
+            {
+                if (sens > 0f)
+                {
+                    sens -= Time.deltaTime * freinage;
+                    sens = Mathf.Clamp(sens, 0f, 1f);
+                }
+                else if (sens < 0f)
+                {
+                    sens += Time.deltaTime * freinage;
+                    sens = Mathf.Clamp(sens, -1f, 0f);
+                }
             }
         }
         else if (Input.GetAxis("Horizontal") != 0f) // Keyboard controls
