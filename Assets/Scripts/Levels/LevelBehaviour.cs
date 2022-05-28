@@ -96,7 +96,7 @@ public class LevelBehaviour : MonoBehaviour
         levelLayers[0].GreyOut();
     }
 
-    IEnumerator LayerUp()
+    public IEnumerator LayerUp()
     {
         float timeToWait = 1f;
         currentLayer++;
@@ -123,7 +123,7 @@ public class LevelBehaviour : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
     }
 
-    IEnumerator LayerDown()
+    public IEnumerator LayerDown()
     {
         float timeToWait = 1f;
         currentLayer--;
