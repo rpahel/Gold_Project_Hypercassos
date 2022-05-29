@@ -13,14 +13,15 @@ public class LevelButton : MonoBehaviour
     void Start()
     {
         levelNumStr = buttonText.text.Remove(0, 5);
-        levelNum = int.Parse(levelNumStr); 
-        
+        levelNum = int.Parse(levelNumStr);
     }
 
     public void LoadLevel()
     {
-        Debug.Log(levelNum);
-        SceneManager.LoadScene("Level " + levelNum); 
-        
+        //Jme permets pour la sortie proto hein des bisous
+        //Debug.Log(levelNum);
+        //SceneManager.LoadScene("Level " + levelNum); 
+
+        SceneManager.LoadScene("Raphael");
     }
 }

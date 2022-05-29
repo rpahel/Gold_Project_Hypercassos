@@ -38,8 +38,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -230.58531, y: 68.21466}
-  m_SizeDelta: {x: 45.8294, y: 45.8294}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8157342412539208348
 CanvasRenderer:
@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bbbb17ba9531ba4ab3edca1bf25ab96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelNum: 0
   buttonText: {fileID: 6830070703522701666}
 --- !u!1 &8478297881723151409
 GameObject:
@@ -221,7 +220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000038147, y: -32.3}
+  m_AnchoredPosition: {x: -0.0000038147, y: -39.2}
   m_SizeDelta: {x: 79.1804, y: 18.5655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7399667262057773408
@@ -252,7 +251,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 1
+  m_text: 'PROTO
 
 '
   m_isRightToLeft: 0
