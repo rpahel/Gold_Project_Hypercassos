@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class SwitchLayer : MonoBehaviour
 {
-    public LevelBehaviour level;
+    private LevelBehaviour level;
     public bool upLayer;
-    public bool cancoli;
+    private bool cancoli;
+
+    private void Start()
+    {
+        level = FindObjectOfType<LevelBehaviour>();
+        cancoli = true;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("coli");
@@ -14,12 +21,12 @@ public class SwitchLayer : MonoBehaviour
         {
             if (upLayer)
             {
-                StartCoroutine(level.LayerUp());
+                level.RequestLayerUp();
                 StartCoroutine(coliTimer());
             }
             else
             {
-                StartCoroutine(level.LayerDown());
+                level.RequestLayerDown();
                 StartCoroutine(coliTimer());
             }
         }
