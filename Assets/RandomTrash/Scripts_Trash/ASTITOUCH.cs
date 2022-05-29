@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Asticul : MonoBehaviour
+public class ASTITOUCH : MonoBehaviour
 {
     private SpriteRenderer sprite;
 
@@ -17,7 +17,9 @@ public class Asticul : MonoBehaviour
     [Header("Movement stuff")]
     public float speed;
     public float jumpForce;
-
+    public float acceleration;
+    public float freinage;
+    private float sens;
 
     public GameObject vcam;
     //private Vector3 cameraLocalPosition;
@@ -56,14 +58,72 @@ public class Asticul : MonoBehaviour
         //{
         //    rb.AddForce(transform.up* jumpForce);
         //}
-        Vector2 move = (transform.right * speed) * Input.GetAxis("Horizontal");
-        Vector2 correction = transform.up * 0.075f * Mathf.Abs(Input.GetAxis("Horizontal"));
+
+        // à polish, on peut faire des fonctions de ces conneries
+        // Smooth movement
+        if(Input.touchCount > 0) // Touch controls
+        {
+            float xPos = Input.GetTouch(0).position.x;
+            if (xPos > (3 * (Screen.width / 5f)))
+            {
+                sens += Time.deltaTime * acceleration;
+                sens = Mathf.Clamp(sens, 0f, 1f);
+            }
+            else if (xPos < (2 * (Screen.width / 5f)))
+            {
+                sens -= Time.deltaTime * acceleration;
+                sens = Mathf.Clamp(sens, -1f, 0f);
+            }
+            else
+            {
+                if (sens > 0f)
+                {
+                    sens -= Time.deltaTime * freinage;
+                    sens = Mathf.Clamp(sens, 0f, 1f);
+                }
+                else if (sens < 0f)
+                {
+                    sens += Time.deltaTime * freinage;
+                    sens = Mathf.Clamp(sens, -1f, 0f);
+                }
+            }
+        }
+        else if (Input.GetAxis("Horizontal") != 0f) // Keyboard controls
+        {
+            if (Input.GetAxis("Horizontal") > 0f)
+            {
+                sens += Time.deltaTime * acceleration;
+                sens = Mathf.Clamp(sens, 0f, 1f);
+            }
+            else if (Input.GetAxis("Horizontal") < 0f)
+            {
+                sens -= Time.deltaTime * acceleration;
+                sens = Mathf.Clamp(sens, -1f, 0f);
+            }
+        }
+        else
+        {
+            if(sens > 0f)
+            {
+                sens -= Time.deltaTime * freinage;
+                sens = Mathf.Clamp(sens, 0f, 1f);
+            }
+            else if(sens < 0f)
+            {
+                sens += Time.deltaTime * freinage;
+                sens = Mathf.Clamp(sens, -1f, 0f);
+            }
+        }
+
+        Vector2 move = (transform.right * speed) * sens;
+        Vector2 correction = transform.up * 0.075f * Mathf.Abs(sens);
         rb.velocity = (move - correction) + gravityForce;
-        if(Input.GetAxis("Horizontal")<=0)
+
+        if(sens < 0)
         {
             sprite.flipX = false;
         }
-        else
+        else if (sens > 0)
         {
             sprite.flipX = true;
         }

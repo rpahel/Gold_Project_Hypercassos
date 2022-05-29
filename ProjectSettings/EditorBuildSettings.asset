@@ -14,11 +14,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GP/Menu/LevelSelection.unity
     guid: 4d00ba4273557244391a284edba380f9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GP/TestLevel/Level 1.unity
     guid: 622a50094bbebdf439e149fd6edccf4f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GP/TestLevel/Level 2.unity
     guid: 579ef98c759a2d7448ba6f0be5af8e04
+  - enabled: 1
+    path: Assets/Scenes/GP/Raphael.unity
+    guid: 14e27804fe472f04c8ffbc95c8e0a01d
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: b475f9eaa6647aa42a214b0492627197, type: 2}

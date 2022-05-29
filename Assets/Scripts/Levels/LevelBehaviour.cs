@@ -11,7 +11,7 @@ public class LevelBehaviour : MonoBehaviour
     [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
     public float layerSpawnRate;
 
-    private int currentLayer;
+    public int currentLayer;
 
     private void Awake()
     {
@@ -40,27 +40,13 @@ public class LevelBehaviour : MonoBehaviour
         // Up a layer
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if(currentLayer == levelLayers.Count - 1)
-            {
-                Debug.Log("You are at the top layer.");
-            }
-            else
-            {
-                StartCoroutine(LayerUp());
-            }
+            RequestLayerUp();
         }
 
         // Down a layer
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (currentLayer == 1)
-            {
-                Debug.Log("You are at the bottom layer.");
-            }
-            else
-            {
-                StartCoroutine(LayerDown());
-            }
+            RequestLayerDown();
         }
     }
 
@@ -96,7 +82,20 @@ public class LevelBehaviour : MonoBehaviour
         levelLayers[0].GreyOut();
     }
 
-    IEnumerator LayerUp()
+    public void RequestLayerUp()
+    {
+        if (currentLayer == levelLayers.Count - 1)
+        {
+            Debug.Log("You are at the top layer.");
+            return;
+        }
+        else
+        {
+            StartCoroutine(LayerUp());
+        }
+    }
+
+    private IEnumerator LayerUp()
     {
         float timeToWait = 1f;
         currentLayer++;
@@ -123,7 +122,19 @@ public class LevelBehaviour : MonoBehaviour
         yield return new WaitForSeconds(timeToWait);
     }
 
-    IEnumerator LayerDown()
+    public void RequestLayerDown()
+    {
+        if (currentLayer == 1)
+        {
+            Debug.Log("You are at the bottom layer.");
+        }
+        else
+        {
+            StartCoroutine(LayerDown());
+        }
+    }
+
+    private IEnumerator LayerDown()
     {
         float timeToWait = 1f;
         currentLayer--;
