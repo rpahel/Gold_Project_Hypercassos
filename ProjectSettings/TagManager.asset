@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Climbable
   - Earth
+  - BoxBlocker
+  - Box
   layers:
   - Default
   - TransparentFX

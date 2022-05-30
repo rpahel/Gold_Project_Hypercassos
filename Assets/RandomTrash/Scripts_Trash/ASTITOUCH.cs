@@ -133,10 +133,25 @@ public class ASTITOUCH : MonoBehaviour
         
         if (collision.gameObject.tag=="Climbable")
         {
+
             oldWorlCenter = worldCenter;
             worldCenter = collision.transform.position;
             //followCamera.transform.SetParent(null);
             
+        }
+        else if (collision.gameObject.tag == "Box")
+        {
+            if(collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
+            {
+                oldWorlCenter = worldCenter;
+                worldCenter = collision.transform.position;
+            }
+
+        }
+        else if (collision.gameObject.tag == "BoxBlocker")
+        {
+            oldWorlCenter = worldCenter;
+            worldCenter = collision.transform.position;
         }
         else if(collision.gameObject.tag =="Earth")
         {
