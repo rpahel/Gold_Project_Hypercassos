@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Climbable
   - Earth
+  - BoxBlocker
   - Box
   layers:
   - Default
@@ -15,7 +16,7 @@ TagManager:
   - Water
   - UI
   - test
-  - Box
+  - 
   - 
   - 
   - 

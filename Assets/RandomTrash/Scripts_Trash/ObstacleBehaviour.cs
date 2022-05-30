@@ -13,6 +13,7 @@ public class ObstacleBehaviour : MonoBehaviour
     private Vector2 toWorldCenter;
     private  Vector2 gravityForce;
 
+    public bool canClimb;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,7 @@ public class ObstacleBehaviour : MonoBehaviour
     {
 
         gravity();
+       
     }
     private void gravity()
     {
@@ -31,6 +33,7 @@ public class ObstacleBehaviour : MonoBehaviour
         angle = Vector2.SignedAngle(Vector2.up, -toWorldCenter);
         transform.rotation = Quaternion.Euler(0, 0, angle);
         //Debug.DrawRay(rb.position, transform.right * .51f, Color.red);
+        
 
         if (!OnGround())
         {
@@ -45,6 +48,20 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(rb.position, -transform.up, 0.51f);
+        return Physics2D.Raycast(rb.position, -transform.up, 0.7f);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BoxBlocker")
+        {
+            canClimb = true;
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "BoxBlocker")
+        {
+            canClimb = false;
+        }
     }
 }

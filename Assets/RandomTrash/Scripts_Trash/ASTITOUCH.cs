@@ -9,7 +9,7 @@ public class ASTITOUCH : MonoBehaviour
     public Vector2 worldCenter;
     public float gForce;
     private Vector2 oldWorlCenter;
-    private float angle;
+    [HideInInspector]public float angle;
     private Rigidbody2D rb;
     private Vector2 toWorldCenter;
     private Vector2 gravityForce;
@@ -133,10 +133,25 @@ public class ASTITOUCH : MonoBehaviour
         
         if (collision.gameObject.tag=="Climbable")
         {
+
             oldWorlCenter = worldCenter;
             worldCenter = collision.transform.position;
             //followCamera.transform.SetParent(null);
             
+        }
+        else if (collision.gameObject.tag == "Box")
+        {
+            if(collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
+            {
+                oldWorlCenter = worldCenter;
+                worldCenter = collision.transform.position;
+            }
+
+        }
+        else if (collision.gameObject.tag == "BoxBlocker")
+        {
+            oldWorlCenter = worldCenter;
+            worldCenter = collision.transform.position;
         }
         else if(collision.gameObject.tag =="Earth")
         {
