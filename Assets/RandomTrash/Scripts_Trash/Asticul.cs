@@ -9,7 +9,7 @@ public class Asticul : MonoBehaviour
     public Vector2 worldCenter;
     public float gForce;
     private Vector2 oldWorlCenter;
-    private float angle;
+    [HideInInspector]public float angle;
     private Rigidbody2D rb;
     private Vector2 toWorldCenter;
     private Vector2 gravityForce;
@@ -17,7 +17,7 @@ public class Asticul : MonoBehaviour
     [Header("Movement stuff")]
     public float speed;
     public float jumpForce;
-
+    public bool isMoving;
 
     public GameObject vcam;
     //private Vector3 cameraLocalPosition;
@@ -61,10 +61,16 @@ public class Asticul : MonoBehaviour
         rb.velocity = (move - correction) + gravityForce;
         if(Input.GetAxis("Horizontal")<=0)
         {
+            isMoving = true;
             sprite.flipX = false;
+        }
+        else if(Input.GetAxis("Horizontal") == 0)
+        {
+            isMoving = false;
         }
         else
         {
+            isMoving=true;
             sprite.flipX = true;
         }
     }
