@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class EnigmeBox : MonoBehaviour
 {
-    public float endLine;
+    
     private BoxCollider2D switchCol;
     private Transform playerPos;
     private bool boxOnPlace;
