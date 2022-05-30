@@ -15,7 +15,8 @@ public class LayerBehaviour : MonoBehaviour
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
 
-    private Collider2D coll;
+    private List<GenerateCollider> grounds;
+    public List<GenerateCollider> Grounds { get { return grounds; } set { grounds = value; } }
 
     private Vector3 targetScale;
     private Vector3 initialScale;
@@ -54,7 +55,6 @@ public class LayerBehaviour : MonoBehaviour
     {
         greyedRenderer = greyed.GetComponent<SpriteRenderer>();
         cacheRenderer = cache.GetComponent<SpriteRenderer>();
-        coll = GetComponent<Collider2D>();
         iniGreyedAlpha = greyedRenderer.color.a;
         iniCacheAlpha = cacheRenderer.color.a;
     }
@@ -201,7 +201,6 @@ public class LayerBehaviour : MonoBehaviour
 
     private void Growing()
     {
-        coll.enabled = false;
         layerParameters.Beta += Time.fixedDeltaTime * (1f/ layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
         transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
@@ -209,15 +208,12 @@ public class LayerBehaviour : MonoBehaviour
         {
             growing = false;
             float check = 0.676f * Mathf.Exp(0.394f);
-            if (targetScale.x == check)
-            {
-                coll.enabled = true;
-            }
-            else
-            {
-                coll.enabled = false;
-            }
         }
+        foreach (var ground in grounds)
+        {
+            ground.UpdateGroundWidth();
+        }
+
     }
 
     ///<summary>
@@ -233,7 +229,6 @@ public class LayerBehaviour : MonoBehaviour
 
     private void Shrinking()
     {
-        coll.enabled = false;
         layerParameters.Beta += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
         transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
@@ -241,14 +236,11 @@ public class LayerBehaviour : MonoBehaviour
         {
             shrinking = false;
             float check = 0.676f * Mathf.Exp(0.394f);
-            if (targetScale.x == check)
-            {
-                coll.enabled = true;
-            }
-            else
-            {
-                coll.enabled = false;
-            }
+        }
+
+        foreach(var ground in grounds)
+        {
+            ground.UpdateGroundWidth();
         }
     }
 }
