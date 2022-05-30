@@ -9,7 +9,7 @@ public class ASTITOUCH : MonoBehaviour
     public Vector2 worldCenter;
     public float gForce;
     private Vector2 oldWorlCenter;
-    private float angle;
+    [HideInInspector]public float angle;
     private Rigidbody2D rb;
     private Vector2 toWorldCenter;
     private Vector2 gravityForce;

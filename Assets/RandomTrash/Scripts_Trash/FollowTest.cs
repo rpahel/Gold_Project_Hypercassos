@@ -16,7 +16,7 @@ public class FollowTest : MonoBehaviour
     void FixedUpdate()
     {
         
-        transform.rotation = Quaternion.Euler(0, 0, player.GetComponent<Asticul>().angle);
+        transform.rotation = Quaternion.Euler(0, 0, player.GetComponent<ASTITOUCH>().angle);
         positionList.Add(transform.position);
         if (positionList.Count > distance && follow != null) 
         {

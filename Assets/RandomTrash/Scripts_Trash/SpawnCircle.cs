@@ -11,6 +11,7 @@ public class SpawnCircle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        orderInLayerSprite = GetComponent<SpriteRenderer>().sortingOrder;
         for (int i = 0; i < numberOfCircle; i++)
         {
             orderInLayerSprite--;
