@@ -28,9 +28,10 @@ public class ASTITOUCH : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         oldWorlCenter = worldCenter;
+        StartCoroutine(jump());
         //followCamera = gameObject.transform.GetChild(0).gameObject;
         //cameraLocalPosition = followCamera.transform.position;
-        
+
     }
 
     private void Update()
@@ -157,7 +158,7 @@ public class ASTITOUCH : MonoBehaviour
         else if(collision.gameObject.tag =="Earth")
         {
 
-            worldCenter = new Vector2(0, -10);
+            worldCenter = new Vector2(0, -11);
             //followCamera.transform.SetParent(gameObject.transform);
             //followCamera.transform.position = cameraLocalPosition;
             //followCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -166,6 +167,14 @@ public class ASTITOUCH : MonoBehaviour
     }
     private bool OnGround()
     {
-        return Physics2D.Raycast(rb.position, -transform.up, 0.51f);
+        Debug.DrawRay(rb.position, -transform.up * 0.60f, Color.blue);
+        return Physics2D.Raycast(rb.position, -transform.up, 0.60f);
+    }
+    private IEnumerator jump()
+    {
+        rb.AddForce(Vector2.up * 20f);
+        yield return new WaitForSeconds(2f);
+        Debug.Log("jump");
+        StartCoroutine(jump());
     }
 }

@@ -178,7 +178,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 34386407108895497, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: numberOfCircle
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_Sprite
@@ -186,11 +186,15 @@ PrefabInstance:
       objectReference: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
     - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_SortingOrder
-      value: 100
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2208509950140601369, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.008
       objectReference: {fileID: 0}
     - target: {fileID: 2208509950140601369, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.79
+      value: 7.997
       objectReference: {fileID: 0}
     - target: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_TagString
