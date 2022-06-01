@@ -23,7 +23,7 @@ public class ASTITOUCH : MonoBehaviour
 
     public GameObject vcam;
     //private Vector3 cameraLocalPosition;
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();

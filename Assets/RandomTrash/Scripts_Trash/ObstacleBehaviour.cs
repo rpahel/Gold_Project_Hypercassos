@@ -13,7 +13,7 @@ public class ObstacleBehaviour : MonoBehaviour
     private Vector2 toWorldCenter;
     private  Vector2 gravityForce;
     private SpriteRenderer sprite;
-    private bool enableGravity; 
+    public bool enableGravity; 
     public bool canClimb;
     // Start is called before the first frame update
     void Start()
@@ -79,6 +79,6 @@ public class ObstacleBehaviour : MonoBehaviour
     IEnumerator waitToGravity()
     {
         yield return new WaitForSeconds(3f);
-
+        enableGravity = true;
     }
 }

@@ -148,4 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldCenter: {x: 0, y: -11}
   gForce: 10
+  enableGravity: 0
   canClimb: 0
