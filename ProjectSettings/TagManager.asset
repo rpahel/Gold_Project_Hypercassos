@@ -8,6 +8,7 @@ TagManager:
   - Earth
   - BoxBlocker
   - Box
+  - ExplosiveBox
   layers:
   - Default
   - TransparentFX

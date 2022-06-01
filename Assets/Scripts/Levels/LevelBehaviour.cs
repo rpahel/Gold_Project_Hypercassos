@@ -61,14 +61,6 @@ public class LevelBehaviour : MonoBehaviour
             cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
             float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
             cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
-            if (layerIndex != currentLayer)
-            {
-                cloneLevelLayer.GetComponent<CircleCollider2D>().enabled = false;
-            }
-            else
-            {
-                cloneLevelLayer.GetComponent<CircleCollider2D>().enabled = true;
-            }
 
             levelLayers.Add(cloneLevelLayer);
             yield return new WaitForSeconds(layerSpawnRate);

@@ -12,6 +12,7 @@ public class ObstacleBehaviour : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 toWorldCenter;
     private  Vector2 gravityForce;
+    private SpriteRenderer sprite;
 
     public bool canClimb;
     // Start is called before the first frame update
@@ -63,5 +64,9 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             canClimb = false;
         }
+    }
+    public void destroyBox()
+    {
+        Destroy(gameObject);
     }
 }

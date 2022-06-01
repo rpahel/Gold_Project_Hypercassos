@@ -153,6 +153,14 @@ public class ASTITOUCH : MonoBehaviour
             oldWorlCenter = worldCenter;
             worldCenter = collision.transform.position;
         }
+        else if(collision.gameObject.tag == "ExplosiveBox")
+        {
+            if (collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
+            {
+                oldWorlCenter = worldCenter;
+                worldCenter = collision.transform.position;
+            }
+        }
         else if(collision.gameObject.tag =="Earth")
         {
 
