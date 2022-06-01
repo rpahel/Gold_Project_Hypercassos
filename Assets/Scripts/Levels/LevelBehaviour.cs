@@ -52,7 +52,7 @@ public class LevelBehaviour : MonoBehaviour
 
     IEnumerator LayerSetup()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
         {
@@ -60,6 +60,7 @@ public class LevelBehaviour : MonoBehaviour
             cloneLevelLayer.transform.localPosition = new Vector3(0, 0, 1f * layerIndex);
             cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
             float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
+            cloneLevelLayer.DisableGround();
             cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
 
             levelLayers.Add(cloneLevelLayer);
@@ -68,10 +69,19 @@ public class LevelBehaviour : MonoBehaviour
 
         for (int layerIndex = currentLayer + 1; layerIndex < levelLayers.Count; layerIndex++)
         {
+            if(layerIndex == currentLayer + 1)
+            {
+                levelLayers[layerIndex].GroundZPos(-1.01f);
+            }
             levelLayers[layerIndex].Hide();
         }
 
+        levelLayers[currentLayer].GroundZPos(-1.51f);
         levelLayers[0].GreyOut();
+        for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
+        {
+            levelLayers[layerIndex].EnableGround();
+        }
     }
 
     public void RequestLayerUp()
@@ -101,11 +111,26 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
+                levelLayers[l].DisableGround();
+                if (l == currentLayer + 1)
+                {
+                    levelLayers[l].GroundZPos(-1.01f);
+                }
+                else if (l == currentLayer - 1)
+                {
+                    levelLayers[l].GroundZPos(-1.01f);
+                }
+                else
+                {
+                    levelLayers[l].GroundZPos(0f);
+                }
             }
             else
             {
                 levelLayers[l].Discover();
                 levelLayers[l].Focus();
+                levelLayers[l].EnableGround();
+                levelLayers[l].GroundZPos(-1.51f);
                 //levelLayers[l].EnableColi();
             }
 
@@ -141,13 +166,26 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
-               
+                levelLayers[l].DisableGround();
+                if (l == currentLayer + 1)
+                {
+                    levelLayers[l].GroundZPos(-1.01f);
+                }
+                else if(l == currentLayer - 1)
+                {
+                    levelLayers[l].GroundZPos(-1.01f);
+                }
+                else
+                {
+                    levelLayers[l].GroundZPos(0f);
+                }
             }
             else
             {
                 levelLayers[l].Discover();
                 levelLayers[l].Focus();
-                
+                levelLayers[l].EnableGround();
+                levelLayers[l].GroundZPos(-1.51f);
             }
 
             timeToWait = levelLayers[l].ScaleSpeed;

@@ -14,7 +14,7 @@ public class GenerateHoleColliders : MonoBehaviour
     [Header("Pas touche."), SerializeField]
     private Material groundMaterial;
 
-    private List<GenerateCollider> grounds = new List<GenerateCollider>();
+    private List<GenerateCollider> grounds;
 
     [ContextMenu("Generate Colliders")] 
     public void GenerateCollider()
@@ -59,18 +59,15 @@ public class GenerateHoleColliders : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        for(int i = 0; i < transform.childCount; ++i)
+        grounds = new List<GenerateCollider>();
+        for (int i = 0; i < transform.childCount; ++i)
         {
             var script = transform.GetChild(i).GetComponent<GenerateCollider>();
             script.EpaisseurSol = epaisseurSol;
             grounds.Add(script);
         }
-        transform.parent.gameObject.GetComponent<LayerBehaviour>().Grounds = new List<GenerateCollider>();
-        foreach(var ground in grounds)
-        {
-            transform.parent.gameObject.GetComponent<LayerBehaviour>().Grounds.Add(ground);
-        }
+        transform.parent.gameObject.GetComponent<LayerBehaviour>().Grounds = grounds;
     }
 }
