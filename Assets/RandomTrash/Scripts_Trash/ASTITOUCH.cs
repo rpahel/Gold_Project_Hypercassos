@@ -54,13 +54,6 @@ public class ASTITOUCH : MonoBehaviour
             gravityForce = Vector2.zero;
         }
 
-        //if(Input.GetKey(KeyCode.Space))
-        //{
-        //    rb.AddForce(transform.up* jumpForce);
-        //}
-
-        // à polish, on peut faire des fonctions de ces conneries
-        // Smooth movement
         if(Input.touchCount > 0) // Touch controls
         {
             float xPos = Input.GetTouch(0).position.x;
