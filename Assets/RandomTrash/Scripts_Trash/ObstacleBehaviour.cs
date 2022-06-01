@@ -33,6 +33,7 @@ public class ObstacleBehaviour : MonoBehaviour
         toWorldCenter = worldCenter - rb.position;
         angle = Vector2.SignedAngle(Vector2.up, -toWorldCenter);
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        //Debug.Log(rb.velocity);
         //Debug.DrawRay(rb.position, transform.right * .51f, Color.red);
         
 
@@ -49,7 +50,10 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private bool OnGround()
     {
-        return Physics2D.Raycast(rb.position, -transform.up, 0.7f);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, -transform.up, 0.8f);
+        //Debug.Log(hit);
+        Debug.DrawRay(rb.position, -transform.up*(transform.lossyScale.x*0.6f),Color.blue);
+        return Physics2D.Raycast(rb.position, -transform.up,(transform.lossyScale.x * 0.6f));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

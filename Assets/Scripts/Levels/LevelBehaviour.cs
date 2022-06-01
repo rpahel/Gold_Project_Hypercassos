@@ -106,6 +106,7 @@ public class LevelBehaviour : MonoBehaviour
             {
                 levelLayers[l].Discover();
                 levelLayers[l].Focus();
+                //levelLayers[l].EnableColi();
             }
 
             timeToWait = levelLayers[l].ScaleSpeed;
@@ -140,11 +141,13 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
+               
             }
             else
             {
                 levelLayers[l].Discover();
                 levelLayers[l].Focus();
+                
             }
 
             timeToWait = levelLayers[l].ScaleSpeed;

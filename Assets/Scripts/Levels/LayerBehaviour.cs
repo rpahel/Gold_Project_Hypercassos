@@ -33,8 +33,12 @@ public class LayerBehaviour : MonoBehaviour
     private bool shrinking;
     public bool isScaling { get { return (shrinking || growing); } }
 
+    private LevelBehaviour level;
+    private CircleCollider2D trigger;
     private void Awake()
     {
+        level = FindObjectOfType<LevelBehaviour>();
+        //trigger=GetComponent<CircleCollider2D>();
         if (!layerParameters)
         {
             throw new System.Exception("No Layer Parameters assigned to the Layer gameObject");
@@ -64,31 +68,37 @@ public class LayerBehaviour : MonoBehaviour
         if (hiding)
         {
             Hiding();
+            
         }
 
         if (discovering)
         {
             Discovering();
+            
         }
 
         if (focusing)
         {
             Focusing();
+            
         }
 
         if (greying)
         {
             GreyingOut();
+            
         }
 
         if (growing)
         {
             Growing();
+            
         }
 
         if (shrinking)
         {
             Shrinking();
+            
         }
     }
 
@@ -97,12 +107,14 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Hide()
     {
+        
         hiding = true;
         layerParameters.Alpha = 0;
     }
 
     private void Hiding()
     {
+        
         cache.SetActive(true);
         layerParameters.Alpha += Time.fixedDeltaTime;
         layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
@@ -243,4 +255,5 @@ public class LayerBehaviour : MonoBehaviour
             ground.UpdateGroundWidth();
         }
     }
+
 }
