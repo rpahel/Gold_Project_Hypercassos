@@ -21,8 +21,10 @@ public class SwitchLayer : MonoBehaviour
 
             if(tpTarget!=null)
             {
-                collision.gameObject.transform.position = tpTarget.transform.position;
                 tpTarget.GetComponent<SwitchLayer>().StartCoroutine(coliTimer());
+                collision.gameObject.transform.position = tpTarget.transform.position;
+                
+                Debug.Log("Tp");
                
             }
             if (upLayer)

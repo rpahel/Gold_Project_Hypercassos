@@ -19,6 +19,7 @@ public class ObstacleBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(waitToGravity());
     }
 
     // Update is called once per frame
@@ -28,7 +29,7 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             gravity();
         }
-        StartCoroutine(waitToGravity());
+        
        
     }
     private void gravity()
