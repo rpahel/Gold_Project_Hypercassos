@@ -24,23 +24,10 @@ public class elevator : MonoBehaviour
     }
 
     
-    void Update() {
-        
-        if (!retour) {
-            transform.position = Vector2.MoveTowards(transform.position, pos1, speed * Time.deltaTime);
+    void Update()
+    {
+        StartCoroutine(Move());
 
-            if (Vector2.Distance (transform.position, pos1) < 0.05f) {
-                retour = true;
-            }
-        }
-        
-        if (retour) {
-            transform.position = Vector2.MoveTowards(transform.position, pos2, speed * Time.deltaTime);
-
-            if (Vector2.Distance(transform.position, pos2) < 0.05f) {
-                retour = false;
-            }
-        }
     }
 
     
@@ -68,5 +55,29 @@ public class elevator : MonoBehaviour
         Gizmos.DrawSphere(pos1, 0.2f);
         Gizmos.DrawSphere(pos2, 0.2f);
         Gizmos.DrawLine(pos1, pos2);
-    }    
+    }
+
+    IEnumerator Move()
+    {
+        if (!retour) {
+            
+            transform.position = Vector2.MoveTowards(transform.position, pos1, speed * Time.deltaTime);
+
+            if (Vector2.Distance (transform.position, pos1) < 0.05f)
+            {
+                yield return new WaitForSeconds(3f);
+                retour = true;
+            }
+        }
+        
+        if (retour) {
+            transform.position = Vector2.MoveTowards(transform.position, pos2, speed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, pos2) < 0.05f) 
+            {
+                yield return new WaitForSeconds(3f);
+                retour = false;
+            }
+        }
+    }
 }
