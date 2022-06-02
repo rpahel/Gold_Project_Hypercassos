@@ -25,6 +25,7 @@ public class ASTITOUCH : MonoBehaviour
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {
+        worldCenter = new Vector2(0, -11);
         rb = GetComponent<Rigidbody2D>();
         rb.isKinematic = true;
         sprite = GetComponent<SpriteRenderer>();
