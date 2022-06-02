@@ -6,7 +6,10 @@ public class MultiClonage : MonoBehaviour
 {
     public Transform target;
     public GameObject playerPrefabs;
+    public GameObject boxPrefabs;
+
     private GameObject playerClone;
+    private GameObject boxClone;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,11 +25,20 @@ public class MultiClonage : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-        if(playerClone == null)
+            if(playerClone == null)
+            {
+                playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);
+                playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().speed +=5;
+            }
+        }
+        else if(collision.CompareTag("Box"))
         {
-            playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);
+            if (boxClone == null)
+            {
+                boxClone = Instantiate(boxPrefabs, target.position, Quaternion.identity);
+                Debug.Log("BocClone");
+            }
+            Debug.Log("Box trigger");
         }
-        }
-
     }
 }

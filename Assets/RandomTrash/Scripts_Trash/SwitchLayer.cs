@@ -23,17 +23,18 @@ public class SwitchLayer : MonoBehaviour
             {
                 collision.gameObject.transform.position = tpTarget.transform.position;
                 tpTarget.GetComponent<SwitchLayer>().StartCoroutine(coliTimer());
-                if (upLayer)
-                {
-                    level.RequestLayerUp();
-                    StartCoroutine(coliTimer());
-                    collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000,ForceMode2D.Impulse);
-                }
-                else
-                {
-                    level.RequestLayerDown();
-                    StartCoroutine(coliTimer());
-                }
+               
+            }
+            if (upLayer)
+            {
+                level.RequestLayerUp();
+                StartCoroutine(coliTimer());
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000, ForceMode2D.Impulse);
+            }
+            else
+            {
+                level.RequestLayerDown();
+                StartCoroutine(coliTimer());
             }
         }
     }

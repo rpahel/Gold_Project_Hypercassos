@@ -6,7 +6,7 @@ public class ASTITOUCH : MonoBehaviour
     private SpriteRenderer sprite;
 
     [Header("Physics stuff")]
-    public Vector2 worldCenter;
+    private Vector2 worldCenter;
     public float gForce;
     private Vector2 oldWorlCenter;
     [HideInInspector]public float angle;

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2208509950140601368}
   - component: {fileID: 2208509950140601447}
   - component: {fileID: 2208509950140601446}
-  - component: {fileID: 2208509950140601445}
   - component: {fileID: 34386407108895497}
   - component: {fileID: 2208509950140601444}
+  - component: {fileID: 4192606223617509649}
   m_Layer: 3
   m_Name: Asticul
   m_TagString: Untagged
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,25 +126,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2208509950140601445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2208509950140601443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec37f73ac4169ce4ba4ce7a32da818ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldCenter: {x: 0, y: -10}
-  gForce: 10
-  angle: 0
-  speed: 10
-  jumpForce: 0
-  isMoving: 0
-  vcam: {fileID: 0}
 --- !u!114 &34386407108895497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a618ef64ef6024f871bf8bcc0eeac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfCircle: 10
+  numberOfCircle: 5
   followCircle: []
   circleprefabs: {fileID: 6582422351894135176, guid: 83f1adb9cd1c23249ba20154b5a6d946, type: 3}
 --- !u!114 &2208509950140601444
@@ -176,6 +157,25 @@ MonoBehaviour:
   distance: 3
   speed: 0.1
   positionList: []
+--- !u!114 &4192606223617509649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208509950140601443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a010292b2f21f42be9df7dbd20b63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gForce: 10
+  angle: 0.027976455
+  speed: 10
+  jumpForce: 0
+  acceleration: 2
+  freinage: 3
+  vcam: {fileID: 0}
 --- !u!1 &2208509951350658037
 GameObject:
   m_ObjectHideFlags: 0
