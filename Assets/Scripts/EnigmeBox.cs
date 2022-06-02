@@ -10,6 +10,9 @@ public class EnigmeBox : MonoBehaviour
     private BoxCollider2D switchCol;
     private Transform playerPos;
     private bool boxOnPlace;
+    private ObstacleBehaviour _obstacleBehaviour;
+    private Transform boxStartPos;
+    
     public bool pushToLeft;
 
     private Transform boxPos;
@@ -31,7 +34,8 @@ public class EnigmeBox : MonoBehaviour
         {
             if (playerPos.position.x < transform.position.x - 1)
             {
-                if (!pushToLeft)
+                
+                if (pushToLeft == false)
                 {
                     StartCoroutine(GoUp(boxPos,boxRB, transform)); 
                 }
@@ -39,6 +43,7 @@ public class EnigmeBox : MonoBehaviour
             }
             else if (playerPos.position.x > transform.position.x + 1)
             {
+                
                 if (pushToLeft)
                 {
                     StartCoroutine(GoUp(boxPos,boxRB, transform));  
@@ -61,30 +66,39 @@ public class EnigmeBox : MonoBehaviour
                 boxCol.isTrigger = true;
                 boxRB = col.GetComponent<Rigidbody2D>();
                 boxRB.velocity = Vector2.zero;
+                _obstacleBehaviour = col.GetComponent<ObstacleBehaviour>();
                 StartCoroutine(GoDown(boxPos,boxRB, transform));
                 switchCol.enabled = false;
             }
         }
     }
 
-    IEnumerator GoDown(Transform box, Rigidbody2D rb, Transform pressureSwitch)
+    IEnumerator GoDown(Transform box, Rigidbody2D rb, Transform grabber)
     {
-        box.position = pressureSwitch.position;
+        boxStartPos = box;
+        box.position = grabber.position;
         yield return new WaitForSeconds(0.5f);
-        box.position = Vector3.MoveTowards(box.position, 
-            new Vector3(pressureSwitch.position.x, pressureSwitch.position.y - 0.7f, 0),1);
+        box.position = new Vector3(grabber.position.x + 0.5f, grabber.position.y - 0.5f);
+        _obstacleBehaviour.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
         boxOnPlace = true;
     }
     
-    IEnumerator GoUp(Transform box, Rigidbody2D rb, Transform pressureSwitch)
+    IEnumerator GoUp(Transform box, Rigidbody2D rb, Transform grabber)
     {
-        box.position = Vector3.MoveTowards(box.position,
-            new Vector3(pressureSwitch.position.x, pressureSwitch.position.y + 1f, 0),1);
+        box.position = boxStartPos.position;
         boxCol.isTrigger = false;
+        _obstacleBehaviour.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
         boxOnPlace = false;
         yield return null;
     }
-   
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, transform.up);
+        Gizmos.DrawRay(transform.position, -transform.up);
+        
+    }
 }
