@@ -111,7 +111,7 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
-                levelLayers[l].DisableGround();
+                //levelLayers[l].DisableGround();
                 if (l == currentLayer + 1)
                 {
                     levelLayers[l].GroundZPos(-1.01f);
@@ -166,7 +166,7 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
-                levelLayers[l].DisableGround();
+                //levelLayers[l].DisableGround();
                 if (l == currentLayer + 1)
                 {
                     levelLayers[l].GroundZPos(-1.01f);
