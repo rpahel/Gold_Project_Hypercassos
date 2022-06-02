@@ -13,7 +13,7 @@ public class ObstacleBehaviour : MonoBehaviour
     private Vector2 toWorldCenter;
     private  Vector2 gravityForce;
     private SpriteRenderer sprite;
-
+    public bool enableGravity; 
     public bool canClimb;
     // Start is called before the first frame update
     void Start()
@@ -24,8 +24,11 @@ public class ObstacleBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        gravity();
+        if(enableGravity)
+        {
+            gravity();
+        }
+        StartCoroutine(waitToGravity());
        
     }
     private void gravity()
@@ -72,5 +75,10 @@ public class ObstacleBehaviour : MonoBehaviour
     public void destroyBox()
     {
         Destroy(gameObject);
+    }
+    IEnumerator waitToGravity()
+    {
+        yield return new WaitForSeconds(3f);
+        enableGravity = true;
     }
 }

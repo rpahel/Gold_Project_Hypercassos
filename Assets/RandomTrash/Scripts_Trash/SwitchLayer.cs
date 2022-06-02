@@ -7,7 +7,7 @@ public class SwitchLayer : MonoBehaviour
     private LevelBehaviour level;
     public bool upLayer;
     private bool cancoli;
-
+    public GameObject tpTarget;
     private void Start()
     {
         level = FindObjectOfType<LevelBehaviour>();
@@ -16,14 +16,20 @@ public class SwitchLayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
         if (collision.gameObject.tag == "Player" && cancoli)
         {
+
+            if(tpTarget!=null)
+            {
+                collision.gameObject.transform.position = tpTarget.transform.position;
+                tpTarget.GetComponent<SwitchLayer>().StartCoroutine(coliTimer());
+               
+            }
             if (upLayer)
             {
                 level.RequestLayerUp();
                 StartCoroutine(coliTimer());
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000,ForceMode2D.Impulse);
+                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000, ForceMode2D.Impulse);
             }
             else
             {
@@ -32,16 +38,7 @@ public class SwitchLayer : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player" && cancoli)
-        {
 
-                level.RequestLayerDown();
-                StartCoroutine(coliTimer());
-            collision.gameObject.transform.up *= 20;
-        }
-    }
     IEnumerator coliTimer()
     {
         cancoli = false;
