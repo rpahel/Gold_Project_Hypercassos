@@ -5,9 +5,8 @@ using UnityEngine.UIElements;
 
 public class EnigmeDoor : MonoBehaviour
 {
-    public SwitchPressureBox boxSwitch;
-    public SwitchPressurePlayer playerSwitch;
     
+    [HideInInspector] public bool isOpen;
     [Tooltip("True = door open with player switch, False = door open with box switch")]
     public bool isPlayerSwitch;
 
@@ -24,7 +23,7 @@ public class EnigmeDoor : MonoBehaviour
     {
         if (isPlayerSwitch)
         {
-            if (playerSwitch.isActive)
+            if (isOpen)
             {
                 sprite.enabled = false;
                 col.enabled = false;
@@ -37,7 +36,7 @@ public class EnigmeDoor : MonoBehaviour
         }
         else
         {
-            if (boxSwitch.isActive)
+            if (isOpen)
             {
                 sprite.enabled = false;
                 col.enabled = false;
