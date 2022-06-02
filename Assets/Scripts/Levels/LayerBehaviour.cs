@@ -33,11 +33,11 @@ public class LayerBehaviour : MonoBehaviour
     private bool shrinking;
     public bool isScaling { get { return (shrinking || growing); } }
 
-    private LevelBehaviour level;
-    private CircleCollider2D trigger;
+    //private LevelBehaviour level;
+    //private CircleCollider2D trigger;
     private void Awake()
     {
-        level = FindObjectOfType<LevelBehaviour>();
+        //level = FindObjectOfType<LevelBehaviour>();
         //trigger=GetComponent<CircleCollider2D>();
         if (!layerParameters)
         {
@@ -219,7 +219,6 @@ public class LayerBehaviour : MonoBehaviour
         if(transform.localScale.sqrMagnitude >= targetScale.sqrMagnitude)
         {
             growing = false;
-            float check = 0.676f * Mathf.Exp(0.394f);
         }
         foreach (var ground in grounds)
         {
@@ -247,7 +246,6 @@ public class LayerBehaviour : MonoBehaviour
         if (transform.localScale.sqrMagnitude <= targetScale.sqrMagnitude)
         {
             shrinking = false;
-            float check = 0.676f * Mathf.Exp(0.394f);
         }
 
         foreach(var ground in grounds)
@@ -256,4 +254,34 @@ public class LayerBehaviour : MonoBehaviour
         }
     }
 
+    ///<summary>
+    /// Enable ground collisions.
+    ///</summary>
+    public void EnableGround()
+    {
+        foreach(var ground in grounds)
+        {
+            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+        }
+    }
+
+    ///<summary>
+    /// Disable ground collisions.
+    ///</summary>
+    public void DisableGround()
+    {
+        foreach (var ground in grounds)
+        {
+            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+        }
+    }
+
+    ///<summary>
+    /// Change ground z position.
+    ///</summary>
+    public void GroundZPos(float zPos)
+    {
+        Transform obj = grounds[0].transform.parent;
+        obj.localPosition = new Vector3(obj.localPosition.x, obj.localPosition.y, zPos);
+    }
 }

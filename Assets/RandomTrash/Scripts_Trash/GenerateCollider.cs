@@ -5,17 +5,23 @@ using UnityEngine;
 public class GenerateCollider : MonoBehaviour
 {
     private EdgeCollider2D coll;
+
     private LineRenderer lineRenderer;
+
     private List<Vector2> points;
+
     private Color groundColor;
+    public Color GroundColor { set { groundColor = value; } }
+
     private Material groundMaterial;
     public Material GroundMaterial { set { groundMaterial = value; } }
-    public Color GroundColor { set { groundColor = value; } }
+
     private int maxPoints;
     public int MaxPoints { set { maxPoints = value; } }
     [Range(0, 100), Tooltip("How much of the circle should the collider draw ?")]
     public int percentageCircle;
     public int PercentageCircle { set { percentageCircle = value; } }
+    
     private float epaisseurSol;
     public float EpaisseurSol { set { epaisseurSol = value; } }
 
@@ -31,12 +37,13 @@ public class GenerateCollider : MonoBehaviour
         int pointNb = Mathf.RoundToInt((float)maxPoints * ((float)percentageCircle / 100f));
         for(int i = 0; i < pointNb + 1; i++)
         {
-            Vector2 point = Vector2.right * 10f;
+            Vector2 point = Vector2.right * 10f - Vector2.right * (epaisseurSol * 0.5f);
             point = Quaternion.Euler(0, 0, 360f * ((float)i / (float)maxPoints)) * point;
             points.Add(point);
         }
 
         coll = gameObject.AddComponent<EdgeCollider2D>();
+        coll.edgeRadius = epaisseurSol * 0.5f;
         coll.SetPoints(points);
 
         GenerateGround();
@@ -56,18 +63,18 @@ public class GenerateCollider : MonoBehaviour
         lineRenderer.positionCount = points.Count;
         lineRenderer.startWidth = epaisseurSol * scale;
         lineRenderer.endWidth = epaisseurSol * scale;
-        for (int i = 0; i < points.Count; i++)
-        {
-            Vector2 a = points[i];
-            a = a - a.normalized * (epaisseurSol / 2f);
-            lineRenderer.SetPosition(i, new Vector3(a.x, a.y, -1.1f));
-        }
         lineRenderer.sharedMaterial = groundMaterial;
         lineRenderer.startColor = groundColor;
         lineRenderer.endColor = groundColor;
         lineRenderer.numCapVertices = 4;
         lineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         lineRenderer.receiveShadows = false;
+        for (int i = 0; i < points.Count; i++)
+        {
+            Vector2 a = points[i];
+            //a = a - a.normalized * (epaisseurSol / 2f);
+            lineRenderer.SetPosition(i, new Vector3(a.x, a.y, 0f));
+        }
     }
 
     public void UpdateGroundWidth()
@@ -75,10 +82,12 @@ public class GenerateCollider : MonoBehaviour
         float scale = transform.parent.parent.localScale.x;
         lineRenderer.startWidth = epaisseurSol * scale;
         lineRenderer.endWidth = epaisseurSol * scale;
+        coll.edgeRadius = (epaisseurSol * 0.5f) * scale;
     }
 
     private void Awake()
     {
+        coll = GetComponent<EdgeCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
     }
 }
