@@ -20,15 +20,17 @@ public class ASTITOUCH : MonoBehaviour
     public float acceleration;
     public float freinage;
     private float sens;
-
+    private  bool enableGravity;
     public GameObject vcam;
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.isKinematic = true;
         sprite = GetComponent<SpriteRenderer>();
         oldWorlCenter = worldCenter;
         StartCoroutine(jump());
+        StartCoroutine(waitToMove());
         //followCamera = gameObject.transform.GetChild(0).gameObject;
         //cameraLocalPosition = followCamera.transform.position;
 
@@ -36,7 +38,11 @@ public class ASTITOUCH : MonoBehaviour
 
     private void Update()
     {
-        Movement();
+        if(enableGravity)
+        {
+            Movement();
+        }
+        
     }
 
     private void Movement()
@@ -167,14 +173,20 @@ public class ASTITOUCH : MonoBehaviour
     }
     private bool OnGround()
     {
-        Debug.DrawRay(rb.position, -transform.up * 0.60f, Color.blue);
-        return Physics2D.Raycast(rb.position, -transform.up, 0.60f);
+        Debug.DrawRay(rb.position, -transform.up * 0.52f, Color.blue);
+        return Physics2D.Raycast(rb.position, -transform.up, 0.52f);
     }
     private IEnumerator jump()
     {
-        rb.AddForce(Vector2.up * 20f);
+        rb.AddForce(Vector2.up * 60f);
         yield return new WaitForSeconds(2f);
         Debug.Log("jump");
         StartCoroutine(jump());
+    }
+    IEnumerator waitToMove()
+    {
+        yield return new WaitForSeconds(3f);
+        rb.isKinematic = false;
+        enableGravity = true;
     }
 }
