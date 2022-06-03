@@ -1023,7 +1023,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6525633982978800218}
   m_LocalRotation: {x: -0, y: -0, z: 0.39320093, w: -0.91945267}
-  m_LocalPosition: {x: 8.319291, y: 7.4107666, z: 0}
+  m_LocalPosition: {x: 10.07, y: 9.22, z: 0}
   m_LocalScale: {x: 3.7384431, y: 3.7384431, z: 3.7384439}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1070,7 +1070,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0c96c0ed6b3df6245a4b3cdfde408d0b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1274,15 +1274,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6797684597097979606, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.009552
+      value: 4.51089
       objectReference: {fileID: 0}
     - target: {fileID: 6797684597097979606, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.27
+      value: 10.02
       objectReference: {fileID: 0}
     - target: {fileID: 6797684597097979606, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.1
+      value: -1.06
       objectReference: {fileID: 0}
     - target: {fileID: 6797684597097979606, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1316,9 +1316,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.28
       objectReference: {fileID: 0}
+    - target: {fileID: 6797684597097979625, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797684597097979625, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6797684597097979626, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
       propertyPath: m_Name
       value: FallLayerDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797684597097979626, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb34b286ec2153448b257d7b222c7179, type: 3}
