@@ -12,6 +12,7 @@ public class EnigmeBox : MonoBehaviour
     private bool boxOnPlace;
     private ObstacleBehaviour _obstacleBehaviour;
     private Transform boxStartPos;
+    private SpriteRenderer boxSprite;
     
     public bool pushToLeft;
 
@@ -65,6 +66,7 @@ public class EnigmeBox : MonoBehaviour
                 boxCol = col.GetComponent<BoxCollider2D>();
                 boxCol.isTrigger = true;
                 boxRB = col.GetComponent<Rigidbody2D>();
+                boxSprite = col.GetComponent<SpriteRenderer>();
                 boxRB.velocity = Vector2.zero;
                 _obstacleBehaviour = col.GetComponent<ObstacleBehaviour>();
                 StartCoroutine(GoDown(boxPos,boxRB, transform));
@@ -76,9 +78,8 @@ public class EnigmeBox : MonoBehaviour
     IEnumerator GoDown(Transform box, Rigidbody2D rb, Transform grabber)
     {
         boxStartPos = box;
-        box.position = grabber.position;
         yield return new WaitForSeconds(0.5f);
-        box.position = new Vector3(grabber.position.x + 0.5f, grabber.position.y - 0.5f);
+        boxSprite.enabled = false;
         _obstacleBehaviour.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
         boxOnPlace = true;
@@ -87,6 +88,7 @@ public class EnigmeBox : MonoBehaviour
     IEnumerator GoUp(Transform box, Rigidbody2D rb, Transform grabber)
     {
         box.position = boxStartPos.position;
+        boxSprite.enabled = true;
         boxCol.isTrigger = false;
         _obstacleBehaviour.enabled = true;
         rb.bodyType = RigidbodyType2D.Dynamic;
