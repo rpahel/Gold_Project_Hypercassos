@@ -20,8 +20,8 @@ public class LevelButton : MonoBehaviour
     {
         //Jme permets pour la sortie proto hein des bisous
         //Debug.Log(levelNum);
-        //SceneManager.LoadScene("Level " + levelNum); 
+        SceneManager.LoadScene("Level " + levelNum); 
 
-        SceneManager.LoadScene("Raphael");
+        
     }
 }
