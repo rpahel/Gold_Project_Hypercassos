@@ -15,6 +15,8 @@ public class LayerBehaviour : MonoBehaviour
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
 
+    private AnimationCurve scaleCurve;
+
     private List<GenerateCollider> grounds;
     public List<GenerateCollider> Grounds { get { return grounds; } set { grounds = value; } }
 
@@ -53,6 +55,8 @@ public class LayerBehaviour : MonoBehaviour
         {
             throw new System.Exception("No Cache gameObject assigned to the Layer gameObject");
         }
+
+        scaleCurve = layerParameters.ScaleCurve;
     }
 
     private void Start()
@@ -215,7 +219,8 @@ public class LayerBehaviour : MonoBehaviour
     {
         layerParameters.Beta += Time.fixedDeltaTime * (1f/ layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
-        transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
+        float Beta = scaleCurve.Evaluate(layerParameters.Beta);
+        transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
         if(transform.localScale.sqrMagnitude >= targetScale.sqrMagnitude)
         {
             growing = false;
@@ -242,7 +247,8 @@ public class LayerBehaviour : MonoBehaviour
     {
         layerParameters.Beta += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed);
         layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
-        transform.localScale = Vector3.Lerp(initialScale, targetScale, layerParameters.Beta);
+        float Beta = scaleCurve.Evaluate(layerParameters.Beta);
+        transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
         if (transform.localScale.sqrMagnitude <= targetScale.sqrMagnitude)
         {
             shrinking = false;

@@ -11,8 +11,7 @@ public class LevelBehaviour : MonoBehaviour
     [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
     public float layerSpawnRate;
 
-    public int currentLayer;
-
+    private int currentLayer;
     private ASTITOUCH asticul;
 
     private void Awake()
