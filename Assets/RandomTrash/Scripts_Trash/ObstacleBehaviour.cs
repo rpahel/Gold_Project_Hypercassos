@@ -54,10 +54,10 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private bool OnGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rb.position, -transform.up, 0.8f);
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, -transform.up, 0.62f);
         //Debug.Log(hit);
-        Debug.DrawRay(rb.position, -transform.up*(transform.lossyScale.x*0.6f),Color.blue);
-        return Physics2D.Raycast(rb.position, -transform.up,(transform.lossyScale.x * 0.6f));
+        Debug.DrawRay(rb.position, -transform.up*(transform.lossyScale.x*0.62f),Color.blue);
+        return Physics2D.Raycast(rb.position, -transform.up,(transform.lossyScale.x * 0.62f));
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
