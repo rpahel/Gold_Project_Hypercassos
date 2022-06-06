@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 3363691379126040017}
   - component: {fileID: 9006156911332353573}
   - component: {fileID: 6687380277153257947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider
   m_TagString: Earth
   m_Icon: {fileID: 0}
@@ -1278,7 +1278,7 @@ GameObject:
   - component: {fileID: 6834747139104359103}
   - component: {fileID: 9122364176827368638}
   - component: {fileID: 9147141377764090565}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collider 1 (1)
   m_TagString: Earth
   m_Icon: {fileID: 0}
@@ -2114,11 +2114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2416504655648206379, guid: 76d77757e1e7f3b428af0da2fcc4becb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.28
+      value: -1.71
       objectReference: {fileID: 0}
     - target: {fileID: 2416504655648206379, guid: 76d77757e1e7f3b428af0da2fcc4becb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.46
+      value: 2.59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76d77757e1e7f3b428af0da2fcc4becb, type: 3}
