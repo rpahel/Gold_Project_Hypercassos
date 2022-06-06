@@ -13,6 +13,8 @@ public class LevelBehaviour : MonoBehaviour
 
     public int currentLayer;
 
+    private ASTITOUCH asticul;
+
     private void Awake()
     {
         if (!levelObject)
@@ -24,6 +26,8 @@ public class LevelBehaviour : MonoBehaviour
         {
             throw new System.Exception("No Level Layers in the levelLayers array of the assigned Level Object.");
         }
+
+        asticul = FindObjectOfType<ASTITOUCH>();
     }
 
     private void Start()
@@ -52,6 +56,7 @@ public class LevelBehaviour : MonoBehaviour
 
     IEnumerator LayerSetup()
     {
+        asticul.Freeze();
         yield return new WaitForSeconds(0.5f);
         
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
@@ -78,10 +83,15 @@ public class LevelBehaviour : MonoBehaviour
 
         levelLayers[currentLayer].GroundZPos(-1.51f);
         levelLayers[0].GreyOut();
+        float wait = 0f;
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
         {
             levelLayers[layerIndex].EnableGround();
+            wait = levelLayers[layerIndex].ScaleSpeed;
         }
+
+        yield return new WaitForSeconds(wait);
+        asticul.UnFreeze();
     }
 
     public void RequestLayerUp()
@@ -102,6 +112,7 @@ public class LevelBehaviour : MonoBehaviour
         float timeToWait = 1f;
         currentLayer++;
 
+        asticul.Freeze();
         for(int l = 0; l < levelLayers.Count; l++)
         {
             float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
@@ -137,7 +148,9 @@ public class LevelBehaviour : MonoBehaviour
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait);
+        yield return new WaitForSeconds(timeToWait * 0.25f);
+
+        asticul.UnFreeze();
     }
 
     public void RequestLayerDown()
@@ -157,6 +170,7 @@ public class LevelBehaviour : MonoBehaviour
         float timeToWait = 1f;
         currentLayer--;
 
+        asticul.Freeze();
         for (int l = 0; l < levelLayers.Count; l++)
         {
             float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
@@ -191,6 +205,8 @@ public class LevelBehaviour : MonoBehaviour
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait);
+        yield return new WaitForSeconds(timeToWait * 0.25f);
+
+        asticul.UnFreeze();
     }
 }
