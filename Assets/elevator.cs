@@ -26,6 +26,7 @@ public class elevator : MonoBehaviour
     void OnCollisionExit2D(Collision2D truc) {
         if (truc.gameObject.tag == "Player") {
             truc.transform.parent = null;
+            truc.transform.parent.localScale = new Vector3(1,1,1);
         }
     }
 
