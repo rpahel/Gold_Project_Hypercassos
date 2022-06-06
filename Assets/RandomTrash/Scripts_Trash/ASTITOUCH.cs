@@ -8,11 +8,12 @@ public class ASTITOUCH : MonoBehaviour
     [Header("Physics stuff")]
     private Vector2 worldCenter;
     public float gForce;
-    private Vector2 oldWorlCenter;
+    //private Vector2 oldWorlCenter;
     [HideInInspector]public float angle;
     private Rigidbody2D rb;
     private Vector2 toWorldCenter;
     private Vector2 gravityForce;
+    private CircleCollider2D coll;
 
     [Header("Movement stuff")]
     public float speed;
@@ -20,30 +21,35 @@ public class ASTITOUCH : MonoBehaviour
     public float acceleration;
     public float freinage;
     private float sens;
-    private  bool enableGravity;
     public GameObject vcam;
+    private bool frozen;
+
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {
         worldCenter = new Vector2(0, -11);
         rb = GetComponent<Rigidbody2D>();
-        rb.isKinematic = true;
         sprite = GetComponent<SpriteRenderer>();
-        oldWorlCenter = worldCenter;
-        StartCoroutine(jump());
-        StartCoroutine(waitToMove());
+        coll = GetComponent<CircleCollider2D>();
+        //oldWorlCenter = worldCenter;
         //followCamera = gameObject.transform.GetChild(0).gameObject;
         //cameraLocalPosition = followCamera.transform.position;
+    }
 
+    private void Start()
+    {
+        frozen = true;
     }
 
     private void Update()
     {
-        if(enableGravity)
+        if (frozen)
         {
-            Movement();
+            rb.velocity = Vector3.zero;
+            return;
         }
         
+        Movement();
     }
 
     private void Movement()
@@ -135,7 +141,7 @@ public class ASTITOUCH : MonoBehaviour
         if (collision.gameObject.tag=="Climbable")
         {
 
-            oldWorlCenter = worldCenter;
+            //oldWorlCenter = worldCenter;
             worldCenter = collision.transform.position;
             //followCamera.transform.SetParent(null);
             
@@ -144,21 +150,21 @@ public class ASTITOUCH : MonoBehaviour
         {
             if(collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
             {
-                oldWorlCenter = worldCenter;
+                //oldWorlCenter = worldCenter;
                 worldCenter = collision.transform.position;
             }
 
         }
         else if (collision.gameObject.tag == "BoxBlocker")
         {
-            oldWorlCenter = worldCenter;
+            //oldWorlCenter = worldCenter;
             worldCenter = collision.transform.position;
         }
         else if(collision.gameObject.tag == "ExplosiveBox")
         {
             if (collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
             {
-                oldWorlCenter = worldCenter;
+                //oldWorlCenter = worldCenter;
                 worldCenter = collision.transform.position;
             }
         }
@@ -170,24 +176,28 @@ public class ASTITOUCH : MonoBehaviour
             //followCamera.transform.position = cameraLocalPosition;
             //followCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
-        Debug.Log(collision.gameObject.tag);
     }
     private bool OnGround()
     {
         Debug.DrawRay(rb.position, -transform.up * 0.52f, Color.blue);
         return Physics2D.Raycast(rb.position, -transform.up, 0.52f);
     }
-    private IEnumerator jump()
+
+    /// <summary>
+    /// Freezes the player's controls and physics.
+    /// </summary>
+    public void Freeze()
     {
-        rb.AddForce(Vector2.up * 60f);
-        yield return new WaitForSeconds(2f);
-        Debug.Log("jump");
-        StartCoroutine(jump());
+        frozen = true;
+        coll.enabled = false;
     }
-    IEnumerator waitToMove()
+
+    /// <summary>
+    /// Unfreezes the player so that he can move and be affected by gravity.
+    /// </summary>
+    public void UnFreeze()
     {
-        yield return new WaitForSeconds(3f);
-        rb.isKinematic = false;
-        enableGravity = true;
+        frozen = false;
+        coll.enabled = true;
     }
 }

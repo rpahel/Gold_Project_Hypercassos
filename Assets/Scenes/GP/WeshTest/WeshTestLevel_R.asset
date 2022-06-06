@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06d0cf890157dc4ba96fd47a5ea801a, type: 3}
+  m_Name: WeshTestLevel_R
+  m_EditorClassIdentifier: 
+  levelLayers:
+  - {fileID: 107411772664210324, guid: 1c4292cfdb4ad5a47b61ef42290a6b02, type: 3}
+  - {fileID: 107411772664210324, guid: 65b80cf7e2b2d9e49bbc35ba4e042b99, type: 3}
+  - {fileID: 107411772664210324, guid: 2118703b70b378d4d8e53e79fbc55a96, type: 3}
+  - {fileID: 107411772664210324, guid: 1b36f0ee79dc5284fa8a48c78bab6151, type: 3}
