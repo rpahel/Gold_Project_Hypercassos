@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c71e478d3471249992203e1c203b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreDeTrous: 3
+  nombreDeTrous: 0
   epaisseurSol: 0.2
   groundColor: {r: 0.6226415, g: 0, b: 0.032252688, a: 0}
   groundMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
