@@ -24,6 +24,14 @@ public class ASTITOUCH : MonoBehaviour
     public GameObject vcam;
     private bool frozen;
 
+    [Header("Zone légale")]
+    public float limitStart;
+    public float limitEnd;
+    public float tpPoint;
+    private Vector2 limitStartPos;
+    private Vector2 limitEndPos;
+    private Vector2 tpPointPos;
+
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {
@@ -49,6 +57,8 @@ public class ASTITOUCH : MonoBehaviour
             return;
         }
         
+        DrawLimits();
+        CheckLimits();
         Movement();
     }
 
@@ -199,5 +209,28 @@ public class ASTITOUCH : MonoBehaviour
     {
         frozen = false;
         coll.enabled = true;
+    }
+
+    private void DrawLimits()
+    {
+        CalculateLimits();
+        Debug.DrawLine(limitStartPos, limitEndPos, Color.red);
+    }
+
+    private void CalculateLimits()
+    {
+        Vector2 playerPos = (Vector2)transform.position - new Vector2(0, -11f);
+        limitStartPos = new Vector2(0, -11f) + playerPos.normalized * limitStart;
+        limitEndPos = new Vector2(0, -11f) + playerPos.normalized * limitEnd;
+        tpPointPos = new Vector2(0, -11f) + playerPos.normalized * tpPoint;
+    }
+
+    private void CheckLimits()
+    {
+        Vector2 playerPos = (Vector2)transform.position - new Vector2(0, -11f);
+        if (playerPos.sqrMagnitude >= limitEnd * limitEnd || playerPos.sqrMagnitude <= limitStart * limitStart)
+        {
+            transform.position = tpPointPos;
+        }
     }
 }
