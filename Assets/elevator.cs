@@ -6,12 +6,20 @@ public class elevator : MonoBehaviour
 {
     public float speed = 2f;
     [SerializeField]private Transform pos1;                                 
-    [SerializeField]private Transform pos2;                                 
+    [SerializeField]private Transform pos2;
+    
+    [Tooltip("Active the elevator")]
+    public bool isMoving = false;
+    
     private bool retour;                                            
     
     void Update()
     {
-        StartCoroutine(Move());
+        if (isMoving)
+        {
+            StartCoroutine(Move());
+        }
+        
 
     }
 
@@ -22,11 +30,6 @@ public class elevator : MonoBehaviour
         childCol.localScale = new Vector3(1, 1, 1);
     }
     
-    
-    void OnCollisionExit2D(Collision2D col) 
-    {
-        
-    }
 
 
     IEnumerator Move()

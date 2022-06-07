@@ -10,15 +10,13 @@ public class EnigmeBox : MonoBehaviour
     private BoxCollider2D switchCol;
     private Transform playerPos;
     private bool boxOnPlace;
-    private ObstacleBehaviour _obstacleBehaviour;
-    private Transform boxStartPos;
-    private SpriteRenderer boxSprite;
+    private GameObject box;
+    private bool isActive = true;
+    
     
     public bool pushToLeft;
 
-    private Transform boxPos;
-    private Rigidbody2D boxRB;
-    private BoxCollider2D boxCol;
+   
     
 
     // Update is called once per frame
@@ -31,14 +29,15 @@ public class EnigmeBox : MonoBehaviour
     private void Update()
     {
         
-        if (boxOnPlace)
+        if (boxOnPlace && !isActive)
         {
             if (playerPos.position.x < transform.position.x - 1)
             {
                 
                 if (pushToLeft == false)
                 {
-                    StartCoroutine(GoUp(boxPos,boxRB, transform)); 
+                    StartCoroutine(GoUp(box)); 
+                    
                 }
                 
             }
@@ -47,7 +46,9 @@ public class EnigmeBox : MonoBehaviour
                 
                 if (pushToLeft)
                 {
-                    StartCoroutine(GoUp(boxPos,boxRB, transform));  
+                    StartCoroutine(GoUp(box));
+                   
+                    
                 }
                 
             }
@@ -58,49 +59,40 @@ public class EnigmeBox : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.tag == "Box")
+        if (col.tag == "Box" && isActive)
         {
             if (Math.Abs(switchCol.bounds.center.x - col.bounds.center.x) <= 0.1)
             {
-                boxPos = col.GetComponent<Transform>();
-                boxCol = col.GetComponent<BoxCollider2D>();
-                boxCol.isTrigger = true;
-                boxRB = col.GetComponent<Rigidbody2D>();
-                boxSprite = col.GetComponent<SpriteRenderer>();
-                boxRB.velocity = Vector2.zero;
-                _obstacleBehaviour = col.GetComponent<ObstacleBehaviour>();
-                StartCoroutine(GoDown(boxPos,boxRB, transform));
-                switchCol.enabled = false;
+                box = col.gameObject;
+                StartCoroutine(GoDown(box));
+                isActive = false;
+
             }
         }
     }
-
-    IEnumerator GoDown(Transform box, Rigidbody2D rb, Transform grabber)
+    private void OnTriggerExit2D(Collider2D col)
     {
-        boxStartPos = box;
-        yield return new WaitForSeconds(0.5f);
-        boxSprite.enabled = false;
-        _obstacleBehaviour.enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
+        if (col.tag == "Box")
+        {
+            isActive = true;
+        }
+    }
+
+    IEnumerator GoDown(GameObject box)
+    {
+        print("Go Down");
+        box.SetActive(false);
         boxOnPlace = true;
+        yield return null;
     }
     
-    IEnumerator GoUp(Transform box, Rigidbody2D rb, Transform grabber)
+    IEnumerator GoUp(GameObject box)
     {
-        box.position = boxStartPos.position;
-        boxSprite.enabled = true;
-        boxCol.isTrigger = false;
-        _obstacleBehaviour.enabled = true;
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        print("Go Up");
+        box.SetActive(true);
         boxOnPlace = false;
         yield return null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(transform.position, transform.up);
-        Gizmos.DrawRay(transform.position, -transform.up);
-        
-    }
+    
 }
