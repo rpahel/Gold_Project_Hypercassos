@@ -12,7 +12,7 @@ public class LevelBehaviour : MonoBehaviour
     public float layerSpawnRate;
 
     private int currentLayer;
-    private ASTITOUCH asticul;
+    private Player asticul;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class LevelBehaviour : MonoBehaviour
             throw new System.Exception("No Level Layers in the levelLayers array of the assigned Level Object.");
         }
 
-        asticul = FindObjectOfType<ASTITOUCH>();
+        asticul = FindObjectOfType<Player>();
     }
 
     private void Start()

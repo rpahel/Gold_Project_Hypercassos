@@ -23,7 +23,7 @@ public class SpawnCircle : MonoBehaviour
 
             if(i == numberOfCircle-1) // la taille de la derniere boule est plus petite
             {
-                go.transform.localScale = new Vector3(0.701626897f, 0.701626897f, 0.701626897f);
+                go.transform.localScale = new Vector3(0.701626897f, 0.701626897f, 1f);
             }
 
            
