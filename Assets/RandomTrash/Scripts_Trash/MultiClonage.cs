@@ -10,17 +10,7 @@ public class MultiClonage : MonoBehaviour
 
     private GameObject playerClone;
     private GameObject boxClone;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -29,6 +19,10 @@ public class MultiClonage : MonoBehaviour
             {
                 playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);
                 playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().speed +=5;
+            }
+            else
+            {
+                Destroy(playerClone);
             }
         }
         else if(collision.CompareTag("Box"))
