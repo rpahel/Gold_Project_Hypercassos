@@ -100,6 +100,11 @@ public class LevelBehaviour : MonoBehaviour
             Debug.Log("You are at the top layer.");
             return;
         }
+
+        if (levelLayers[0].isScaling)
+        {
+            Debug.Log("The world is scaling. Please wait and try again.");
+        }
         else
         {
             StartCoroutine(LayerUp());
@@ -157,6 +162,12 @@ public class LevelBehaviour : MonoBehaviour
         if (currentLayer == 1)
         {
             Debug.Log("You are at the bottom layer.");
+            return;
+        }
+
+        if (levelLayers[0].isScaling)
+        {
+            Debug.Log("The world is scaling. Please wait and try again.");
         }
         else
         {
