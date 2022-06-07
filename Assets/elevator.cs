@@ -16,17 +16,16 @@ public class elevator : MonoBehaviour
     }
 
     
-    void OnCollisionEnter2D(Collision2D truc) {
-        if (truc.gameObject.tag == "Player") {
-            truc.transform.parent = transform;
-        }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Transform childCol = col.collider.GetComponent<Transform>();
+        childCol.localScale = new Vector3(1, 1, 1);
     }
-
     
-    void OnCollisionExit2D(Collision2D truc) {
-        if (truc.gameObject.tag == "Player") {
-            truc.transform.parent = null;
-        }
+    
+    void OnCollisionExit2D(Collision2D col) 
+    {
+        
     }
 
 

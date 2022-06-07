@@ -9,8 +9,11 @@ public class LayerParameters : ScriptableObject
     private float scaleSpeed;
     private float alpha;
     private float beta;
+    [Tooltip("The way the layers scale."), SerializeField]
+    private AnimationCurve scaleCurve;
 
     public float ScaleSpeed { get { return scaleSpeed; } }
     public float Alpha { get { return alpha; } set { alpha = value; } }
     public float Beta { get { return beta; } set { beta = value; } }
+    public AnimationCurve ScaleCurve { get { return scaleCurve; } }
 }
