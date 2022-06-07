@@ -14,7 +14,7 @@ public class ASTITOUCH : MonoBehaviour
     private Vector2 toWorldCenter;
     private Vector2 gravityForce;
     private CircleCollider2D coll;
-
+    public bool isClone;
     [Header("Movement stuff")]
     public float speed;
     public float jumpForce;
@@ -46,7 +46,10 @@ public class ASTITOUCH : MonoBehaviour
 
     private void Start()
     {
-        frozen = true;
+        if(!isClone)
+        {
+            frozen = true;
+        }
     }
 
     private void Update()
