@@ -176,6 +176,9 @@ MonoBehaviour:
   acceleration: 2
   freinage: 3
   vcam: {fileID: 0}
+  limitStart: 9.5
+  limitEnd: 16
+  tpPoint: 12
 --- !u!1 &2208509951350658037
 GameObject:
   m_ObjectHideFlags: 0

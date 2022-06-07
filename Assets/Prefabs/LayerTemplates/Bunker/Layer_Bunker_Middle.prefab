@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 107411772664210320}
   - component: {fileID: 107411772664210322}
   m_Layer: 2
-  m_Name: Layer_Tuto_Noyau
+  m_Name: Layer_Bunker_Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,12 +77,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9bbb7add3470c8e4990ec112382441a4, type: 3}
-  m_Color: {r: 1, g: 0.9607843, b: 0.6509804, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 98d1fa5404e6e524f8a65fd936578d95, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 40, y: 41.042084}
+  m_Size: {x: 20.48, y: 20.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c71e478d3471249992203e1c203b32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nombreDeTrous: 0
+  nombreDeTrous: 3
   epaisseurSol: 0.2
   groundColor: {r: 0.6226415, g: 0, b: 0.032252688, a: 0}
   groundMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
