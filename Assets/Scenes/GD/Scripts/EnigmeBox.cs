@@ -40,6 +40,7 @@ public class EnigmeBox : MonoBehaviour
             
             if (dot < 0)
             {
+                print("A gauche");
                 
                 if (pushToLeft == false)
                 {
@@ -50,7 +51,8 @@ public class EnigmeBox : MonoBehaviour
             }
             else if (dot > 0)
             {
-                
+
+                print("A droite");
                 if (pushToLeft)
                 {
                     StartCoroutine(GoUp(box));
@@ -87,16 +89,16 @@ public class EnigmeBox : MonoBehaviour
 
     IEnumerator GoDown(GameObject box)
     {
-        print("Go Down");
-        box.SetActive(false);
+        print("DOWN");
+        box.GetComponent<Animator>().SetBool("Down", true);
         boxOnPlace = true;
         yield return null;
     }
     
     IEnumerator GoUp(GameObject box)
     {
-        print("Go Up");
-        box.SetActive(true);
+        print("UP");
+        box.GetComponent<Animator>().SetBool("Down", false);
         boxOnPlace = false;
         yield return null;
     }
