@@ -215,9 +215,12 @@ public class LayerBehaviour : MonoBehaviour
 
         scaling = false;
 
-        foreach (var ground in grounds)
+        if (grounds != null && grounds.Count > 0)
         {
-            ground.UpdateGroundWidth();
+            foreach (var ground in grounds)
+            {
+                ground.UpdateGroundWidth();
+            }
         }
 
         yield break;
@@ -245,9 +248,12 @@ public class LayerBehaviour : MonoBehaviour
 
         scaling = false;
 
-        foreach (var ground in grounds)
+        if (grounds != null && grounds.Count > 0)
         {
-            ground.UpdateGroundWidth();
+            foreach (var ground in grounds)
+            {
+                ground.UpdateGroundWidth();
+            }
         }
 
         yield break;
@@ -258,9 +264,12 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void EnableGround()
     {
-        foreach(var ground in grounds)
+        if(grounds != null && grounds.Count > 0)
         {
-            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+            foreach (var ground in grounds)
+            {
+                ground.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+            }
         }
     }
 
@@ -269,9 +278,12 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void DisableGround()
     {
-        foreach (var ground in grounds)
+        if (grounds != null && grounds.Count > 0)
         {
-            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+            foreach (var ground in grounds)
+            {
+                ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+            }
         }
     }
 
@@ -280,7 +292,10 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void GroundZPos(float zPos)
     {
-        Transform obj = grounds[0].transform.parent;
-        obj.localPosition = new Vector3(obj.localPosition.x, obj.localPosition.y, zPos);
+        if (grounds != null && grounds.Count > 0)
+        {
+            Transform obj = grounds[0].transform.parent;
+            obj.localPosition = new Vector3(obj.localPosition.x, obj.localPosition.y, zPos);
+        }
     }
 }

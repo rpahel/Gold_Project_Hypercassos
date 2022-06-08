@@ -4,26 +4,41 @@ using UnityEngine;
 
 public class GenerateCollider : MonoBehaviour
 {
-    private EdgeCollider2D coll;
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
 
-    private LineRenderer lineRenderer;
+    [Range(0, 100), Tooltip("How much of the circle should the collider draw ?"), SerializeField]
+    private int percentageCircle;
 
-    private List<Vector2> points;
-
-    private Color groundColor;
-    public Color GroundColor { set { groundColor = value; } }
-
-    private Material groundMaterial;
-    public Material GroundMaterial { set { groundMaterial = value; } }
-
-    private int maxPoints;
-    public int MaxPoints { set { maxPoints = value; } }
-    [Range(0, 100), Tooltip("How much of the circle should the collider draw ?")]
-    public int percentageCircle;
-    public int PercentageCircle { set { percentageCircle = value; } }
-    
     private float epaisseurSol;
+    private EdgeCollider2D coll;
+    private LineRenderer lineRenderer;
+    private List<Vector2> points;
+    private Color groundColor;
+    private Material groundMaterial;
+    private int maxPoints;
+    
+    // Properties
     public float EpaisseurSol { set { epaisseurSol = value; } }
+    public Color GroundColor { set { groundColor = value; } }
+    public Material GroundMaterial { set { groundMaterial = value; } }
+    public int MaxPoints { set { maxPoints = value; } }
+    public int PercentageCircle { set { percentageCircle = value; } }
+
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
+
+    private void Awake()
+    {
+        coll = GetComponent<EdgeCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
 
     [ContextMenu("Generate Ground")]
     public void GenerateGroundCollision()
@@ -83,11 +98,5 @@ public class GenerateCollider : MonoBehaviour
         lineRenderer.startWidth = epaisseurSol * scale;
         lineRenderer.endWidth = epaisseurSol * scale;
         coll.edgeRadius = (epaisseurSol * 0.5f) * scale;
-    }
-
-    private void Awake()
-    {
-        coll = GetComponent<EdgeCollider2D>();
-        lineRenderer = GetComponent<LineRenderer>();
     }
 }
