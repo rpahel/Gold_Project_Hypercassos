@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
     private void CheckLimits()
     {
         CalculateLimits();
-        Vector2 playerPos = (Vector2)transform.position - gravityCenter;
+        Vector2 playerPos = (Vector2)transform.position - worldCenter;
         if (playerPos.sqrMagnitude >= limitEnd * limitEnd || playerPos.sqrMagnitude <= limitStart * limitStart)
         {
             transform.position = tpPointPos;
