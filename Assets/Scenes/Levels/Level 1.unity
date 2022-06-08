@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 27eadc237bcadc8458b8f7fc20e0b3c6, type: 2}
     - target: {fileID: 8906845477819989122, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
       propertyPath: layerSpawnRate
-      value: 0.1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 8906845477819989124, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
       propertyPath: m_Name
