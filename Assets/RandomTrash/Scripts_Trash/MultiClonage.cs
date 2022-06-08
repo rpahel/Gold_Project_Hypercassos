@@ -24,7 +24,7 @@ public class MultiClonage : MonoBehaviour
             }
             else
             {
-                Destroy(playerClone.transform.parent.gameObject);
+                Destroy(playerClone.transform.gameObject);
             }
         }
         else if(collision.CompareTag("Box"))

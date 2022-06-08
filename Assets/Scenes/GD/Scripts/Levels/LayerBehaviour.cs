@@ -66,8 +66,7 @@ public class LayerBehaviour : MonoBehaviour
 
     public void DisableBox()
     {
-        Debug.Log("box is disabled");
-        Debug.Log(box.Length);
+
         for (int i = 0; i < box.Length; i++)
         {
             box[i].SetActive(false);
