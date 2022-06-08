@@ -66,9 +66,11 @@ public class LevelBehaviour : MonoBehaviour
             float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
             cloneLevelLayer.DisableGround();
             cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
-
+            cloneLevelLayer.DisableBox();
             levelLayers.Add(cloneLevelLayer);
+            
             yield return new WaitForSeconds(layerSpawnRate);
+
         }
 
         for (int layerIndex = currentLayer + 1; layerIndex < levelLayers.Count; layerIndex++)
@@ -91,6 +93,12 @@ public class LevelBehaviour : MonoBehaviour
 
         yield return new WaitForSeconds(wait);
         asticul.UnFreeze();
+        
+        foreach (LayerBehaviour item in levelLayers)
+        {
+            item.EnableBox();
+        }
+        
     }
 
     public void RequestLayerUp()
@@ -218,5 +226,6 @@ public class LevelBehaviour : MonoBehaviour
         yield return new WaitForSeconds(timeToWait * 0.25f);
 
         asticul.UnFreeze();
+        
     }
 }
