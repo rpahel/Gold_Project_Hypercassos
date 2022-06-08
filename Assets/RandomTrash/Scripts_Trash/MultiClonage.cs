@@ -10,7 +10,8 @@ public class MultiClonage : MonoBehaviour
 
     private GameObject playerClone;
     private GameObject boxClone;
-
+    
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
@@ -23,7 +24,7 @@ public class MultiClonage : MonoBehaviour
             }
             else
             {
-                Destroy(playerClone);
+                Destroy(playerClone.transform.parent.gameObject);
             }
         }
         else if(collision.CompareTag("Box"))
