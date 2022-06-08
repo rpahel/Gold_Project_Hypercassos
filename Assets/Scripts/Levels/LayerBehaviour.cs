@@ -35,10 +35,15 @@ public class LayerBehaviour : MonoBehaviour
     private bool shrinking;
     public bool isScaling { get { return (shrinking || growing); } }
 
+    public GameObject[] box;
+    
+    
+
     //private LevelBehaviour level;
     //private CircleCollider2D trigger;
     private void Awake()
     {
+        box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
         //level = FindObjectOfType<LevelBehaviour>();
         //trigger=GetComponent<CircleCollider2D>();
         if (!layerParameters)
@@ -59,12 +64,32 @@ public class LayerBehaviour : MonoBehaviour
         scaleCurve = layerParameters.ScaleCurve;
     }
 
+    public void DisableBox()
+    {
+
+        for (int i = 0; i < box.Length; i++)
+        {
+            box[i].SetActive(false);
+            
+        }
+    }
+    //faire une fonction qui active les boxs
+    public void EnableBox()
+    {
+        for (int i = 0; i < box.Length; i++)
+        {
+            box[i].SetActive(true);
+        }
+    }
+    //couroutine qui fait apparaitre les boxs
+
     private void Start()
     {
         greyedRenderer = greyed.GetComponent<SpriteRenderer>();
         cacheRenderer = cache.GetComponent<SpriteRenderer>();
         iniGreyedAlpha = greyedRenderer.color.a;
         iniCacheAlpha = cacheRenderer.color.a;
+        DisableBox();
     }
 
     private void FixedUpdate()
@@ -279,6 +304,7 @@ public class LayerBehaviour : MonoBehaviour
         foreach (var ground in grounds)
         {
             ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+            
         }
     }
 

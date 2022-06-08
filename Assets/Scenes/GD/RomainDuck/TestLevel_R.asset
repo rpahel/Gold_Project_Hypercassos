@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: TestLevel_R
   m_EditorClassIdentifier: 
   levelLayers:
-  - {fileID: 107411772664210324, guid: 71219542ac6706942bf6067bbf7f448c, type: 3}
-  - {fileID: 107411772664210324, guid: 94a08d12e796b56468f61a75b481ee77, type: 3}
-  - {fileID: 107411772664210324, guid: d18e9f061e3e3004c92d4c2f2a71d19b, type: 3}
-  - {fileID: 107411772664210324, guid: f96f6c9fbf5b0d8468c2327876e8de5a, type: 3}
-  - {fileID: 107411772664210324, guid: 6a8f6d80be30f7141bea738ef3bee188, type: 3}
+  - {fileID: 107411772664210324, guid: d1a7a8486b8bcc541b8a2cec1186693d, type: 3}
+  - {fileID: 107411772664210324, guid: 9f494784ee2f5b44d9c72b9f474884d2, type: 3}
+  - {fileID: 107411772664210324, guid: d8571d3e65f8ea341945b7ada97102c4, type: 3}
+  - {fileID: 107411772664210324, guid: 115bc19e97bc47a4c96f7ca73bf2f227, type: 3}
