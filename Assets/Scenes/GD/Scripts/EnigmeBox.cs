@@ -15,6 +15,7 @@ public class EnigmeBox : MonoBehaviour
     
     
     public bool pushToLeft;
+   
 
    
     
@@ -28,10 +29,16 @@ public class EnigmeBox : MonoBehaviour
 
     private void Update()
     {
+        Vector3 right = transform.right.normalized;
+        Vector3 direction  = (playerPos.position - transform.position).normalized;
+        float dot = Vector3.Dot(right, direction);
+        
         
         if (boxOnPlace && !isActive)
         {
-            if (playerPos.position.x < transform.position.x - 1)
+            
+            
+            if (dot < 0)
             {
                 
                 if (pushToLeft == false)
@@ -41,7 +48,7 @@ public class EnigmeBox : MonoBehaviour
                 }
                 
             }
-            else if (playerPos.position.x > transform.position.x + 1)
+            else if (dot > 0)
             {
                 
                 if (pushToLeft)
