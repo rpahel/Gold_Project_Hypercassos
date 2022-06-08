@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLayers:
   - {fileID: 107411772664210324, guid: d79192529f7e76343861dcf8d9aaee59, type: 3}
+  - {fileID: 107411772664210324, guid: a149c90ff359184439d4b967075d2b55, type: 3}
+  - {fileID: 107411772664210324, guid: 27f53ea67d62ab444afebf89f34ed5cf, type: 3}
   - {fileID: 107411772664210324, guid: f8f10272aecea344d97b31402a4ad28c, type: 3}
+  - {fileID: 107411772664210324, guid: 7a06edcfb78681f46a265c1afd524d47, type: 3}
