@@ -59,9 +59,12 @@ public class ASTITOUCH : MonoBehaviour
             rb.velocity = Vector3.zero;
             return;
         }
-        
-        DrawLimits();
-        CheckLimits();
+        if (!isClone)
+        {
+            DrawLimits();
+            CheckLimits();
+        }
+
         Movement();
     }
 
