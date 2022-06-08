@@ -39,7 +39,7 @@ public class PlayerBody : MonoBehaviour
         {
             followingBodyCircle.transform.rotation = transform.rotation;
             positionList.Add(transform.position);
-            if (positionList.Count > bodyCirclesCount * 0.5f) // On peut controler la taille du ver avec cette ligne. A tester
+            if (positionList.Count > bodyCirclesCount * 0.4f) // On peut controler la taille du ver avec cette ligne. A tester
             {
                 positionList.RemoveAt(0);
                 followingBodyCircle.transform.position = positionList[0];

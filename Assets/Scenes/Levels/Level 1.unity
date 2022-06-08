@@ -188,9 +188,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
---- !u!1 &889107559 stripped
+--- !u!1 &754477884 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 2208509951350658037, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
   m_PrefabInstance: {fileID: 927185029}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &927185029
@@ -348,7 +348,7 @@ PrefabInstance:
     - target: {fileID: 1938250198671167848, guid: 51f2fdf93dcd324478e41b7de3bac59e, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 889107559}
+      objectReference: {fileID: 754477884}
     - target: {fileID: 1938250198671167854, guid: 51f2fdf93dcd324478e41b7de3bac59e, type: 3}
       propertyPath: m_Name
       value: CameraController

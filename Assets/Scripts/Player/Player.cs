@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private float angle;
 
     [Header("Movement stuff")]
-    public bool isClone;
+    private bool isClone;
     [SerializeField] private float speed;
     [SerializeField] private float acceleration;
     [SerializeField] private float freinage;
@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     // Properties
     public float Angle { get { return angle; } }
     public float Speed { get { return speed; } set { speed = value; } }
+    public bool IsClone { get { return isClone; } set { isClone = value; } }
 
     //=============================================================================================//
     //                                         -  UNITY  -                                         //
@@ -62,16 +63,24 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        GetInput();
+    }
+
+    private void FixedUpdate()
+    {
         if (frozen)
         {
             rb.velocity = Vector3.zero;
             return;
         }
-        
-        CheckLimits();
-        DrawLimits();
+
+        if (!isClone)
+        {
+            DrawLimits();
+            CheckLimits();
+        }
+
         CalculatePhysicsValues();
-        GetInput();
         Movement();
     }
 

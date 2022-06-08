@@ -2696,6 +2696,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.pivot.x
       value: 0.49999997
       objectReference: {fileID: 0}
@@ -2731,6 +2747,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 6c81f474667db9947aa7f81ab507f749, type: 3}
+    - target: {fileID: 7155564827448702555, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702555, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702555, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7155564827448702555, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702559, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_Name
       value: box
