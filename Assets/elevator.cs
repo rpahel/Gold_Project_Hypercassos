@@ -6,28 +6,30 @@ public class elevator : MonoBehaviour
 {
     public float speed = 2f;
     [SerializeField]private Transform pos1;                                 
-    [SerializeField]private Transform pos2;                                 
+    [SerializeField]private Transform pos2;
+    
+    [Tooltip("Active the elevator")]
+    public bool isMoving = false;
+    
     private bool retour;                                            
     
     void Update()
     {
-        StartCoroutine(Move());
+        if (isMoving)
+        {
+            StartCoroutine(Move());
+        }
+        
 
     }
 
     
-    void OnCollisionEnter2D(Collision2D truc) {
-        if (truc.gameObject.tag == "Player") {
-            truc.transform.parent = transform;
-        }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Transform childCol = col.collider.GetComponent<Transform>();
+        childCol.localScale = new Vector3(1, 1, 1);
     }
-
     
-    void OnCollisionExit2D(Collision2D truc) {
-        if (truc.gameObject.tag == "Player") {
-            truc.transform.parent = null;
-        }
-    }
 
 
     IEnumerator Move()

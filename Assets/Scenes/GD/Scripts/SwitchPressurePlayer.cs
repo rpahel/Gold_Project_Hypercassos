@@ -9,6 +9,7 @@ public class SwitchPressurePlayer : MonoBehaviour
     
     public List<EnigmeDoor> DoortoClose;
     public List<EnigmeDoor> DoortoOpen;
+    public List<elevator> Elevators;
 
     private void Start()
     {
@@ -29,6 +30,11 @@ public class SwitchPressurePlayer : MonoBehaviour
         for (int i = 0; i < DoortoClose.Count; i++)
         {
             DoortoClose[i].isOpen = !isActive;
+        }
+        
+        for (int i = 0; i < Elevators.Count; i++)
+        {
+            Elevators[i].isMoving = isActive;
         }
     }
 

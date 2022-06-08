@@ -11,8 +11,7 @@ public class LevelBehaviour : MonoBehaviour
     [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
     public float layerSpawnRate;
 
-    public int currentLayer;
-
+    private int currentLayer;
     private ASTITOUCH asticul;
 
     private void Awake()
@@ -101,6 +100,11 @@ public class LevelBehaviour : MonoBehaviour
             Debug.Log("You are at the top layer.");
             return;
         }
+
+        if (levelLayers[0].isScaling)
+        {
+            Debug.Log("The world is scaling. Please wait and try again.");
+        }
         else
         {
             StartCoroutine(LayerUp());
@@ -158,6 +162,12 @@ public class LevelBehaviour : MonoBehaviour
         if (currentLayer == 1)
         {
             Debug.Log("You are at the bottom layer.");
+            return;
+        }
+
+        if (levelLayers[0].isScaling)
+        {
+            Debug.Log("The world is scaling. Please wait and try again.");
         }
         else
         {
