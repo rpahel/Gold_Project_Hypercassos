@@ -8,7 +8,7 @@ public class KillClone : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<ASTITOUCH>().isClone)
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject.transform.parent.gameObject);
         }
     }
 }
