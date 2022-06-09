@@ -20,6 +20,7 @@ public class LayerBehaviour : MonoBehaviour
     private AnimationCurve scaleCurve;
     private List<GenerateCollider> grounds;
     private GameObject[] boxes;
+    private GameObject[] explosiveBoxes;
     private Vector3 targetScale;
     private Vector3 initialScale;
     private float iniGreyedAlpha;
@@ -35,12 +36,11 @@ public class LayerBehaviour : MonoBehaviour
     //                                         -  UNITY  -                                         //
     //=============================================================================================//
 
-    public GameObject[] explosivebox;
     private void Awake()
     {
         ErrorsCheck();
-        box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
-        explosivebox = GameObject.FindGameObjectsWithTag("Box");
+        explosiveBoxes = GameObject.FindGameObjectsWithTag("ExplosiveBox");
+        boxes = GameObject.FindGameObjectsWithTag("Box");
         scaleCurve = layerParameters.ScaleCurve;
     }
 

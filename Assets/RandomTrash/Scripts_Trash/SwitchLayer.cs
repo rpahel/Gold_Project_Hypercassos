@@ -41,12 +41,6 @@ public class SwitchLayer : MonoBehaviour
                 level.RequestLayerUp();
                 StartCoroutine(colliTimer());
             }
-            else if (sameLayerTp)
-            {
-                
-                StartCoroutine(coliTimer());
-                collision.gameObject.transform.position = tpTarget.transform.position;                
-            }
             else
             {
                 level.RequestLayerDown();
