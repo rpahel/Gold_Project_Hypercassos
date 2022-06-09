@@ -1,56 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwitchLayer : MonoBehaviour
 {
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
+
+    [Tooltip("True if you want this to be the level ending."), SerializeField]
+    private bool isEnding;
+    [Tooltip("True if you want this switch to take you up, False for down."), SerializeField]
+    private bool goUp;
+
+    private bool canCollide;
     private LevelBehaviour level;
-    public bool upLayer;
-    private bool cancoli;
-    public GameObject tpTarget;
+
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
+
     private void Start()
     {
         level = FindObjectOfType<LevelBehaviour>();
-        cancoli = true;
+        canCollide = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && cancoli)
+        if (collision.CompareTag("Player") && canCollide)
         {
-
-            if(tpTarget!=null)
+            if (isEnding)
             {
-
-                if (tpTarget.GetComponent<SwitchLayer>() != null)
-                {
-                    tpTarget.GetComponent<SwitchLayer>().StartCoroutine(coliTimer());
-                }
-
-
-                collision.gameObject.transform.position = tpTarget.transform.position;
-                
-                Debug.Log("Tp");
-               
+                SceneManager.LoadScene("LevelSelector");
             }
-            if (upLayer)
+
+            if (goUp)
             {
                 level.RequestLayerUp();
-                StartCoroutine(coliTimer());
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000, ForceMode2D.Impulse);
+                StartCoroutine(colliTimer());
             }
             else
             {
                 level.RequestLayerDown();
-                StartCoroutine(coliTimer());
+                StartCoroutine(colliTimer());
             }
         }
     }
 
-    IEnumerator coliTimer()
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
+
+    IEnumerator colliTimer()
     {
-        cancoli = false;
+        canCollide = false;
         yield return new WaitForSeconds(1f);
-        cancoli = true;
+        canCollide = true;
+        yield break;
     }
 }

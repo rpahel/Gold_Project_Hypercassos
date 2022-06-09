@@ -74,11 +74,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (!isClone)
-        {
-            DrawLimits();
-            CheckLimits();
-        }
+        //if (!isClone)
+        //{
+        //    DrawLimits();
+        //    CheckLimits();
+        //}
 
         CalculatePhysicsValues();
         Movement();
