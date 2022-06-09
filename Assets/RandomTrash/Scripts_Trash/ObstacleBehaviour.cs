@@ -21,18 +21,12 @@ public class ObstacleBehaviour : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
             gravity();
-
-        
-       
     }
     private void gravity()
     {
@@ -63,16 +57,18 @@ public class ObstacleBehaviour : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "BoxBlocker")
+        if(collision.gameObject.tag == "BoxBlocker")
         {
             canClimb = true;
         }
+        Debug.Log("colision "+collision.gameObject.tag);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "BoxBlocker")
         {
             canClimb = false;
+            Debug.Log("collision exit");
         }
     }
     public void destroyBox()

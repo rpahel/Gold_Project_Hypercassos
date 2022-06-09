@@ -5,9 +5,10 @@ using UnityEngine;
 public class MultiClonage : MonoBehaviour
 {
     public Transform target;
+    public Transform targetBox;
     public GameObject playerPrefabs;
     public GameObject boxPrefabs;
-
+    
     private GameObject playerClone;
     private GameObject boxClone;
     
@@ -31,12 +32,12 @@ public class MultiClonage : MonoBehaviour
         {
             if (boxClone == null)
             {
-                boxClone = Instantiate(boxPrefabs, target.position, Quaternion.identity);
+                boxClone = Instantiate(boxPrefabs, targetBox.position, Quaternion.identity);
                 Debug.Log("BocClone");
             }
             else
             {
-                Destroy(playerClone.transform.gameObject);
+                Destroy(boxClone.transform.gameObject);
             }
             Debug.Log("Box trigger");
         }

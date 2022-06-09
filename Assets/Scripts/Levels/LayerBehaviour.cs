@@ -35,10 +35,12 @@ public class LayerBehaviour : MonoBehaviour
     //                                         -  UNITY  -                                         //
     //=============================================================================================//
 
+    public GameObject[] explosivebox;
     private void Awake()
     {
-        boxes = GameObject.FindGameObjectsWithTag("ExplosiveBox");
         ErrorsCheck();
+        box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
+        explosivebox = GameObject.FindGameObjectsWithTag("Box");
         scaleCurve = layerParameters.ScaleCurve;
     }
 
