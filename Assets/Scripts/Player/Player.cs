@@ -123,7 +123,8 @@ public class Player : MonoBehaviour
 
         if (!OnGround())
         {
-            gravityForce -= gForce * Time.deltaTime * (Vector2)transform.up;
+            Vector2 toWorldCenter = worldCenter - rb.position;
+            gravityForce += gForce * Time.deltaTime * toWorldCenter.normalized;
         }
         else
         {
