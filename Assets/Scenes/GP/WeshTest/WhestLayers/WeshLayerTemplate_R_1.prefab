@@ -198,6 +198,7 @@ MonoBehaviour:
   layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 107411771967951249}
+  box: []
 --- !u!1 &107411772689828110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,11 +1508,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702548, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4548343
+      value: 8.81
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702548, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.489868
+      value: -9.08
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702548, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_LocalPosition.z

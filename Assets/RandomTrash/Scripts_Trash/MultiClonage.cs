@@ -34,6 +34,10 @@ public class MultiClonage : MonoBehaviour
                 boxClone = Instantiate(boxPrefabs, target.position, Quaternion.identity);
                 Debug.Log("BocClone");
             }
+            else
+            {
+                Destroy(playerClone.transform.gameObject);
+            }
             Debug.Log("Box trigger");
         }
     }

@@ -12,6 +12,7 @@ public class EnigmeBox : MonoBehaviour
     private bool boxOnPlace;
     private GameObject box;
     private bool isActive = true;
+    private RaycastHit2D hit;
     
     
     public bool pushToLeft;
@@ -29,6 +30,23 @@ public class EnigmeBox : MonoBehaviour
 
     private void Update()
     {
+        hit = Physics2D.Raycast(transform.position, transform.up);
+        
+        if(hit.collider ==null)
+            return;
+        if (hit !=null)
+        {
+            if (hit.collider.tag == "Box" && isActive)
+            {
+                
+                box = hit.collider.gameObject;
+                StartCoroutine(GoDown(box));
+                isActive = false;
+            }
+        }
+        
+        
+        
         Vector3 right = transform.right.normalized;
         Vector3 direction  = (playerPos.position - transform.position).normalized;
         float dot = Vector3.Dot(right, direction);
@@ -40,7 +58,7 @@ public class EnigmeBox : MonoBehaviour
             
             if (dot < 0)
             {
-                print("A gauche");
+               
                 
                 if (pushToLeft == false)
                 {
@@ -52,7 +70,7 @@ public class EnigmeBox : MonoBehaviour
             else if (dot > 0)
             {
 
-                print("A droite");
+                
                 if (pushToLeft)
                 {
                     StartCoroutine(GoUp(box));
@@ -65,20 +83,7 @@ public class EnigmeBox : MonoBehaviour
         }
         
     }
-
-    private void OnTriggerStay2D(Collider2D col)
-    {
-        if (col.tag == "Box" && isActive)
-        {
-            if (Math.Abs(switchCol.bounds.center.x - col.bounds.center.x) <= 0.1)
-            {
-                box = col.gameObject;
-                StartCoroutine(GoDown(box));
-                isActive = false;
-
-            }
-        }
-    }
+    
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Box")
@@ -101,6 +106,12 @@ public class EnigmeBox : MonoBehaviour
         box.GetComponent<Animator>().SetBool("Down", false);
         boxOnPlace = false;
         yield return null;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, transform.up);
     }
 
     
