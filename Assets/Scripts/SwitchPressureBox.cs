@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwitchPressureBox : MonoBehaviour
 {
     private SpriteRenderer sprite;
-    private bool isActive;
+    public bool isActive;
     
     public List<EnigmeDoor> DoortoClose;
     public List<EnigmeDoor> DoortoOpen;

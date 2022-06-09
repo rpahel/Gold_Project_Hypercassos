@@ -14,6 +14,21 @@ public class SwitchPressurePlayer : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+
+        for (int i = 0; i < DoortoOpen.Count; i++)
+        {
+            DoortoOpen[i].isOpen = isActive;
+        }
+
+        for (int i = 0; i < DoortoClose.Count; i++)
+        {
+            DoortoClose[i].isOpen = !isActive;
+        }
+
+        for (int i = 0; i < Elevators.Count; i++)
+        {
+            Elevators[i].isMoving = isActive;
+        }
     }
     void Update()
     {
@@ -21,21 +36,6 @@ public class SwitchPressurePlayer : MonoBehaviour
             sprite.color = Color.green;
         else
             sprite.color = Color.red;
-        
-        for (int i = 0; i < DoortoOpen.Count; i++)
-        {
-            DoortoOpen[i].isOpen = isActive;
-        }
-        
-        for (int i = 0; i < DoortoClose.Count; i++)
-        {
-            DoortoClose[i].isOpen = !isActive;
-        }
-        
-        for (int i = 0; i < Elevators.Count; i++)
-        {
-            Elevators[i].isMoving = isActive;
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -44,5 +44,21 @@ public class SwitchPressurePlayer : MonoBehaviour
         {
             isActive = true;
         }
+
+        for (int i = 0; i < DoortoOpen.Count; i++)
+        {
+            DoortoOpen[i].isOpen = isActive;
+        }
+
+        for (int i = 0; i < DoortoClose.Count; i++)
+        {
+            DoortoClose[i].isOpen = !isActive;
+        }
+
+        for (int i = 0; i < Elevators.Count; i++)
+        {
+            Elevators[i].isMoving = isActive;
+        }
+        Destroy(gameObject.GetComponent<Collider2D>());
     }
 }
