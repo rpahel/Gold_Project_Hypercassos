@@ -15,20 +15,22 @@ public class ObstacleBehaviour : MonoBehaviour
     private SpriteRenderer sprite;
     public bool enableGravity; 
     public bool canClimb;
+
+    public bool isClone;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(waitToGravity());
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(enableGravity)
-        {
+
             gravity();
-        }
+
         
        
     }
