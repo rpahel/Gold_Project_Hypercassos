@@ -174,7 +174,7 @@ public class ASTITOUCH : MonoBehaviour
         else if (collision.gameObject.tag == "BoxBlocker")
         {
             //oldWorlCenter = worldCenter;
-            worldCenter = collision.transform.position;
+            worldCenter = new Vector2(0, -11);
         }
         else if(collision.gameObject.tag == "ExplosiveBox")
         {
