@@ -49,10 +49,6 @@ public class LayerBehaviour : MonoBehaviour
         box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
         explosivebox = GameObject.FindGameObjectsWithTag("Box");
 
-
-
-
-
         //level = FindObjectOfType<LevelBehaviour>();
         //trigger=GetComponent<CircleCollider2D>();
         if (!layerParameters)
