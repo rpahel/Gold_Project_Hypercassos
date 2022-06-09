@@ -79,7 +79,7 @@ public class LayerBehaviour : MonoBehaviour
         }
         for (int i = 0; i < explosivebox.Length; i++)
         {
-            box[i].SetActive(false);
+            explosivebox[i].SetActive(false);
 
         }
     }
@@ -92,7 +92,7 @@ public class LayerBehaviour : MonoBehaviour
         }
         for (int i = 0; i < explosivebox.Length; i++)
         {
-            box[i].SetActive(true);
+            explosivebox[i].SetActive(true);
 
         }
     }
