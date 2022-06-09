@@ -32,9 +32,9 @@ public class EnigmeBox : MonoBehaviour
     {
         hit = Physics2D.Raycast(transform.position, transform.up);
         
-        if(hit.collider ==null)
+        if(hit.collider == null)
             return;
-        if (hit !=null)
+        if (hit.collider !=null)
         {
             if (hit.collider.tag == "Box" && isActive)
             {
