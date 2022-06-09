@@ -9,7 +9,8 @@ public class SwitchLayer : MonoBehaviour
     public bool sameLayerTp;
     private bool cancoli;
     public GameObject tpTarget;
-    public BoxCollider2D boxCollider;
+    
+    [HideInInspector]public BoxCollider2D boxCollider;
     private void Start()
     {
         level = FindObjectOfType<LevelBehaviour>();
