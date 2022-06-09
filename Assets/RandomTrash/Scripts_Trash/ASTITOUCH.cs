@@ -174,7 +174,8 @@ public class ASTITOUCH : MonoBehaviour
         else if (collision.gameObject.tag == "BoxBlocker")
         {
             //oldWorlCenter = worldCenter;
-            worldCenter = new Vector2(0, -11);
+            worldCenter = collision.transform.position;
+            
         }
         else if(collision.gameObject.tag == "ExplosiveBox")
         {
@@ -182,6 +183,7 @@ public class ASTITOUCH : MonoBehaviour
             {
                 //oldWorlCenter = worldCenter;
                 worldCenter = collision.transform.position;
+                
             }
         }
         else if(collision.gameObject.tag =="Earth")
