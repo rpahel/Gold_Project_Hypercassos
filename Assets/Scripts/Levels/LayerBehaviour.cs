@@ -36,15 +36,23 @@ public class LayerBehaviour : MonoBehaviour
     public bool isScaling { get { return (shrinking || growing); } }
 
     public GameObject[] box;
+    public GameObject[] explosivebox;
+
     
-    
+
 
     //private LevelBehaviour level;
     //private CircleCollider2D trigger;
     private void Awake()
     {
+        
         box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
-        box = GameObject.FindGameObjectsWithTag("Box");
+        explosivebox = GameObject.FindGameObjectsWithTag("Box");
+
+
+
+
+
         //level = FindObjectOfType<LevelBehaviour>();
         //trigger=GetComponent<CircleCollider2D>();
         if (!layerParameters)
@@ -73,6 +81,11 @@ public class LayerBehaviour : MonoBehaviour
             box[i].SetActive(false);
             
         }
+        for (int i = 0; i < explosivebox.Length; i++)
+        {
+            box[i].SetActive(false);
+
+        }
     }
     //faire une fonction qui active les boxs
     public void EnableBox()
@@ -80,6 +93,11 @@ public class LayerBehaviour : MonoBehaviour
         for (int i = 0; i < box.Length; i++)
         {
             box[i].SetActive(true);
+        }
+        for (int i = 0; i < explosivebox.Length; i++)
+        {
+            box[i].SetActive(true);
+
         }
     }
     //couroutine qui fait apparaitre les boxs
