@@ -106,7 +106,7 @@ public class LayerBehaviour : MonoBehaviour
 
         cache.SetActive(true);
 
-        for (float alpha = 0; alpha <= 1f; alpha += Time.fixedDeltaTime)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(0, iniCacheAlpha, alpha));
             yield return null;
@@ -130,7 +130,7 @@ public class LayerBehaviour : MonoBehaviour
             yield break;
         }
 
-        for (float alpha = 0; alpha <= 1f; alpha += Time.fixedDeltaTime)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(iniCacheAlpha, 0, alpha));
             yield return null;
@@ -156,7 +156,7 @@ public class LayerBehaviour : MonoBehaviour
             yield break;
         }
 
-        for (float alpha = 0; alpha <= 1f; alpha += Time.fixedDeltaTime)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(iniGreyedAlpha, 0, alpha));
             yield return null;
@@ -184,7 +184,7 @@ public class LayerBehaviour : MonoBehaviour
 
         greyed.SetActive(true);
 
-        for (float alpha = 0; alpha <= 1f; alpha += Time.fixedDeltaTime)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(0, iniGreyedAlpha, alpha));
             yield return null;
@@ -206,7 +206,7 @@ public class LayerBehaviour : MonoBehaviour
 
     private IEnumerator Growing()
     {
-        for(float l = 0; l <= 1f; l += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed))
+        for(float l = 0; l <= 1f; l += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             float Beta = scaleCurve.Evaluate(l);
             transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
@@ -239,7 +239,7 @@ public class LayerBehaviour : MonoBehaviour
 
     private IEnumerator Shrinking()
     {
-        for (float l = 0; l <= 1f; l += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed))
+        for (float l = 0; l <= 1f; l += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
             float Beta = scaleCurve.Evaluate(l);
             transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);

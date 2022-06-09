@@ -185,7 +185,7 @@ public class LevelBehaviour : MonoBehaviour
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait * 0.25f);
+        yield return new WaitForSeconds(timeToWait);
 
         player.UnFreeze();
 
@@ -251,7 +251,7 @@ public class LevelBehaviour : MonoBehaviour
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait * 0.25f);
+        yield return new WaitForSeconds(timeToWait);
 
         player.UnFreeze();
 
