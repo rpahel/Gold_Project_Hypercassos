@@ -33,7 +33,8 @@ public class SwitchLayer : MonoBehaviour
         {
             if (isEnding)
             {
-                SceneManager.LoadScene("LevelSelector");
+                SceneManager.LoadScene("LevelSelection");
+                return;
             }
 
             if (goUp)

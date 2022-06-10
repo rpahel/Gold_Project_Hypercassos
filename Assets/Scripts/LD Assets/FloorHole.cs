@@ -35,7 +35,7 @@ public class FloorHole : MonoBehaviour
         scaleSpeed = layerBehaviour.ScaleSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.CompareTag("Player"))
         {
@@ -92,7 +92,7 @@ public class FloorHole : MonoBehaviour
 
     private IEnumerator PosTranslation(Transform t, Vector3 dir)
     {
-        coll.enabled = false;
+        coll.isTrigger = false;
 
         Vector2 ini = t.position;
         Vector2 target = t.position + dir;
@@ -104,7 +104,7 @@ public class FloorHole : MonoBehaviour
 
         yield return new WaitForSeconds(cooldownTimer);
 
-        coll.enabled = true;
+        coll.isTrigger = true;
 
         yield break;
     }

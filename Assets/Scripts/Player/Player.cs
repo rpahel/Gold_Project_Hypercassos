@@ -27,13 +27,13 @@ public class Player : MonoBehaviour
     private float sens;
     private bool frozen;
 
-    //[Header("Legal zone")]
-    //[SerializeField] private float limitStart;
-    //[SerializeField] private float limitEnd;
-    //[SerializeField] private float tpPoint;
-    //private Vector2 limitStartPos;
-    //private Vector2 limitEndPos;
-    //private Vector2 tpPointPos;
+    [Header("Legal zone")]
+    [SerializeField] private float limitStart;
+    [SerializeField] private float limitEnd;
+    [SerializeField] private float tpPoint;
+    private Vector2 limitStartPos;
+    private Vector2 limitEndPos;
+    private Vector2 tpPointPos;
 
     // Properties
     public float Angle { get { return angle; } }
@@ -74,11 +74,11 @@ public class Player : MonoBehaviour
             return;
         }
 
-        //if (!isClone)
-        //{
-        //    DrawLimits();
-        //    CheckLimits();
-        //}
+        if (!isClone)
+        {
+            DrawLimits();
+            CheckLimits();
+        }
 
         CalculatePhysicsValues();
         Movement();
@@ -166,34 +166,34 @@ public class Player : MonoBehaviour
         coll.enabled = true;
     }
 
-    //private void CalculateLimits()
-    //{
-    //    Vector2 playerPos = (Vector2)transform.position - gravityCenter;
-    //    limitStartPos = gravityCenter + playerPos.normalized * limitStart;
-    //    limitEndPos = gravityCenter + playerPos.normalized * limitEnd;
-    //    tpPointPos = gravityCenter + playerPos.normalized * tpPoint;
-    //}
+    private void CalculateLimits()
+    {
+        Vector2 playerPos = (Vector2)transform.position - worldCenter;
+        limitStartPos = worldCenter + playerPos.normalized * limitStart;
+        limitEndPos = worldCenter + playerPos.normalized * limitEnd;
+        tpPointPos = worldCenter + playerPos.normalized * tpPoint;
+    }
 
     /// <summary>
     /// Checks if the player is within the legal vertical range. If not, teleports to choosen safe point.
     /// </summary>
-    //private void CheckLimits()
-    //{
-    //    CalculateLimits();
-    //    Vector2 playerPos = (Vector2)transform.position - worldCenter;
-    //    if (playerPos.sqrMagnitude >= limitEnd * limitEnd || playerPos.sqrMagnitude <= limitStart * limitStart)
-    //    {
-    //        transform.position = tpPointPos;
-    //    }
-    //}
+    private void CheckLimits()
+    {
+        CalculateLimits();
+        Vector2 playerPos = (Vector2)transform.position - worldCenter;
+        if (playerPos.sqrMagnitude >= limitEnd * limitEnd || playerPos.sqrMagnitude <= limitStart * limitStart)
+        {
+            transform.position = tpPointPos;
+        }
+    }
 
     /// <summary>
     /// Draws a line representing the limits of the playable vertical range of the player.
     /// </summary>
-    //private void DrawLimits()
-    //{
-    //    Debug.DrawLine(limitStartPos, limitEndPos, Color.red);
-    //}
+    private void DrawLimits()
+    {
+        Debug.DrawLine(limitStartPos, limitEndPos, Color.red);
+    }
 
     /// <summary>
     /// Get either the touch or the keyboard input.
