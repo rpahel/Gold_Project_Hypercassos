@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class EnigmeDoor : MonoBehaviour
 {
     
-    [HideInInspector] public bool isOpen;
+    public bool isOpen;
     
 
     private SpriteRenderer sprite;

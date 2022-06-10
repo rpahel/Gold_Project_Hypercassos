@@ -14,21 +14,6 @@ public class SwitchPressurePlayer : MonoBehaviour
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-
-        for (int i = 0; i < DoortoOpen.Count; i++)
-        {
-            DoortoOpen[i].isOpen = isActive;
-        }
-
-        for (int i = 0; i < DoortoClose.Count; i++)
-        {
-            DoortoClose[i].isOpen = !isActive;
-        }
-
-        for (int i = 0; i < Elevators.Count; i++)
-        {
-            Elevators[i].isMoving = isActive;
-        }
     }
     void Update()
     {
