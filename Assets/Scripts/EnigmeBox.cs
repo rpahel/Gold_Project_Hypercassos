@@ -11,7 +11,7 @@ public class EnigmeBox : MonoBehaviour
     private Transform playerPos;
     private bool boxOnPlace;
     private GameObject box;
-    private bool isActive = true;
+    private bool isActive = false;
     private RaycastHit2D hit;
     
     
@@ -24,41 +24,23 @@ public class EnigmeBox : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        switchCol = GetComponent<BoxCollider2D>();
         playerPos = GameObject.FindWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
     {
-        hit = Physics2D.Raycast(transform.position, transform.up);
-        
-        if(hit.collider == null)
-            return;
-        if (hit.collider !=null)
-        {
-            if (hit.collider.tag == "Box" && isActive)
-            {
-                
-                box = hit.collider.gameObject;
-                StartCoroutine(GoDown(box));
-                isActive = false;
-            }
-        }
-        
-        
         
         Vector3 right = transform.right.normalized;
         Vector3 direction  = (playerPos.position - transform.position).normalized;
         float dot = Vector3.Dot(right, direction);
-        
-        
+
+
         if (boxOnPlace && !isActive)
         {
             
             
-            if (dot < 0)
+            if (dot < -0.7)
             {
-               
                 
                 if (pushToLeft == false)
                 {
@@ -67,7 +49,7 @@ public class EnigmeBox : MonoBehaviour
                 }
                 
             }
-            else if (dot > 0)
+            else if (dot > 0.7)
             {
 
                 
@@ -81,28 +63,64 @@ public class EnigmeBox : MonoBehaviour
             }
             
         }
+        if (isActive && !boxOnPlace)
+        {
+
+
+            if (dot < 0)
+            {
+
+
+                if (pushToLeft)
+                {
+                    StartCoroutine(GoDown(box));
+
+                }
+
+            }
+            else if (dot > 0)
+            {
+
+
+                if (!pushToLeft)
+                {
+                    StartCoroutine(GoDown(box));
+
+
+                }
+
+            }
+
+        }
         
     }
-    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Box")
+        {
+            box = col.gameObject;
+            isActive = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.tag == "Box")
         {
-            isActive = true;
+            isActive = false;
         }
     }
 
     IEnumerator GoDown(GameObject box)
     {
-        print("DOWN");
         box.GetComponent<Animator>().SetBool("Down", true);
         boxOnPlace = true;
+        isActive = false;
         yield return null;
     }
     
     IEnumerator GoUp(GameObject box)
     {
-        print("UP");
         box.GetComponent<Animator>().SetBool("Down", false);
         boxOnPlace = false;
         yield return null;
