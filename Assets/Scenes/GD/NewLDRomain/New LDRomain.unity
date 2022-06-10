@@ -260,6 +260,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 34386407108895497, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: -1140878766, guid: 4f40b5466ae90304c9a3d6bc3f4a28a0, type: 3}
+    - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -672866259, guid: 4f40b5466ae90304c9a3d6bc3f4a28a0, type: 3}
     - target: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_TagString
       value: Player
