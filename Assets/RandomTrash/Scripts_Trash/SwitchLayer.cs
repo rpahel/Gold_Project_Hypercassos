@@ -20,7 +20,12 @@ public class SwitchLayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if(collision.gameObject.GetComponent<ASTITOUCH>().isClone)
+        {
+            Debug.Log(collision.gameObject.name);
+            Destroy(collision.gameObject.transform.parent.gameObject);
+        }  
+        if (collision.gameObject.tag == "Player"&& !collision.gameObject.GetComponent<ASTITOUCH>().isClone)
         {
 
             if(tpTarget!=null)
@@ -30,7 +35,6 @@ public class SwitchLayer : MonoBehaviour
                 {
                     StartCoroutine(coliTimer());
                 }
-
 
                 collision.gameObject.transform.position = tpTarget.transform.position;
                 
