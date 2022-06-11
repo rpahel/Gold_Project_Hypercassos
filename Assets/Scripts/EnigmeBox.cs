@@ -29,60 +29,31 @@ public class EnigmeBox : MonoBehaviour
 
     private void Update()
     {
-        //print("isactive" + isActive);
-        //print("box place" + boxOnPlace);
-
-       // hit = Physics2D.Raycast(transform.position, transform.up);
-
-        //if (hit.collider == null)
-         //   isActive = false;
-        
-        //if (hit.collider !=null)
-       // {
-         //   if (hit.collider.tag == "Box" && isActive)
-           // {
-                
-             //   box = hit.collider.gameObject;
-               // StartCoroutine(GoDown(box));
-               // isActive = true;
-          //  }
-        //}
-        
-        
         
         Vector3 right = transform.right.normalized;
         Vector3 direction  = (playerPos.position - transform.position).normalized;
         float dot = Vector3.Dot(right, direction);
-        //if (dot < 0)
-        //{
-        //    print("player gauche");
-        //}
-        //else
-        //    print("player droite");
-        //
 
         if (boxOnPlace && !isActive)
         {
             
             
-            if (dot < -0.7)
+            if (dot < -0.3)
             {
                 
                 if (pushToLeft == false)
                 {
-                    //print("boite down mais perso bon coté gauche");
                     StartCoroutine(GoUp(box)); 
                     
                 }
                 
             }
-            else if (dot > 0.7)
+            else if (dot > 0.3)
             {
 
                 
                 if (pushToLeft)
                 {
-                    //print("boite down mais perso bon coté droit");
                     StartCoroutine(GoUp(box));
                    
                     
@@ -101,7 +72,6 @@ public class EnigmeBox : MonoBehaviour
 
                 if (pushToLeft)
                 {
-                    //print("boite up mais perso mauvais coté gauche");
                     StartCoroutine(GoDown(box));
 
                 }
@@ -113,7 +83,6 @@ public class EnigmeBox : MonoBehaviour
 
                 if (!pushToLeft)
                 {
-                    //print("boite up mais perso mauvais coté droit");
                     StartCoroutine(GoDown(box));
 
 
@@ -143,7 +112,6 @@ public class EnigmeBox : MonoBehaviour
 
     IEnumerator GoDown(GameObject box)
     {
-        //print("DOWN");
         box.GetComponent<Animator>().SetBool("Down", true);
         boxOnPlace = true;
         isActive = false;
@@ -152,7 +120,6 @@ public class EnigmeBox : MonoBehaviour
     
     IEnumerator GoUp(GameObject box)
     {
-        //print("UP");
         box.GetComponent<Animator>().SetBool("Down", false);
         boxOnPlace = false;
         yield return null;

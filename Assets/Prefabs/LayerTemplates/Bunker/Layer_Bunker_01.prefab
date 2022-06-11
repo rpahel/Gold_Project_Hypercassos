@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1d0851b66ce7d26489da91f32899bfda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 22d9c8fb270504e4c8bdac2a8e9553ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,6 +103,8 @@ MonoBehaviour:
   layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
   greyed: {fileID: 6922670822294277141}
   cache: {fileID: 6438920200675539043}
+  box: []
+  explosivebox: []
 --- !u!1 &1628443680055771189
 GameObject:
   m_ObjectHideFlags: 0

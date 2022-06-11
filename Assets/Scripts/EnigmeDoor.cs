@@ -6,11 +6,12 @@ using UnityEngine.UIElements;
 public class EnigmeDoor : MonoBehaviour
 {
     
-    [HideInInspector] public bool isOpen;
+    public bool isOpen;
     
 
     private SpriteRenderer sprite;
     private BoxCollider2D col;
+    public Animator animator;
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -23,13 +24,13 @@ public class EnigmeDoor : MonoBehaviour
         
             if (isOpen)
             {
-                sprite.enabled = false;
+            animator.SetBool("Open", true);
                 col.enabled = false;
             }
             else
-            {
-                sprite.enabled = true;
-                col.enabled = true;
+        {
+            animator.SetBool("Open", false);
+            col.enabled = true;
             }
             
     }

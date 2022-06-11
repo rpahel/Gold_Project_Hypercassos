@@ -7,6 +7,7 @@ public class SpawnCircle : MonoBehaviour
     public int numberOfCircle;
     public List<GameObject> followCircle;
     public GameObject circleprefabs;
+    public Sprite sprite;
     private int orderInLayerSprite; // pour que le sprite des object qui spawn soit dans le bon ordre
 
     void Start()
@@ -16,6 +17,7 @@ public class SpawnCircle : MonoBehaviour
         {
             orderInLayerSprite--;
             GameObject go = Instantiate(circleprefabs, transform.position, transform.rotation);
+            go.GetComponent<SpriteRenderer>().sprite = sprite;
             go.name = i.ToString();
             followCircle.Add(go);
             go.transform.SetParent(transform.parent);

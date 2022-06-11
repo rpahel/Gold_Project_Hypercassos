@@ -12,7 +12,12 @@ public class FallDownLayer : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.GetComponent<ASTITOUCH>().isClone)
+        {
+            Debug.Log(collision.gameObject.name);
+            Destroy(collision.gameObject.transform.parent.gameObject);
+        }
+        if (collision.gameObject.tag == "Player" && !collision.gameObject.GetComponent<ASTITOUCH>().isClone)
         {
             Debug.Log("Fall");
             level.RequestLayerDown();
