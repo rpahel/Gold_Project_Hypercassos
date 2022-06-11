@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224bd8bf431ee3046910da1322234891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
+  layerParameters: {fileID: 11400000, guid: 4b0aad35ded005d45870959a49e6fea3, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 548126811878357006}
 --- !u!1 &107411772689828110
@@ -2791,27 +2791,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.border.w
-      value: 0.37384614
+      value: 0.405
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.border.x
-      value: 0.26153848
+      value: 0.28333333
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.border.y
-      value: 0.18769231
+      value: 0.20333333
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.border.z
-      value: 0.26153848
+      value: 0.28333333
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.5384616
+      value: 1.6666666
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702553, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.5384616
+      value: 1.6666666
       objectReference: {fileID: 0}
     - target: {fileID: 7155564827448702555, guid: da8def9150a4f3d46b758f33bd1640f0, type: 3}
       propertyPath: m_Sprite
