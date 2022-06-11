@@ -18,14 +18,14 @@ public class MultiClonage : MonoBehaviour
     {
         levelObject = FindObjectOfType<LevelBehaviour>().gameObject;
         level = levelObject.GetComponent<LevelBehaviour>();
-        layerCount = level.currentLayer + 1;
+        layerCount = level.CurrentLayer + 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            layerCount = level.currentLayer + 1;
-            level.levelLayers[layerCount].Discover();
+            layerCount = level.CurrentLayer + 1;
+            level.LevelLayers[layerCount].Discover();
             if (playerClone == null)
             {
                 playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);

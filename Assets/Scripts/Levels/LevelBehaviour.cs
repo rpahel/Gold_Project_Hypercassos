@@ -17,6 +17,10 @@ public class LevelBehaviour : MonoBehaviour
     private Player player;
     private List<LayerBehaviour> levelLayers;
 
+    // Properties
+    public int CurrentLayer { get { return currentLayer; } }
+    public List<LayerBehaviour> LevelLayers { get { return levelLayers; } }
+
     //=============================================================================================//
     //                                         -  UNITY  -                                         //
     //=============================================================================================//
