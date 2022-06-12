@@ -57,21 +57,21 @@ public class Piston : MonoBehaviour
         {
             CalculateVectors();
             rod.localScale = new Vector3(rod.localScale.x, rodScale, 1f);
-            platform.position = maxHeightPosition;
+            platform.localPosition = maxHeightPosition;
         }
     
         Gizmos.color = Color.red;
-        Gizmos.DrawRay(pistonBase.position, maxHeightVector * transform.lossyScale.y);
-        Gizmos.DrawWireSphere((Vector2)pistonBase.position + maxHeightVector * transform.lossyScale.y, 0.5f);
+        Gizmos.DrawRay(pistonBase.position, pistonBase.up * maxHeight * transform.lossyScale.y);
+        Gizmos.DrawWireSphere(pistonBase.position + pistonBase.up * maxHeight * transform.lossyScale.y, 0.5f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawRay(pistonBase.position, minHeightVector * transform.lossyScale.y);
-        Gizmos.DrawWireSphere((Vector2)pistonBase.position + minHeightVector * transform.lossyScale.y, 0.5f);
+        Gizmos.DrawRay(pistonBase.position, pistonBase.up * minHeight * transform.lossyScale.y);
+        Gizmos.DrawWireSphere(pistonBase.position + pistonBase.up * minHeight * transform.lossyScale.y, 0.5f);
     }
     //=============================================================================================//
     //                                      -  CUSTOM CODE  -                                      //
     //=============================================================================================//
 
-    void GetChildren()
+    void GetChildren() // On récupère chaque enfant du l'objet piston
     {
         ErrorsCheck();
 
@@ -80,7 +80,7 @@ public class Piston : MonoBehaviour
         pistonBase = transform.GetChild(2);
     }
 
-    private void ErrorsCheck()
+    private void ErrorsCheck() // On regarde bien s'il n'y a que 3 enfants
     {
         if(transform.childCount != 3)
         {
@@ -88,16 +88,16 @@ public class Piston : MonoBehaviour
         }
     }
 
-    private void CalculateVectors()
+    private void CalculateVectors() // On calcule la position min et max de la platform du piston, ainsi que le scale que la tige doit avoir.
     {
-        maxHeightVector = transform.up * maxHeight;
-        minHeightVector = transform.up * minHeight;
+        maxHeightVector = Vector2.up * maxHeight;
+        minHeightVector = Vector2.up * minHeight;
+        maxHeightPosition = (Vector2)pistonBase.localPosition + maxHeightVector;
+        minHeightPosition = (Vector2)pistonBase.localPosition + minHeightVector;
         rodScale = (platform.localPosition - pistonBase.localPosition).magnitude / 6.13f;
-        maxHeightPosition = (Vector2)pistonBase.position + maxHeightVector;
-        minHeightPosition = (Vector2)pistonBase.position + minHeightVector;
     }
 
-    private IEnumerator Movement()
+    private IEnumerator Movement() // Coroutine qui s'appelle qui update la position de la platforme à chaque frame jusqu'à atteindre sa destination, puis rebelotte.
     {
         float alpha;
 
@@ -105,11 +105,10 @@ public class Piston : MonoBehaviour
         {
             for(float f = 0f; f < 1f; f += Time.deltaTime * travelSpeed)
             {
+                CalculateVectors();
                 alpha = animationCurve.Evaluate(f);
-                platform.localPosition = Vector3.Lerp(minHeightPosition, maxHeightPosition, alpha);
-
-                rodScale = (platform.localPosition - pistonBase.localPosition).magnitude / 6.13f;
-                rod.localScale = new Vector2(rod.localScale.x, rodScale);
+                platform.localPosition = Vector2.Lerp(minHeightPosition, maxHeightPosition, alpha);
+                rod.localScale = new Vector3(rod.localScale.x, rodScale, 1f);
                 yield return null;
             }
 
@@ -119,11 +118,10 @@ public class Piston : MonoBehaviour
         {
             for (float f = 0f; f < 1f; f += Time.deltaTime * travelSpeed)
             {
+                CalculateVectors();
                 alpha = animationCurve.Evaluate(f);
-                platform.localPosition = Vector3.Lerp(maxHeightPosition, minHeightPosition, alpha);
-
-                rodScale = (platform.localPosition - pistonBase.localPosition).magnitude / 6.13f;
-                rod.localScale = new Vector2(rod.localScale.x, rodScale);
+                platform.localPosition = Vector2.Lerp(maxHeightPosition, minHeightPosition, alpha);
+                rod.localScale = new Vector3(rod.localScale.x, rodScale, 1f);
                 yield return null;
             }
 
