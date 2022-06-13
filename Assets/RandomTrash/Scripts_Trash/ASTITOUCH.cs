@@ -31,7 +31,7 @@ public class ASTITOUCH : MonoBehaviour
     private Vector2 limitStartPos;
     private Vector2 limitEndPos;
     private Vector2 tpPointPos;
-
+    public GameObject level;
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {
@@ -39,6 +39,7 @@ public class ASTITOUCH : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<CircleCollider2D>();
+        level = FindObjectOfType<LevelBehaviour>().gameObject;
         //oldWorlCenter = worldCenter;
         //followCamera = gameObject.transform.GetChild(0).gameObject;
         //cameraLocalPosition = followCamera.transform.position;

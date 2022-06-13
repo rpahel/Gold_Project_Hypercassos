@@ -39,7 +39,7 @@ public class EnigmeBox : MonoBehaviour
         {
             
             
-            if (dot < -0.7)
+            if (dot < -0.3)
             {
                 
                 if (pushToLeft == false)
@@ -49,7 +49,7 @@ public class EnigmeBox : MonoBehaviour
                 }
                 
             }
-            else if (dot > 0.7)
+            else if (dot > 0.3)
             {
 
                 

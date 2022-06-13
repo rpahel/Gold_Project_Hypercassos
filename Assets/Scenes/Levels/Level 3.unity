@@ -200,6 +200,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 34386407108895497, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 181206275, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
+    - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 465440883, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
     - target: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -279,9 +287,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303904415}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 11.0081, z: 10}
-  m_LocalScale: {x: 0.8443668, y: 0.80147773, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.38, y: 11.0081, z: 10}
+  m_LocalScale: {x: 0.88000005, y: 0.83530104, z: 1.0422012}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1709461225}
   m_RootOrder: 1
@@ -327,7 +335,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: b34811993f27f1a45b47e1ab04508b9f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9b809665deae344083996cae7a6cda8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

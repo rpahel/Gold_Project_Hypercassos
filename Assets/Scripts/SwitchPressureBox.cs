@@ -10,6 +10,7 @@ public class SwitchPressureBox : MonoBehaviour
     public List<EnigmeDoor> DoortoClose;
     public List<EnigmeDoor> DoortoOpen;
     public List<elevator> Elevators;
+    public Animator animator;
 
     private void Start()
     {
@@ -18,10 +19,6 @@ public class SwitchPressureBox : MonoBehaviour
 
     void Update()
     {
-        if (isActive)
-            sprite.color = Color.green;
-        else
-            sprite.color = Color.yellow;
 
         for (int i = 0; i < DoortoOpen.Count; i++)
         {
@@ -45,6 +42,7 @@ public class SwitchPressureBox : MonoBehaviour
         if (col.tag == "Box" || col.tag == "Player")
         {
             isActive = true;
+            animator.SetBool("Down", true);
         }
     }
     
@@ -53,6 +51,7 @@ public class SwitchPressureBox : MonoBehaviour
         if (col.tag == "Box" || col.tag == "Player")
         {
             isActive = false;
+            animator.SetBool("Down", false);
         }
     }
     

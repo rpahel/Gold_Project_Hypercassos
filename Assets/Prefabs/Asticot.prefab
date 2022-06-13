@@ -141,6 +141,7 @@ MonoBehaviour:
   numberOfCircle: 5
   followCircle: []
   circleprefabs: {fileID: 6582422351894135176, guid: 83f1adb9cd1c23249ba20154b5a6d946, type: 3}
+  sprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
 --- !u!114 &2208509950140601444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gForce: 10
   angle: 0.027976455
+  isClone: 0
   speed: 10
   jumpForce: 0
   acceleration: 2
@@ -179,6 +181,7 @@ MonoBehaviour:
   limitStart: 9.5
   limitEnd: 16
   tpPoint: 12
+  level: {fileID: 0}
 --- !u!1 &2208509951350658037
 GameObject:
   m_ObjectHideFlags: 0

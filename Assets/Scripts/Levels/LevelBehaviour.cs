@@ -6,12 +6,12 @@ public class LevelBehaviour : MonoBehaviour
 {
     [Tooltip("Your level must go here.")]
     public GameLevel levelObject;
-    private List<LayerBehaviour> levelLayers;
+    public List<LayerBehaviour> levelLayers;
 
     [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
     public float layerSpawnRate;
 
-    private int currentLayer;
+    public int currentLayer;
     private ASTITOUCH asticul;
 
     private void Awake()
