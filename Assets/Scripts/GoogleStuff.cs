@@ -8,8 +8,8 @@ public class GoogleStuff : MonoBehaviour
 {
     public void Start()
     {
-        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
         PlayGamesPlatform.Activate();
+        PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
     }
 
     internal void ProcessAuthentication(SignInStatus status)
