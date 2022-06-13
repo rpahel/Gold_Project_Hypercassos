@@ -32,6 +32,9 @@ public class ASTITOUCH : MonoBehaviour
     private Vector2 limitEndPos;
     private Vector2 tpPointPos;
     public GameObject level;
+
+    
+    public GameObject clone;
     //private Vector3 cameraLocalPosition;
     private void Awake()
     {

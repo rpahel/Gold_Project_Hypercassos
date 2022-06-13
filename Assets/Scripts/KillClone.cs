@@ -11,10 +11,19 @@ public class KillClone : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<ASTITOUCH>().isClone)
+        if(collision.gameObject.CompareTag("Player"))
         {
-            Destroy(collision.gameObject.transform.parent.gameObject);
+            var oui = FindObjectsOfType<ASTITOUCH>();
+
+            for (int i = 0; i < oui.Length; i++)
+            {
+                if (oui[i].GetComponent<ASTITOUCH>().isClone)
+                {
+                    Destroy(oui[i].transform.parent.gameObject);
+                }
+            }
         }
+        
     }
     
 }
