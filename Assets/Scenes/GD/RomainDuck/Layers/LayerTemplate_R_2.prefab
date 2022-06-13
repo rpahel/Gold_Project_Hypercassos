@@ -124,11 +124,8 @@ Transform:
   - {fileID: 4874256844600438258}
   - {fileID: 6015349952662438036}
   - {fileID: 1517405957340112396}
-  - {fileID: 1304505823744868708}
   - {fileID: 2361547815049616944}
   - {fileID: 1894856982055841332}
-  - {fileID: 7496196226952394672}
-  - {fileID: 3601107218609639198}
   - {fileID: 1688016671340097258}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -197,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224bd8bf431ee3046910da1322234891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
+  layerParameters: {fileID: 11400000, guid: 4b0aad35ded005d45870959a49e6fea3, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 107411771967951249}
   box: []

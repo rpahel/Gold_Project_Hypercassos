@@ -1,81 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwitchLayer : MonoBehaviour
 {
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
+
+    [Tooltip("True if you want this to be the level ending."), SerializeField]
+    private bool isEnding;
+    [Tooltip("True if you want this switch to take you up, False for down."), SerializeField]
+    private bool goUp;
+
+    private bool canCollide;
     private LevelBehaviour level;
-    public bool upLayer;
-    public bool sameLayerTp;
-    private bool cancoli;
-    public GameObject tpTarget;
-    
-    [HideInInspector]public BoxCollider2D boxCollider;
+
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
+
     private void Start()
     {
         level = FindObjectOfType<LevelBehaviour>();
-        cancoli = true;
-        boxCollider = tpTarget.GetComponent<BoxCollider2D>();
+        canCollide = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.GetComponent<ASTITOUCH>().isClone)
+        if (collision.CompareTag("Player") && canCollide)
         {
-            Debug.Log(collision.gameObject.name);
-            Destroy(collision.gameObject.transform.parent.gameObject);
-        }  
-        if (collision.gameObject.tag == "Player"&& !collision.gameObject.GetComponent<ASTITOUCH>().isClone)
-        {
-            var found = FindObjectsOfType<ASTITOUCH>();
-
-            for (int i = 0; i < found.Length; i++)
+            if (isEnding)
             {
-                if (found[i].GetComponent<ASTITOUCH>().isClone)
-                {
-                    Destroy(found[i].transform.parent.gameObject);
-                }
+                SceneManager.LoadScene("LevelSelection");
+                return;
             }
-            if (tpTarget!=null)
-            {
 
-                if (tpTarget.GetComponent<SwitchLayer>() != null)
-                {
-                    StartCoroutine(coliTimer());
-                }
-
-                collision.gameObject.transform.position = tpTarget.transform.position;
-                
-                Debug.Log("Tp");
-               
-            }
-            if (upLayer && !sameLayerTp)
+            if (goUp)
             {
                 level.RequestLayerUp();
-                StartCoroutine(coliTimer());
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000, ForceMode2D.Impulse);
-            }
-            else if (sameLayerTp)
-            {
-                
-                StartCoroutine(coliTimer());
-                collision.gameObject.transform.position = tpTarget.transform.position;                
+                StartCoroutine(colliTimer());
             }
             else
             {
                 level.RequestLayerDown();
-                StartCoroutine(coliTimer());
+                StartCoroutine(colliTimer());
             }
         }
     }
 
-    public IEnumerator coliTimer()
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
+
+    IEnumerator colliTimer()
     {
-        Debug.Log("dans la couroutine");
-        //cancoli = false;
-        boxCollider.enabled = false;
+        canCollide = false;
         yield return new WaitForSeconds(1f);
-        boxCollider.enabled = true;
-        cancoli = true;
+        canCollide = true;
+        yield break;
     }
 }

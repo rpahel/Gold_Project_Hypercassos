@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 369308f4600a36945a46f4ae7548871a, type: 3}
+  m_Name: Worm Sprites
+  m_EditorClassIdentifier: 
+  wormTypes:
+  - wormType: 0
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}

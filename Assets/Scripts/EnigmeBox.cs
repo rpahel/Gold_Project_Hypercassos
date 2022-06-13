@@ -34,7 +34,6 @@ public class EnigmeBox : MonoBehaviour
         Vector3 direction  = (playerPos.position - transform.position).normalized;
         float dot = Vector3.Dot(right, direction);
 
-
         if (boxOnPlace && !isActive)
         {
             

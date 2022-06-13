@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GenerateHoleColliders : MonoBehaviour
 {
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
+
     [Range(0, 12), SerializeField]
     private int nombreDeTrous;
     [Range(0f, 1f), SerializeField]
@@ -13,8 +17,33 @@ public class GenerateHoleColliders : MonoBehaviour
 
     [Header("Pas touche."), SerializeField]
     private Material groundMaterial;
-
     private List<GenerateCollider> grounds;
+
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
+
+    private void Awake()
+    {
+        // Populate Grounds list for to keep track of the grounds
+        grounds = new List<GenerateCollider>();
+
+        if(transform.childCount > 0)
+        {
+            for (int i = 0; i < transform.childCount; ++i)
+            {
+                var script = transform.GetChild(i).GetComponent<GenerateCollider>();
+                script.EpaisseurSol = epaisseurSol;
+                grounds.Add(script);
+            }
+        
+            transform.parent.gameObject.GetComponent<LayerBehaviour>().Grounds = grounds;
+        }
+    }
+
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
 
     [ContextMenu("Generate Colliders")] 
     public void GenerateCollider()
@@ -57,17 +86,5 @@ public class GenerateHoleColliders : MonoBehaviour
                 collider.transform.rotation = Quaternion.Euler(0, 0, (360f * (((float)i - 1f)/ (float)nombreDeTrous)) + transform.rotation.eulerAngles.z);
             }
         }
-    }
-
-    private void Awake()
-    {
-        grounds = new List<GenerateCollider>();
-        for (int i = 0; i < transform.childCount; ++i)
-        {
-            var script = transform.GetChild(i).GetComponent<GenerateCollider>();
-            script.EpaisseurSol = epaisseurSol;
-            grounds.Add(script);
-        }
-        transform.parent.gameObject.GetComponent<LayerBehaviour>().Grounds = grounds;
     }
 }
