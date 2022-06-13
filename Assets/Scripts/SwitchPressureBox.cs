@@ -39,7 +39,7 @@ public class SwitchPressureBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Box" || col.tag == "Player")
+        if ((col.tag == "Box" || col.tag == "Player") && !isActive)
         {
             isActive = true;
             animator.SetBool("Down", true);
@@ -48,7 +48,7 @@ public class SwitchPressureBox : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Box" || col.tag == "Player")
+        if ((col.tag == "Box" || col.tag == "Player") && isActive)
         {
             isActive = false;
             animator.SetBool("Down", false);
