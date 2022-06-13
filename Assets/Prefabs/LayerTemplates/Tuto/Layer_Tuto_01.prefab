@@ -113,6 +113,8 @@ MonoBehaviour:
   layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
   greyed: {fileID: 6922670822294277141}
   cache: {fileID: 6438920200675539043}
+  box: []
+  explosivebox: []
 --- !u!1 &147582511230620500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,7 +1488,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5462410203179357885, guid: 9a25e5b8fa759cd45aeea8560a2d7db3, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5462410203179357886, guid: 9a25e5b8fa759cd45aeea8560a2d7db3, type: 3}
       propertyPath: m_Name
