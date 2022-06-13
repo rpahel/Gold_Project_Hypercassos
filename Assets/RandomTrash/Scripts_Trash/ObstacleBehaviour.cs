@@ -73,7 +73,7 @@ public class ObstacleBehaviour : MonoBehaviour
     }
     public void destroyBox()
     {
-        Destroy(gameObject);
+        GetComponent<Animator>().SetBool("Explode", true);
     }
     IEnumerator waitToGravity()
     {
