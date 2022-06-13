@@ -13,13 +13,13 @@ public class KillClone : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            var oui = FindObjectsOfType<ASTITOUCH>();
+            var found = FindObjectsOfType<ASTITOUCH>();
 
-            for (int i = 0; i < oui.Length; i++)
+            for (int i = 0; i < found.Length; i++)
             {
-                if (oui[i].GetComponent<ASTITOUCH>().isClone)
+                if (found[i].GetComponent<ASTITOUCH>().isClone)
                 {
-                    Destroy(oui[i].transform.parent.gameObject);
+                    Destroy(found[i].transform.parent.gameObject);
                 }
             }
         }
