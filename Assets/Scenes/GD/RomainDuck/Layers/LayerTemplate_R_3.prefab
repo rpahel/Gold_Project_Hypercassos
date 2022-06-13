@@ -207,6 +207,8 @@ MonoBehaviour:
   layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 107411771967951249}
+  box: []
+  explosivebox: []
 --- !u!1 &107411772689828110
 GameObject:
   m_ObjectHideFlags: 0
@@ -2341,6 +2343,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5584941371428338596}
     m_Modifications:
+    - target: {fileID: 164938266882719149, guid: ade8859feb824d04c9a934afc1835709, type: 3}
+      propertyPath: nextSceneLoad
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 543033721121764324, guid: ade8859feb824d04c9a934afc1835709, type: 3}
       propertyPath: m_Name
       value: ReturnToLevelMenu (1)
