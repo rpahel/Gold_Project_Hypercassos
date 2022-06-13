@@ -29,8 +29,9 @@ public class MultiClonage : MonoBehaviour
             if (playerClone == null)
             {
                 playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);
-                playerClone.transform.GetChild(0).GetComponent<Player>().Speed += 5;
-                playerClone.transform.GetChild(0).GetComponent<Player>().IsClone = true;
+                playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().speed +=5;
+                playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().isClone=true;
+                playerClone.name = "AstiClone";
             }
             else
             {
