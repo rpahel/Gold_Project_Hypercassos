@@ -27,8 +27,16 @@ public class SwitchLayer : MonoBehaviour
         }  
         if (collision.gameObject.tag == "Player"&& !collision.gameObject.GetComponent<ASTITOUCH>().isClone)
         {
+            var found = FindObjectsOfType<ASTITOUCH>();
 
-            if(tpTarget!=null)
+            for (int i = 0; i < found.Length; i++)
+            {
+                if (found[i].GetComponent<ASTITOUCH>().isClone)
+                {
+                    Destroy(found[i].transform.parent.gameObject);
+                }
+            }
+            if (tpTarget!=null)
             {
 
                 if (tpTarget.GetComponent<SwitchLayer>() != null)
