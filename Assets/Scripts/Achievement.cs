@@ -6,7 +6,8 @@ using UnityEngine.SocialPlatforms;
 public class Achievement : MonoBehaviour
 {
 
-    private static Achievement instance;
+    public static Achievement instance;
+    public int numberOfLayer;
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -19,6 +20,13 @@ public class Achievement : MonoBehaviour
             instance = this;
         }
         
+    }
+    private void Update()
+    {
+        if(numberOfLayer == 30)
+        {
+            UnlockAchievement("202637246791");
+        }
     }
     public void UnlockAchievement(string achievementId)
     {

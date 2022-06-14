@@ -32,6 +32,7 @@ public class MultiClonage : MonoBehaviour
                 playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().speed +=5;
                 playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().isClone=true;
                 playerClone.name = "AstiClone";
+                Achievement.instance.UnlockAchievement("202637246791");
             }
             else
             {
