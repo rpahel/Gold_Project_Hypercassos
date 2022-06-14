@@ -9,8 +9,8 @@ public class MenuManager : MonoBehaviour
     public string levelName;
     [SerializeField]private GameObject optionMenu;
     [SerializeField]private GameObject CloseMenu;
-    private bool isMusicMuted;
-    private bool isSFXMuted;
+    [HideInInspector]public bool isMusicMuted;
+    [HideInInspector]public bool isSFXMuted;
 
     [Header("Music")]
     public Image musicImg;
@@ -24,7 +24,19 @@ public class MenuManager : MonoBehaviour
     public Sprite MuteImg;
     public Sprite OrigImg;
 
-    
+    public static MenuManager menuInstance;
+
+    private void Awake()
+    {
+        if (menuInstance != null && menuInstance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        menuInstance = this;
+        DontDestroyOnLoad(this);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -66,14 +78,14 @@ public class MenuManager : MonoBehaviour
 
     public void MuteMusic()
     {
-        if (isMusicMuted == false)
+        if (MusicManager.musicInstance.audio.mute == false)
         {
             isMusicMuted = true;
             musicImg.sprite = MuteImg;
             MusicManager.musicInstance.audio.mute = true;
             
         }
-        else if(isMusicMuted)
+        else if(MusicManager.musicInstance.audio.mute)
         {
             isMusicMuted = false;
             musicImg.sprite = OrigImg;
@@ -84,13 +96,13 @@ public class MenuManager : MonoBehaviour
     
     public void SfxMute()
     {
-        if (isSFXMuted == false)
+        if (SfxManager.sfxInstance.audio.mute == false)
         {
             isSFXMuted = true;
             sfxImg.sprite = MuteImg;
             SfxManager.sfxInstance.audio.mute = true;
         }
-        else if(isSFXMuted)
+        else if(SfxManager.sfxInstance.audio.mute)
         {
             isSFXMuted = false;
             sfxImg.sprite = OrigImg;
