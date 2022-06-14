@@ -7,15 +7,13 @@ public class PauseMenuManager : MonoBehaviour
 {
     
     public GameObject pauseMenuUI;
-
-    public void SetPauseMenu()
-    {
-        Paused();
-    }
+    public GameObject pauseMenuButton;
+    
 
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
+        pauseMenuButton.SetActive(true);
         Time.timeScale = 1;
     }
    
@@ -25,17 +23,22 @@ public class PauseMenuManager : MonoBehaviour
     }
     
 
-    public void Quit()
+    public void MainMenuButton()
     {
-        Application.Quit();
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Paused()
     {
         pauseMenuUI.SetActive(true);
+        pauseMenuButton.SetActive(false);
         Time.timeScale = 0;
     }
-    
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     
     
     

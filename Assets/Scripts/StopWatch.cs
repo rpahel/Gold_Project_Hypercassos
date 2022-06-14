@@ -8,7 +8,6 @@ public class StopWatch : MonoBehaviour
 {
     public bool StopWatchActive;
     private float currentTime;
-    public TextMeshProUGUI currentTimeText;
     [HideInInspector] public TimeSpan time;
     
     void Start()
@@ -25,7 +24,7 @@ public class StopWatch : MonoBehaviour
         }
 
         time = TimeSpan.FromSeconds(currentTime);
-        currentTimeText.text = time.ToString(@"mm\:ss\:fff");
+        
     }
 
     
