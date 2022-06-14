@@ -41,7 +41,7 @@ public class SwitchLayer : MonoBehaviour
             {
                 level.RequestLayerUp();
                 StartCoroutine(colliTimer());
-                Achievement.instance.UnlockAchievement("202637246791");
+                PlayAchievement.instance.UnlockAchievement("202637246791");
             }
             else
             {
