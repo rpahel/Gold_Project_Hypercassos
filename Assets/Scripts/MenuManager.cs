@@ -8,8 +8,14 @@ public class MenuManager : MonoBehaviour
     public string levelName;
     [SerializeField]private GameObject optionMenu;
     [SerializeField]private GameObject CloseMenu;
-    
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            PlayerPrefs.DeleteAll();
+        }
+    }
 
     public void StartButton()
     {
