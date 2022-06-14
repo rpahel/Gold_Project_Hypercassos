@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 638af3a759e11834280dc73534d60424, type: 3}
-  m_Color: {r: 0.7924528, g: 0.77557635, b: 0.63171947, a: 1}
+  m_Color: {r: 0.7924528, g: 0.77557635, b: 0.63171947, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224bd8bf431ee3046910da1322234891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
+  layerParameters: {fileID: 11400000, guid: 4b0aad35ded005d45870959a49e6fea3, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 107411771967951249}
 --- !u!1 &107411772689828110
@@ -1187,8 +1187,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.62352943, g: 0, b: 0.03137255, a: 1}
-      key1: {r: 0.62352943, g: 0, b: 0.03137255, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1481,8 +1481,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.62352943, g: 0, b: 0.03137255, a: 1}
-      key1: {r: 0.62352943, g: 0, b: 0.03137255, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
