@@ -184,6 +184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+--- !u!1 &441491874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2208509951350658037, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+  m_PrefabInstance: {fileID: 120325863}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1160042890
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,12 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514586ca1e6c93341ae264a8755bac08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1642119627}
---- !u!1 &1642119627 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
-  m_PrefabInstance: {fileID: 120325863}
-  m_PrefabAsset: {fileID: 0}
+  player: {fileID: 441491874}
 --- !u!1 &1786413972
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 2101346393}
   - component: {fileID: 2101346394}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Fond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,7 +392,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: ae4bd345d6562974bbafcb589bb9e907, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

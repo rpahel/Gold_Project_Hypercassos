@@ -11,6 +11,7 @@ public class SwitchPressureBox : MonoBehaviour
     public List<EnigmeDoor> DoortoOpen;
     public List<elevator> Elevators;
     public Animator animator;
+    public bool boxIn = false;
 
     private void Start()
     {
@@ -39,7 +40,13 @@ public class SwitchPressureBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.tag == "Box" || col.tag == "Player") && !isActive)
+        if (col.tag == "Box")
+        {
+            isActive = true;
+            animator.SetBool("Down", true);
+            boxIn = true;
+        }
+        else if (col.tag == "Player" && !boxIn)
         {
             isActive = true;
             animator.SetBool("Down", true);
@@ -48,7 +55,13 @@ public class SwitchPressureBox : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D col)
     {
-        if ((col.tag == "Box" || col.tag == "Player") && isActive)
+        if (col.tag == "Box")
+        {
+            isActive = false;
+            animator.SetBool("Down", false);
+            boxIn = false;
+        }
+        else if (col.tag == "Player" && !boxIn)
         {
             isActive = false;
             animator.SetBool("Down", false);
