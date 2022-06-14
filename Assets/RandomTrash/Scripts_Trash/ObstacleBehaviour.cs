@@ -18,11 +18,13 @@ public class ObstacleBehaviour : MonoBehaviour
     
     public bool             isClone;
 
+    public Transform tLeft, tRight;
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     // Update is called once per frame
@@ -52,10 +54,10 @@ public class ObstacleBehaviour : MonoBehaviour
     }
         private bool OnGround()
     {
-        Vector3 left = sprite.bounds.max-(transform.right*1.3f);
-        Vector3 right= sprite.bounds.max - (transform.right * 0.3f);
-        Debug.DrawRay(transform.GetChild(0).transform.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
-        Debug.DrawRay(transform.GetChild(1).transform.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
+        //Vector3 left = sprite.bounds.max-(transform.right*1.3f);
+        //Vector3 right= sprite.bounds.max - (transform.right * 0.3f);
+        Debug.DrawRay(tLeft.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
+        Debug.DrawRay(tRight.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
         return (Physics2D.Raycast(transform.GetChild(0).transform.position, -transform.up, (transform.lossyScale.x * 0.15f)) ||
                 Physics2D.Raycast(transform.GetChild(1).transform.position, -transform.up, (transform.lossyScale.x * 0.15f)));
     }
