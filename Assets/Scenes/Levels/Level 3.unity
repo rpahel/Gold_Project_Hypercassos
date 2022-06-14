@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 181206275, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
+    - target: {fileID: 36997321682783124, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -314,7 +318,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
