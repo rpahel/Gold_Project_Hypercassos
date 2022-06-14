@@ -20,8 +20,8 @@ public class Player : MonoBehaviour
     private float angle;
 
     [Header("Movement stuff")]
-    private bool isClone;
-    [SerializeField] private float speed;
+    public bool isClone;
+    public float speed;
     [SerializeField] private float acceleration;
     [SerializeField] private float freinage;
     private float sens;

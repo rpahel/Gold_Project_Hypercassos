@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
-public class Achievement : MonoBehaviour
+public class PlayAchievement : MonoBehaviour
 {
 
-    public static Achievement instance;
+    public static PlayAchievement instance;
     public int numberOfLayer;
     private void Awake()
     {
