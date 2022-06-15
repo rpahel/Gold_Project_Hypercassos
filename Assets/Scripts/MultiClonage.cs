@@ -25,7 +25,7 @@ public class MultiClonage : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             layerCount = level.CurrentLayer + 1;
-            if (layerCount <= level.maxLayer)
+            if (layerCount < level.maxLayer)
             {
                 level.LevelLayers[layerCount].Discover();
             }
