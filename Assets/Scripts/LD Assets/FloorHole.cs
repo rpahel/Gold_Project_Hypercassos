@@ -40,7 +40,10 @@ public class FloorHole : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             CalculateTargetRanges();
-
+            if (collider.GetComponent<Player>().isClone)
+            {
+                collider.GetComponent<BodyBehaviour>().DestroyBodyCircle();
+            }
             if (FromAbove(collider.transform.position))
             {
                 StartCoroutine(PosTranslation(collider.transform, transform.up * targetPositionFromAbove));
