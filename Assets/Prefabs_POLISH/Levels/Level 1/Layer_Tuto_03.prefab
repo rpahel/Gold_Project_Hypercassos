@@ -2535,6 +2535,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 757333349222924598}
     - target: {fileID: 4348379617155295015, guid: 1ce39823b3542ca49b09e45e28498cdf, type: 3}
+      propertyPath: WaitBeforeWin
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348379617155295015, guid: 1ce39823b3542ca49b09e45e28498cdf, type: 3}
       propertyPath: finalTimeText
       value: 
       objectReference: {fileID: 4490235633604952078}
