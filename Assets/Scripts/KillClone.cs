@@ -19,7 +19,7 @@ public class KillClone : MonoBehaviour
             {
                 if (found[i].GetComponent<Player>().isClone)
                 {
-                    Destroy(found[i].transform.parent.gameObject);
+                    Destroy(found[i].gameObject);
                 }
             }
         }
