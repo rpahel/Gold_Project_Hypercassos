@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b108d50a0e85544580d75bd10139aae, type: 3}
   m_Name: LayerParameters
   m_EditorClassIdentifier: 
-  scaleSpeed: 2
+  scaleSpeed: 0.5
   scaleCurve:
     serializedVersion: 2
     m_Curve:
@@ -26,13 +26,22 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
+      time: 0.64649063
+      value: 0.7725196
+      inSlope: 1.5807512
+      outSlope: 1.5807512
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.011088887
+      outSlope: 0.011088887
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

@@ -13,8 +13,10 @@ public class EnigmeBox : MonoBehaviour
     private GameObject box;
     private bool isActive = false;
     private RaycastHit2D hit;
-    
-    
+
+    public Sprite spriteUp;
+    public Sprite spriteDown;
+    public SpriteRenderer spriteRenderer;
     public bool pushToLeft;
    
 
@@ -33,7 +35,6 @@ public class EnigmeBox : MonoBehaviour
         Vector3 right = transform.right.normalized;
         Vector3 direction  = (playerPos.position - transform.position).normalized;
         float dot = Vector3.Dot(right, direction);
-
 
         if (boxOnPlace && !isActive)
         {
@@ -96,7 +97,7 @@ public class EnigmeBox : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Box")
+        if (col.tag == "Box" || col.tag == "ExplosiveBox")
         {
             box = col.gameObject;
             isActive = true;
@@ -105,7 +106,7 @@ public class EnigmeBox : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "Box")
+        if (col.tag == "Box" || col.tag == "ExplosiveBox")
         {
             isActive = false;
         }
@@ -113,6 +114,7 @@ public class EnigmeBox : MonoBehaviour
 
     IEnumerator GoDown(GameObject box)
     {
+        spriteRenderer.sprite = spriteDown;
         box.GetComponent<Animator>().SetBool("Down", true);
         boxOnPlace = true;
         isActive = false;
@@ -121,6 +123,7 @@ public class EnigmeBox : MonoBehaviour
     
     IEnumerator GoUp(GameObject box)
     {
+        spriteRenderer.sprite = spriteUp;
         box.GetComponent<Animator>().SetBool("Down", false);
         boxOnPlace = false;
         yield return null;

@@ -45,3 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 0}
+  pauseMenuButton: {fileID: 0}
+  musicImg: {fileID: 0}
+  sfxImg: {fileID: 0}
+  MuteImg: {fileID: 21300000, guid: 052ff4889089df74296be1d72cc9d2cd, type: 3}
+  OrigImg: {fileID: 21300000, guid: 54ca84eced1085a4db498b4880aecb08, type: 3}

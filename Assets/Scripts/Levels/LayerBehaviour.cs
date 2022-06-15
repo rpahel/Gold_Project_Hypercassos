@@ -4,53 +4,61 @@ using UnityEngine;
 
 public class LayerBehaviour : MonoBehaviour
 {
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
+
     [Tooltip("Layer Parameters must go here."), SerializeField]
     private LayerParameters layerParameters;
-
-    [Tooltip("The gameObject that will act as a veil to grey out the layer.")]
-    [SerializeField] private GameObject greyed;
-    [Tooltip("The gameObject that will act as a cover to hide the layer.")]
-    [SerializeField] private GameObject cache;
+    [Tooltip("The gameObject that will act as a veil to grey out the layer."), SerializeField]
+    private GameObject greyed;
+    [Tooltip("The gameObject that will act as a cover to hide the layer."), SerializeField]
+    private GameObject cache;
 
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
-
     private AnimationCurve scaleCurve;
-
     private List<GenerateCollider> grounds;
-    public List<GenerateCollider> Grounds { get { return grounds; } set { grounds = value; } }
-
+    private GameObject[] boxes;
+    private GameObject[] explosiveBoxes;
     private Vector3 targetScale;
     private Vector3 initialScale;
-
     private float iniGreyedAlpha;
     private float iniCacheAlpha;
+    private bool scaling;
+
+    // Properties
+    public List<GenerateCollider> Grounds { get { return grounds; } set { grounds = value; } }
+    public bool isScaling { get { return scaling; } }
     public float ScaleSpeed { get { return layerParameters.ScaleSpeed; } }
 
-    private bool hiding;
-    private bool discovering;
-    private bool greying;
-    private bool focusing;
-    private bool growing;
-    private bool shrinking;
-    public bool isScaling { get { return (shrinking || growing); } }
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
 
-    public GameObject[] box;
-    public GameObject[] explosivebox;
-
-    
-
-
-    //private LevelBehaviour level;
-    //private CircleCollider2D trigger;
     private void Awake()
     {
-        
-        box= GameObject.FindGameObjectsWithTag("ExplosiveBox");
-        explosivebox = GameObject.FindGameObjectsWithTag("Box");
+        ErrorsCheck();
+        explosiveBoxes = GameObject.FindGameObjectsWithTag("ExplosiveBox");
+        boxes = GameObject.FindGameObjectsWithTag("Box");
+        scaleCurve = layerParameters.ScaleCurve;
+    }
 
-        //level = FindObjectOfType<LevelBehaviour>();
-        //trigger=GetComponent<CircleCollider2D>();
+    private void Start()
+    {
+        greyedRenderer = greyed.GetComponent<SpriteRenderer>();
+        cacheRenderer = cache.GetComponent<SpriteRenderer>();
+        iniGreyedAlpha = greyedRenderer.color.a;
+        iniCacheAlpha = cacheRenderer.color.a;
+        DisableBox();
+    }
+
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
+
+    private void ErrorsCheck()
+    {
         if (!layerParameters)
         {
             throw new System.Exception("No Layer Parameters assigned to the Layer gameObject");
@@ -65,84 +73,21 @@ public class LayerBehaviour : MonoBehaviour
         {
             throw new System.Exception("No Cache gameObject assigned to the Layer gameObject");
         }
-
-        scaleCurve = layerParameters.ScaleCurve;
     }
 
     public void DisableBox()
     {
-
-        for (int i = 0; i < box.Length; i++)
+        for (int i = 0; i < boxes.Length; i++)
         {
-            box[i].SetActive(false);
-            
-        }
-        for (int i = 0; i < explosivebox.Length; i++)
-        {
-            explosivebox[i].SetActive(false);
-
+            boxes[i].SetActive(false);
         }
     }
-    //faire une fonction qui active les boxs
+
     public void EnableBox()
     {
-        for (int i = 0; i < box.Length; i++)
+        for (int i = 0; i < boxes.Length; i++)
         {
-            box[i].SetActive(true);
-        }
-        for (int i = 0; i < explosivebox.Length; i++)
-        {
-            explosivebox[i].SetActive(true);
-
-        }
-    }
-    //couroutine qui fait apparaitre les boxs
-
-    private void Start()
-    {
-        greyedRenderer = greyed.GetComponent<SpriteRenderer>();
-        cacheRenderer = cache.GetComponent<SpriteRenderer>();
-        iniGreyedAlpha = greyedRenderer.color.a;
-        iniCacheAlpha = cacheRenderer.color.a;
-        DisableBox();
-    }
-
-    private void FixedUpdate()
-    {
-        if (hiding)
-        {
-            Hiding();
-            
-        }
-
-        if (discovering)
-        {
-            Discovering();
-            
-        }
-
-        if (focusing)
-        {
-            Focusing();
-            
-        }
-
-        if (greying)
-        {
-            GreyingOut();
-            
-        }
-
-        if (growing)
-        {
-            Growing();
-            
-        }
-
-        if (shrinking)
-        {
-            Shrinking();
-            
+            boxes[i].SetActive(true);
         }
     }
 
@@ -151,22 +96,25 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Hide()
     {
-        
-        hiding = true;
-        layerParameters.Alpha = 0;
+        StartCoroutine(Hiding());
     }
 
-    private void Hiding()
+    private IEnumerator Hiding()
     {
-        
-        cache.SetActive(true);
-        layerParameters.Alpha += Time.fixedDeltaTime;
-        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
-        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp( 0, iniCacheAlpha, layerParameters.Alpha));
-        if (cacheRenderer.color.a >= iniCacheAlpha)
+        if (cache.activeSelf == true)
         {
-            hiding = false;
+            yield break;
         }
+
+        cache.SetActive(true);
+
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
+        {
+            cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(0, iniCacheAlpha, alpha));
+            yield return null;
+        }
+
+        yield break;
     }
 
     ///<summary>
@@ -174,26 +122,25 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Discover()
     {
-        discovering = true;
-        layerParameters.Alpha = 0;
+        StartCoroutine(Discovering());
     }
 
-    private void Discovering()
+    private IEnumerator Discovering()
     {
-        if(cache.activeSelf == false)
+        if (cache.activeSelf == false)
         {
-            discovering = false;
-            return;
+            yield break;
         }
 
-        layerParameters.Alpha += Time.fixedDeltaTime;
-        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
-        cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(iniCacheAlpha, 0, layerParameters.Alpha));
-        if(cacheRenderer.color.a <= 0)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
-            discovering = false;
-            cache.SetActive(false);
+            cacheRenderer.color = new Color(cacheRenderer.color.r, cacheRenderer.color.g, cacheRenderer.color.b, Mathf.Lerp(iniCacheAlpha, 0, alpha));
+            yield return null;
         }
+
+        cache.SetActive(false);
+
+        yield break;
     }
 
     ///<summary>
@@ -201,26 +148,25 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Focus()
     {
-        focusing = true;
-        layerParameters.Alpha = 0;
+        StartCoroutine(Focusing());
     }
 
-    private void Focusing()
+    private IEnumerator Focusing()
     {
-        if(greyed.activeSelf == false)
+        if (greyed.activeSelf == false)
         {
-            focusing = false;
-            return;
+            yield break;
         }
 
-        layerParameters.Alpha += Time.fixedDeltaTime;
-        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
-        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(iniGreyedAlpha, 0, layerParameters.Alpha));
-        if (greyedRenderer.color.a <= 0)
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
-            focusing = false;
-            greyed.SetActive(false);
+            greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(iniGreyedAlpha, 0, alpha));
+            yield return null;
         }
+
+        greyed.SetActive(false);
+
+        yield break;
     }
 
     ///<summary>
@@ -228,20 +174,25 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void GreyOut()
     {
-        greying = true;
-        layerParameters.Alpha = 0;
+        StartCoroutine(GreyingOut());
     }
 
-    private void GreyingOut()
+    private IEnumerator GreyingOut()
     {
-        greyed.SetActive(true);
-        layerParameters.Alpha += Time.fixedDeltaTime;
-        layerParameters.Alpha = Mathf.Clamp01(layerParameters.Alpha);
-        greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(0, iniGreyedAlpha, layerParameters.Alpha));
-        if (greyedRenderer.color.a >= iniGreyedAlpha)
+        if (greyed.activeSelf == true)
         {
-            greying = false;
+            yield break;
         }
+
+        greyed.SetActive(true);
+
+        for (float alpha = 0; alpha <= 1f; alpha += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
+        {
+            greyedRenderer.color = new Color(greyedRenderer.color.r, greyedRenderer.color.g, greyedRenderer.color.b, Mathf.Lerp(0, iniGreyedAlpha, alpha));
+            yield return null;
+        }
+
+        yield break;
     }
 
     ///<summary>
@@ -249,27 +200,32 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Grow(Vector3 scale)
     {
-        growing = true;
-        layerParameters.Beta = 0;
+        scaling = true;
         initialScale = transform.localScale;
         targetScale = scale;
+        StartCoroutine(Growing());
     }
 
-    private void Growing()
+    private IEnumerator Growing()
     {
-        layerParameters.Beta += Time.fixedDeltaTime * (1f/ layerParameters.ScaleSpeed);
-        layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
-        float Beta = scaleCurve.Evaluate(layerParameters.Beta);
-        transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
-        if(transform.localScale.sqrMagnitude >= targetScale.sqrMagnitude)
+        for(float l = 0; l <= 1f; l += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
-            growing = false;
-        }
-        foreach (var ground in grounds)
-        {
-            ground.UpdateGroundWidth();
+            float Beta = scaleCurve.Evaluate(l);
+            transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
+            yield return null;
         }
 
+        scaling = false;
+
+        if (grounds != null && grounds.Count > 0)
+        {
+            foreach (var ground in grounds)
+            {
+                ground.UpdateGroundWidth();
+            }
+        }
+
+        yield break;
     }
 
     ///<summary>
@@ -277,27 +233,32 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void Shrink(Vector3 scale)
     {
-        shrinking = true;
-        layerParameters.Beta = 0;
+        scaling = true;
         initialScale = transform.localScale;
         targetScale = scale;
+        StartCoroutine(Shrinking());
     }
 
-    private void Shrinking()
+    private IEnumerator Shrinking()
     {
-        layerParameters.Beta += Time.fixedDeltaTime * (1f / layerParameters.ScaleSpeed);
-        layerParameters.Beta = Mathf.Clamp01(layerParameters.Beta);
-        float Beta = scaleCurve.Evaluate(layerParameters.Beta);
-        transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
-        if (transform.localScale.sqrMagnitude <= targetScale.sqrMagnitude)
+        for (float l = 0; l <= 1f; l += Time.deltaTime * (1f / layerParameters.ScaleSpeed))
         {
-            shrinking = false;
+            float Beta = scaleCurve.Evaluate(l);
+            transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
+            yield return null;
         }
 
-        foreach(var ground in grounds)
+        scaling = false;
+
+        if (grounds != null && grounds.Count > 0)
         {
-            ground.UpdateGroundWidth();
+            foreach (var ground in grounds)
+            {
+                ground.UpdateGroundWidth();
+            }
         }
+
+        yield break;
     }
 
     ///<summary>
@@ -305,9 +266,12 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void EnableGround()
     {
-        foreach(var ground in grounds)
+        if(grounds != null && grounds.Count > 0)
         {
-            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+            foreach (var ground in grounds)
+            {
+                ground.gameObject.GetComponent<EdgeCollider2D>().enabled = true;
+            }
         }
     }
 
@@ -316,10 +280,12 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void DisableGround()
     {
-        foreach (var ground in grounds)
+        if (grounds != null && grounds.Count > 0)
         {
-            ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
-            
+            foreach (var ground in grounds)
+            {
+                ground.gameObject.GetComponent<EdgeCollider2D>().enabled = false;
+            }
         }
     }
 
@@ -328,7 +294,10 @@ public class LayerBehaviour : MonoBehaviour
     ///</summary>
     public void GroundZPos(float zPos)
     {
-        Transform obj = grounds[0].transform.parent;
-        obj.localPosition = new Vector3(obj.localPosition.x, obj.localPosition.y, zPos);
+        if (grounds != null && grounds.Count > 0)
+        {
+            Transform obj = grounds[0].transform.parent;
+            obj.localPosition = new Vector3(obj.localPosition.x, obj.localPosition.y, zPos);
+        }
     }
 }

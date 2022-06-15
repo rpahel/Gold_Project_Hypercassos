@@ -18,24 +18,26 @@ public class MultiClonage : MonoBehaviour
     {
         levelObject = FindObjectOfType<LevelBehaviour>().gameObject;
         level = levelObject.GetComponent<LevelBehaviour>();
-        layerCount = level.currentLayer + 1;
+        layerCount = level.CurrentLayer + 1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
-            layerCount = level.currentLayer + 1;
-            level.levelLayers[layerCount].Discover();
+            layerCount = level.CurrentLayer + 1;
+            level.LevelLayers[layerCount].Discover();
             if (playerClone == null)
             {
                 playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);
-                playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().speed +=5;
-                playerClone.transform.GetChild(0).GetComponent<ASTITOUCH>().isClone=true;
+                playerClone.GetComponent<Player>().speed +=5;
+                playerClone.GetComponent<Player>().isClone=true;
                 playerClone.name = "AstiClone";
+                PlayAchievement.instance.UnlockAchievement("202637246791");
             }
             else
             {
-                Destroy(playerClone.transform.gameObject);
+
+                playerClone.GetComponent<PlayerBody>().DestroyBody();
             }
         }
         else if(collision.CompareTag("Box"))

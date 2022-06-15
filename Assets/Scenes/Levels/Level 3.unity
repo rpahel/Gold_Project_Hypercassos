@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &106592873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2208509951350658037, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+  m_PrefabInstance: {fileID: 927185029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &299958356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -133,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 8906845477819989122, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
       propertyPath: levelObject
       value: 
-      objectReference: {fileID: 11400000, guid: 01b2817940d66544dbac9ab3e07b7a22, type: 2}
+      objectReference: {fileID: 11400000, guid: a788100a7bf07584e8bb753b112ee957, type: 2}
     - target: {fileID: 8906845477819989122, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
       propertyPath: layerSpawnRate
       value: 0.1
@@ -188,11 +193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba042c09d45c7334da4b53d2a450b973, type: 3}
---- !u!1 &889107559 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2208509950140601443, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
-  m_PrefabInstance: {fileID: 927185029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &927185029
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -204,6 +204,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 181206275, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
+    - target: {fileID: 36997321682783124, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2208509950140601368, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -314,7 +318,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,8 +336,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1554348073
+  m_SortingLayer: -2
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d9b809665deae344083996cae7a6cda8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -356,7 +360,7 @@ PrefabInstance:
     - target: {fileID: 1938250198671167848, guid: 51f2fdf93dcd324478e41b7de3bac59e, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 889107559}
+      objectReference: {fileID: 106592873}
     - target: {fileID: 1938250198671167854, guid: 51f2fdf93dcd324478e41b7de3bac59e, type: 3}
       propertyPath: m_Name
       value: CameraController

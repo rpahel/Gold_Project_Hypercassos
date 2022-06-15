@@ -4,35 +4,37 @@ using UnityEngine;
 
 public class LevelBehaviour : MonoBehaviour
 {
-    [Tooltip("Your level must go here.")]
-    public GameLevel levelObject;
-    public List<LayerBehaviour> levelLayers;
+    //=============================================================================================//
+    //                                       -  VARIABLES  -                                       //
+    //=============================================================================================//
 
-    [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f)]
-    public float layerSpawnRate;
+    [Tooltip("Your level must go here."), SerializeField]
+    private GameLevel levelObject;
+    [Tooltip("Spawns a layer every X seconds. Value MUST be greater than layers Scale Speed."), Range(0.1f, 2f), SerializeField]
+    private float layerSpawnRate;
 
-    public int currentLayer;
-    private ASTITOUCH asticul;
+    private int currentLayer;
+    private Player player;
+    private List<LayerBehaviour> levelLayers;
+
+    // Properties
+    public int CurrentLayer { get { return currentLayer; } }
+    public List<LayerBehaviour> LevelLayers { get { return levelLayers; } }
+
+    //=============================================================================================//
+    //                                         -  UNITY  -                                         //
+    //=============================================================================================//
 
     private void Awake()
     {
-        if (!levelObject)
-        {
-            throw new System.Exception("No Level Object assigned to the Level gameObject");
-        }
-
-        if(levelObject.levelLayers.Length == 0)
-        {
-            throw new System.Exception("No Level Layers in the levelLayers array of the assigned Level Object.");
-        }
-
-        asticul = FindObjectOfType<ASTITOUCH>();
+        ErrorsCheck();
     }
 
     private void Start()
     {
         currentLayer = 1;
         levelLayers = new List<LayerBehaviour>();
+        player = FindObjectOfType<Player>();
 
         // Set each layer position and scale
         StartCoroutine(LayerSetup());
@@ -53,52 +55,79 @@ public class LevelBehaviour : MonoBehaviour
         }
     }
 
+    //=============================================================================================//
+    //                                      -  CUSTOM CODE  -                                      //
+    //=============================================================================================//
+
+    private void ErrorsCheck()
+    {
+        if (!levelObject)
+        {
+            throw new System.Exception("No Level Object assigned to the Level gameObject");
+        }
+
+        if (levelObject.levelLayers.Length == 0)
+        {
+            throw new System.Exception("No Level Layers in the levelLayers array of the assigned Level Object.");
+        }
+    }
+
     IEnumerator LayerSetup()
     {
-        asticul.Freeze();
+        player.Freeze();
+
         yield return new WaitForSeconds(0.5f);
-        
+
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
         {
-            LayerBehaviour cloneLevelLayer = Instantiate(levelObject.levelLayers[layerIndex], gameObject.transform).GetComponent<LayerBehaviour>();
-            cloneLevelLayer.transform.localPosition = new Vector3(0, 0, 1f * layerIndex);
-            cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
-            float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
-            cloneLevelLayer.DisableGround();
-            cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
-            cloneLevelLayer.DisableBox();
-            levelLayers.Add(cloneLevelLayer);
-            
+            SpawnLevelLayer(layerIndex);
             yield return new WaitForSeconds(layerSpawnRate);
-
         }
 
-        for (int layerIndex = currentLayer + 1; layerIndex < levelLayers.Count; layerIndex++)
-        {
-            if(layerIndex == currentLayer + 1)
-            {
-                levelLayers[layerIndex].GroundZPos(-1.01f);
-            }
-            levelLayers[layerIndex].Hide();
-        }
+        SetupHideLayers();
 
-        levelLayers[currentLayer].GroundZPos(-1.51f);
-        levelLayers[0].GreyOut();
+        // Enable everything after layer setup
         float wait = 0f;
         for (int layerIndex = 0; layerIndex < levelObject.levelLayers.Length; layerIndex++)
         {
             levelLayers[layerIndex].EnableGround();
             wait = levelLayers[layerIndex].ScaleSpeed;
         }
-
         yield return new WaitForSeconds(wait);
-        asticul.UnFreeze();
-        
+        player.UnFreeze();
         foreach (LayerBehaviour item in levelLayers)
         {
             item.EnableBox();
         }
-        
+    }
+
+    private void SpawnLevelLayer(int layerIndex)
+    {
+        LayerBehaviour cloneLevelLayer = Instantiate(levelObject.levelLayers[layerIndex], gameObject.transform).GetComponent<LayerBehaviour>();
+        cloneLevelLayer.transform.localPosition = new Vector3(0, 0, 1f * layerIndex);
+        cloneLevelLayer.transform.localScale = new Vector3(0, 0, 1f);
+        cloneLevelLayer.DisableGround();
+        cloneLevelLayer.DisableBox();
+        float scale = 0.676f * Mathf.Exp(0.394f * layerIndex);
+        cloneLevelLayer.Grow(new Vector3(scale, scale, 1f));
+
+        levelLayers.Add(cloneLevelLayer);
+    }
+
+    private void SetupHideLayers()
+    {
+        for (int layerIndex = currentLayer + 1; layerIndex < levelLayers.Count; layerIndex++)
+        {
+            if (layerIndex == currentLayer + 1)
+            {
+                levelLayers[layerIndex].GroundZPos(-1.01f);
+            }
+
+            levelLayers[layerIndex].Hide();
+        }
+
+        levelLayers[currentLayer].GroundZPos(-1.51f);
+        levelLayers[0].GreyOut();
     }
 
     public void RequestLayerUp()
@@ -124,7 +153,9 @@ public class LevelBehaviour : MonoBehaviour
         float timeToWait = 1f;
         currentLayer++;
 
-        asticul.Freeze();
+        player.Freeze();
+
+        // For each layer, shrinks it and discover it/focus it/hides it if necessary
         for(int l = 0; l < levelLayers.Count; l++)
         {
             float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
@@ -134,7 +165,6 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
-                //levelLayers[l].DisableGround();
                 if (l == currentLayer + 1)
                 {
                     levelLayers[l].GroundZPos(-1.01f);
@@ -154,15 +184,16 @@ public class LevelBehaviour : MonoBehaviour
                 levelLayers[l].Focus();
                 levelLayers[l].EnableGround();
                 levelLayers[l].GroundZPos(-1.51f);
-                //levelLayers[l].EnableColi();
             }
 
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait * 0.25f);
+        yield return new WaitForSeconds(timeToWait);
 
-        asticul.UnFreeze();
+        player.UnFreeze();
+
+        yield break;
     }
 
     public void RequestLayerDown()
@@ -188,7 +219,9 @@ public class LevelBehaviour : MonoBehaviour
         float timeToWait = 1f;
         currentLayer--;
 
-        asticul.Freeze();
+        player.Freeze();
+
+        // For each layer, grows it and discover it/focus it/hides it if necessary
         for (int l = 0; l < levelLayers.Count; l++)
         {
             float scale = 0.676f * Mathf.Exp(0.394f * (l - (currentLayer - 1)));
@@ -198,7 +231,6 @@ public class LevelBehaviour : MonoBehaviour
             if (l != currentLayer)
             {
                 levelLayers[l].GreyOut();
-                //levelLayers[l].DisableGround();
                 if (l == currentLayer + 1)
                 {
                     levelLayers[l].GroundZPos(-1.01f);
@@ -223,9 +255,10 @@ public class LevelBehaviour : MonoBehaviour
             timeToWait = levelLayers[l].ScaleSpeed;
         }
 
-        yield return new WaitForSeconds(timeToWait * 0.25f);
+        yield return new WaitForSeconds(timeToWait);
 
-        asticul.UnFreeze();
-        
+        player.UnFreeze();
+
+        yield break;
     }
 }

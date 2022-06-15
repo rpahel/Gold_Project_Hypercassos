@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -76,9 +76,108 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: PistonSpritesBunker_5
+      rect:
+        serializedVersion: 2
+        x: 675
+        y: 382
+        width: 446
+        height: 236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80537ba7b8a60fb4dad60a8d90831373
+      internalID: 1351208363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PistonSpritesBunker_7
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 194
+        width: 39
+        height: 611
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08e8da39296e3614c800a7e67bfe0753
+      internalID: -780842855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PistonSpritesBunker_23
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 431
+        width: 410
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 945a79eb48927a548908ce1370ddb997
+      internalID: 1750195494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -89,7 +188,36 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      PistonSpritesBunker_27: 775471634
+      PistonSpritesBunker_17: 1037720265
+      PistonSpritesBunker_0: 311754597
+      PistonSpritesBunker_1: 531684008
+      PistonSpritesBunker_22: -1989221231
+      PistonSpritesBunker_6: 2075279526
+      PistonSpritesBunker_12: 821581250
+      PistonSpritesBunker_9: 977877119
+      PistonSpritesBunker_25: -390927604
+      PistonSpritesBunker_14: 1197960777
+      PistonSpritesBunker_21: -292807440
+      PistonSpritesBunker_4: -724937549
+      PistonSpritesBunker_8: 109328758
+      PistonSpritesBunker_19: 172198433
+      PistonSpritesBunker_15: -2125278113
+      PistonSpritesBunker_11: -683142175
+      PistonSpritesBunker_24: -218486926
+      PistonSpritesBunker_2: -1741581394
+      PistonSpritesBunker_26: 1139427806
+      PistonSpritesBunker_28: 1978509473
+      PistonSpritesBunker_10: -1270635578
+      PistonSpritesBunker_5: 1351208363
+      PistonSpritesBunker_13: 22106728
+      PistonSpritesBunker_18: 162457723
+      PistonSpritesBunker_23: 1750195494
+      PistonSpritesBunker_7: -780842855
+      PistonSpritesBunker_16: 203215294
+      PistonSpritesBunker_20: -1469800275
+      PistonSpritesBunker_3: -1393641478
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
