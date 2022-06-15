@@ -310,6 +310,8 @@ MonoBehaviour:
   levelName: LevelSelection
   optionMenu: {fileID: 1788911512}
   CloseMenu: {fileID: 698039223}
+  isMusicMuted: 0
+  isSFXMuted: 0
   musicImg: {fileID: 2081259319}
   sfxImg: {fileID: 1653106539}
   MuteImg: {fileID: 21300000, guid: 052ff4889089df74296be1d72cc9d2cd, type: 3}
@@ -6531,7 +6533,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fb5ea7a2cb7a18a4e992ce975736b649, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.345
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -7307,6 +7309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782614451}
+  - component: {fileID: 1782614452}
   m_Layer: 0
   m_Name: Achievement
   m_TagString: Untagged
@@ -7329,6 +7332,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1782614452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782614450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b07f91bc59165419b0a23f5df47d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfLayer: 0
 --- !u!1 &1788911512
 GameObject:
   m_ObjectHideFlags: 0
