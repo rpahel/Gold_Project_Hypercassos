@@ -36,6 +36,10 @@ public class SwitchLayer : MonoBehaviour
     {
         if (collision.CompareTag("Player") && canCollide)
         {
+            if (collision.GetComponent<Player>().isClone)
+            {
+                collision.GetComponent<BodyBehaviour>().DestroyBodyCircle();
+            }
             if (isEnding)
             {
                 SceneManager.LoadScene("LevelSelection");
