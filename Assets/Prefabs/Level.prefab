@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelObject: {fileID: 11400000, guid: 50176db9144602648a60caf1108b91e3, type: 2}
   layerSpawnRate: 0.3
+  sfx: {fileID: 8300000, guid: 2a8e5d5ddf459ed4d80573cbe8a6cb69, type: 3}

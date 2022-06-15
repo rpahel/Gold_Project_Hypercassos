@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwitchPressurePlayer : MonoBehaviour
 {
+    public AudioClip sfx;
+    
     private SpriteRenderer sprite;
     [HideInInspector]public bool isActive;
     
@@ -21,6 +23,7 @@ public class SwitchPressurePlayer : MonoBehaviour
     {
         if (col.tag == "Player")
         {
+            SfxManager.sfxInstance.audio.PlayOneShot(sfx);
             isActive = true;
             animator.SetBool("Down", true);
         }

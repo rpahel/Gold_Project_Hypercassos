@@ -16,6 +16,8 @@ public class LevelBehaviour : MonoBehaviour
     private int currentLayer;
     private Player player;
     private List<LayerBehaviour> levelLayers;
+    
+    public AudioClip sfx;
 
     // Properties
     public int CurrentLayer { get { return currentLayer; } }
@@ -210,6 +212,7 @@ public class LevelBehaviour : MonoBehaviour
         }
         else
         {
+            SfxManager.sfxInstance.audio.PlayOneShot(sfx);
             StartCoroutine(LayerDown());
         }
     }
