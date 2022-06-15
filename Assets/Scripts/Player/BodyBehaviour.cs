@@ -42,4 +42,34 @@ public class BodyBehaviour : MonoBehaviour
             followingBodyCircle.GetComponent<BodyBehaviour>().AddFollowingBodyCircle(_object);
         }
     }
+
+    public void DestroyBodyCircle()
+    {
+        if (followingBodyCircle)
+        {
+            followingBodyCircle.GetComponent<BodyBehaviour>().DestroyBodyCircle();
+        }
+
+        Destroy(gameObject);
+    }
+
+    public void HideBodyCircle()
+    {
+        if (followingBodyCircle)
+        {
+            followingBodyCircle.GetComponent<BodyBehaviour>().HideBodyCircle();
+        }
+
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void ShowBodyCircle()
+    {
+        if (followingBodyCircle)
+        {
+            followingBodyCircle.GetComponent<BodyBehaviour>().ShowBodyCircle();
+        }
+
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
 }
