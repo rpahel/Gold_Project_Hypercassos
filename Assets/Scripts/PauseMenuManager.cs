@@ -54,15 +54,10 @@ public class PauseMenuManager : MonoBehaviour
    
     public void LevelSelectionMenuButton()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelSelection");
     }
     
-
-    public void MainMenuButton()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void Paused()
     {
         pauseMenuUI.SetActive(true);
@@ -72,7 +67,9 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Retry()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
     }
     public void MuteMusic()
     {
