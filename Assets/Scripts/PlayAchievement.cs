@@ -7,6 +7,7 @@ public class PlayAchievement : MonoBehaviour
 {
 
     public static PlayAchievement instance;
+    [HideInInspector]
     public int numberOfLayer;
     private void Awake()
     {
