@@ -1615,6 +1615,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 48.482
       objectReference: {fileID: 0}
+    - target: {fileID: 5462410203179357884, guid: 9a25e5b8fa759cd45aeea8560a2d7db3, type: 3}
+      propertyPath: sameLayerTp
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5462410203179357886, guid: 9a25e5b8fa759cd45aeea8560a2d7db3, type: 3}
       propertyPath: m_Name
       value: LayerSwitchUp&Down
