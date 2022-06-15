@@ -1173,7 +1173,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 44d8242daa289ee4f9b35090d44590a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1191,9 +1191,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1205774555
+  m_SortingLayer: -1
+  m_SortingOrder: 10
   m_Positions:
   - {x: 9.9, y: 0, z: 0}
   - {x: 9.869481, y: 0.776745, z: 0}
@@ -1541,7 +1541,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 44d8242daa289ee4f9b35090d44590a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1559,9 +1559,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingLayerID: 1205774555
+  m_SortingLayer: -1
+  m_SortingOrder: 10
   m_Positions:
   - {x: 9.9, y: 0, z: 0}
   - {x: 9.869481, y: 0.776745, z: 0}
@@ -1966,7 +1966,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 44d8242daa289ee4f9b35090d44590a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1984,9 +1984,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1205774555
+  m_SortingLayer: -1
+  m_SortingOrder: 10
   m_Positions:
   - {x: 9.9, y: 0, z: 0}
   - {x: 9.869481, y: 0.776745, z: 0}
