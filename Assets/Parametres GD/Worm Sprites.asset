@@ -17,17 +17,17 @@ MonoBehaviour:
     headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
     bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
   - wormType: 1
-    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
-    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    headSprite: {fileID: -1732234648, guid: c00dd8480a193904e99d01bfd33cca81, type: 3}
+    bodySprite: {fileID: 639069892, guid: c00dd8480a193904e99d01bfd33cca81, type: 3}
   - wormType: 2
-    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
-    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    headSprite: {fileID: 465440883, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
+    bodySprite: {fileID: 181206275, guid: 92a2bbe55e50f784fb7d80927bc15473, type: 3}
   - wormType: 3
-    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
-    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    headSprite: {fileID: 594096900, guid: 885d46e7cbc287347b72c70b7e3f8087, type: 3}
+    bodySprite: {fileID: 210293789, guid: 885d46e7cbc287347b72c70b7e3f8087, type: 3}
   - wormType: 4
-    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
-    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    headSprite: {fileID: -672866259, guid: 4f40b5466ae90304c9a3d6bc3f4a28a0, type: 3}
+    bodySprite: {fileID: -394523228, guid: 4f40b5466ae90304c9a3d6bc3f4a28a0, type: 3}
   - wormType: 5
-    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
-    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    headSprite: {fileID: -2069403913, guid: 6caa72345964d3d499aa2d5c3de7feec, type: 3}
+    bodySprite: {fileID: -2145714996, guid: 6caa72345964d3d499aa2d5c3de7feec, type: 3}

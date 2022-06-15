@@ -321,6 +321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3905063427664214320, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
+      propertyPath: wormType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7444773174230914435, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: limitStart
       value: 4.4
