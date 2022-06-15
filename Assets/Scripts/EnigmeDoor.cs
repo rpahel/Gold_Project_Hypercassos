@@ -8,7 +8,7 @@ public class EnigmeDoor : MonoBehaviour
     
     public bool isOpen;
     
-
+    public AudioClip sfx;
     private SpriteRenderer sprite;
     private BoxCollider2D col;
     public Animator animator;
@@ -24,13 +24,14 @@ public class EnigmeDoor : MonoBehaviour
         
             if (isOpen)
             {
-            animator.SetBool("Open", true);
+                animator.SetBool("Open", true);
+                SfxManager.sfxInstance.audio.PlayOneShot(sfx);
                 col.enabled = false;
             }
             else
-        {
-            animator.SetBool("Open", false);
-            col.enabled = true;
+            {
+                animator.SetBool("Open", false);
+                col.enabled = true;
             }
             
     }

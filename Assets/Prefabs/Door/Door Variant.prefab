@@ -60,6 +60,10 @@ PrefabInstance:
       value: Door Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1823953456672965086, guid: 4ba6feecd92b4554e87e8b408b0dccc0, type: 3}
+      propertyPath: sfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 799e7e29beb934e498a6b8708de0aba9, type: 3}
+    - target: {fileID: 1823953456672965086, guid: 4ba6feecd92b4554e87e8b408b0dccc0, type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 6213507434978478600}

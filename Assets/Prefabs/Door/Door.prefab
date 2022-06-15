@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
+  sfx: {fileID: 8300000, guid: 799e7e29beb934e498a6b8708de0aba9, type: 3}
   animator: {fileID: 3275479271261281846}
 --- !u!95 &3275479271261281846
 Animator:
