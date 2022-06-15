@@ -8,7 +8,7 @@ using System;
 public class WinManager : MonoBehaviour
 {
     public GameObject WinMenu;
-    public GameObject StopWatch;
+    public StopWatch StopWatch;
     public TextMeshProUGUI finalTimeText;
     public float WaitBeforeWin;
     public int nextSceneLoad;
@@ -23,9 +23,9 @@ public class WinManager : MonoBehaviour
     private void GetStopWatch()
     {
         StopWatch.GetComponent<StopWatch>().StopWatchActive = false;
-        TimeSpan time = StopWatch.GetComponent<StopWatch>().time;
+        TimeSpan time = StopWatch.time;
         finalTimeText.text = time.ToString(@"mm\:ss\:fff");
-        StopWatch.SetActive(false);
+        
 
         switch (time.TotalSeconds)
         {
@@ -56,11 +56,19 @@ public class WinManager : MonoBehaviour
         {
             GetStopWatch();
             StartCoroutine(WaitToWin(WaitBeforeWin));
-            
-            if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+
+            if (SceneManager.GetActiveScene().buildIndex == 6)
             {
-                PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+                return;
             }
+            else
+            {
+                if (nextSceneLoad > PlayerPrefs.GetInt("levelAt"))
+                {
+                    PlayerPrefs.SetInt("levelAt", nextSceneLoad);
+                }
+            }
+            
 
             switch (activeScene)
             {

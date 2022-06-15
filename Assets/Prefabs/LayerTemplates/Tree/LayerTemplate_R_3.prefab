@@ -1849,7 +1849,7 @@ PrefabInstance:
     - target: {fileID: 4348379617155295015, guid: 1ce39823b3542ca49b09e45e28498cdf, type: 3}
       propertyPath: StopWatch
       value: 
-      objectReference: {fileID: 6606525747588795825}
+      objectReference: {fileID: 6606525747588795827}
     - target: {fileID: 4348379617155295015, guid: 1ce39823b3542ca49b09e45e28498cdf, type: 3}
       propertyPath: finalTimeText
       value: 
@@ -3595,10 +3595,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIPauseMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 7422450094202830372, guid: e825482f8ae2dbf40a3d536b05f68c92, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e825482f8ae2dbf40a3d536b05f68c92, type: 3}
 --- !u!1 &1857926412706270415 stripped
@@ -3628,11 +3624,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6606525747588795825 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2694948183886987098, guid: e825482f8ae2dbf40a3d536b05f68c92, type: 3}
+--- !u!114 &6606525747588795827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2694948183886987096, guid: e825482f8ae2dbf40a3d536b05f68c92, type: 3}
   m_PrefabInstance: {fileID: 9135966576433591019}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7eca643e5a627640a5493c048870cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8033589429399374985 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1275770178600484450, guid: e825482f8ae2dbf40a3d536b05f68c92, type: 3}
