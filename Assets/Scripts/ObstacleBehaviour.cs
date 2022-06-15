@@ -6,42 +6,38 @@ public class ObstacleBehaviour : MonoBehaviour
 {
     [Header("Physics stuff")]
     public  Vector2         worldCenter;
-    public  float           gForce;
-    private Vector2         oldWorlCenter;
+    public  bool            enableGravity;
+    private float           gForce;
     private float           angle;
     private Rigidbody2D     rb;
     private Vector2         toWorldCenter;
     private Vector2         gravityForce;
-    private SpriteRenderer  sprite;
-    public  bool            enableGravity; 
+    private BoxCollider2D   coll;
+    [HideInInspector]
     public  bool            canClimb;
-    
-    public bool             isClone;
-
-    public Transform tLeft, tRight;
+    [HideInInspector]
+    public  bool            isClone;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        coll = GetComponent<BoxCollider2D>();
+        gForce = 10;
     }
 
     // Update is called once per frame
     void Update()
     {
-            gravity();
+            Gravity();
     }
-    private void gravity()
+
+    private void Gravity()
     {
         toWorldCenter = worldCenter - rb.position;
         angle = Vector2.SignedAngle(Vector2.up, -toWorldCenter);
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        //Debug.Log(rb.velocity);
-        //Debug.DrawRay(rb.position, transform.right * .51f, Color.red);
 
-
-        Debug.Log(OnGround());
         if (!OnGround())
         {
             gravityForce -= (Vector2)transform.up * gForce * Time.deltaTime;
@@ -50,40 +46,46 @@ public class ObstacleBehaviour : MonoBehaviour
         {
             gravityForce = Vector2.zero;
         }
+
         rb.velocity = gravityForce;
     }
-        private bool OnGround()
+    private bool OnGround()
     {
-        //Vector3 left = sprite.bounds.max-(transform.right*1.3f);
-        //Vector3 right= sprite.bounds.max - (transform.right * 0.3f);
-        Debug.DrawRay(tLeft.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
-        Debug.DrawRay(tRight.position, -transform.up * (transform.lossyScale.x * 0.15f), Color.blue);
-        return (Physics2D.Raycast(transform.GetChild(0).transform.position, -transform.up, (transform.lossyScale.x * 0.15f)) ||
-                Physics2D.Raycast(transform.GetChild(1).transform.position, -transform.up, (transform.lossyScale.x * 0.15f)));
+        RaycastHit2D[] hits = new RaycastHit2D[2];
+        for(int i = 0; i < hits.Length; i++)
+        {
+            Vector2 iniOrigin = transform.position + Quaternion.Euler(0, 0, Vector2.SignedAngle(Vector2.right, transform.right)) * new Vector2(coll.offset.x * transform.lossyScale.x, coll.offset.y * transform.lossyScale.y);
+            Vector2 origin = iniOrigin - (Vector2)transform.right * (coll.size.x * 0.5f + coll.edgeRadius) * transform.lossyScale.x;
+            origin += i * ((Vector2)transform.right * (coll.size.x + coll.edgeRadius * 2f) * transform.lossyScale.x);
+            origin -= (Vector2)transform.up * (coll.size.y * 0.5f + coll.edgeRadius + 0.01f) * transform.lossyScale.y;
+            Vector2 direction = ((iniOrigin - (Vector2)transform.up * (coll.size.y * 0.5f + coll.edgeRadius + 0.01f) * transform.lossyScale.y) - origin).normalized * (coll.size.x + coll.edgeRadius * 2f) * transform.lossyScale.x;
+            hits[i] = Physics2D.Raycast(origin, direction.normalized, direction.magnitude);
+            if (hits[i])
+            {
+                Debug.DrawRay(origin, direction, Color.blue);
+                return true;
+            }
+        }
+        return false;
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "BoxBlocker")
         {
             canClimb = true;
         }
-        Debug.Log("colision "+collision.gameObject.tag);
     }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "BoxBlocker")
         {
             canClimb = false;
-            Debug.Log("collision exit");
         }
     }
-    public void destroyBox()
+    public void DestroyBox()
     {
-        GetComponent<Animator>().SetBool("Explode", true);
-    }
-    IEnumerator waitToGravity()
-    {
-        yield return new WaitForSeconds(3f);
-        enableGravity = true;
+        Destroy(gameObject);
     }
 }

@@ -9,7 +9,7 @@ public class DestroyWall : MonoBehaviour
     {
         if(collision.gameObject.tag =="ExplosiveBox")
         {
-            collision.gameObject.GetComponent<ObstacleBehaviour>().destroyBox();
+            collision.gameObject.GetComponent<ObstacleBehaviour>().DestroyBox();
             SfxManager.sfxInstance.audio.PlayOneShot(sfx);
             GetComponent<Animator>().SetBool("Explode", true);
         }
