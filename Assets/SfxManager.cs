@@ -5,7 +5,6 @@ using UnityEngine;
 public class SfxManager : MonoBehaviour
 {
     public AudioSource audio;
-    public AudioClip click;
     public static SfxManager sfxInstance;
 
     private void Awake()
@@ -17,6 +16,6 @@ public class SfxManager : MonoBehaviour
         }
 
         sfxInstance = this;
-        DontDestroyOnLoad(this);
+        
     }
 }

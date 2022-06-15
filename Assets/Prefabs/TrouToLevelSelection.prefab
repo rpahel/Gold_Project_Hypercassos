@@ -117,4 +117,5 @@ MonoBehaviour:
   WinMenu: {fileID: 0}
   StopWatch: {fileID: 0}
   finalTimeText: {fileID: 0}
-  nextSceneLoad: 3
+  WaitBeforeWin: 1
+  nextSceneLoad: 5

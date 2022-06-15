@@ -44,10 +44,6 @@ public class MenuManager : MonoBehaviour
             PlayerPrefs.DeleteAll();
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SfxManager.sfxInstance.audio.PlayOneShot(SfxManager.sfxInstance.click);
-        }
     }
 
     public void StartButton()
