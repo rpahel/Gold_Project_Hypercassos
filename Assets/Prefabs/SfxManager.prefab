@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio: {fileID: 7082435971348234376}
-  click: {fileID: 8300000, guid: fb5ea7a2cb7a18a4e992ce975736b649, type: 3}
 --- !u!82 &7082435971348234376
 AudioSource:
   m_ObjectHideFlags: 0
@@ -103,7 +102,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.7
       inSlope: 0
       outSlope: 0
       tangentMode: 0
