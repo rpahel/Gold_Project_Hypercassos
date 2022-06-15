@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     private Vector2 tpPointPos;
 
     [Header("Audio")]
-    private AudioSource source;
+    [HideInInspector]public AudioSource source;
     public AudioClip moveClip;
     
     public bool mustplayAudio, stopAudio;

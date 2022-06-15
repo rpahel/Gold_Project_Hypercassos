@@ -9,6 +9,7 @@ public class PauseMenuManager : MonoBehaviour
     
     public GameObject pauseMenuUI;
     public GameObject pauseMenuButton;
+    public Player playerSFX;
     
     [Header("Music")]
     public Image musicButtonImg;
@@ -21,10 +22,13 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Mute And Original")]
     public Sprite MuteImg;
     public Sprite OrigImg;
+    
 
 
     private void Start()
     {
+        playerSFX = GameObject.FindWithTag("Player").GetComponent<Player>();
+        
         if (MusicManager.musicInstance.audio.mute == false)
         {
             musicButtonImg.sprite = OrigImg;
@@ -95,12 +99,17 @@ public class PauseMenuManager : MonoBehaviour
             MenuManager.menuInstance.isSFXMuted = true;
             sfxButtonImg.sprite = MuteImg;
             SfxManager.sfxInstance.audio.mute = true;
+
+            playerSFX.source.mute = true;
         }
         else if(SfxManager.sfxInstance.audio.mute)
         {
             MenuManager.menuInstance.isSFXMuted = false;
             sfxButtonImg.sprite = OrigImg;
             SfxManager.sfxInstance.audio.mute = false;
+            playerSFX.source.mute = false;
+            
+            
         }
         
     }
