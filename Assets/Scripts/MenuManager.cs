@@ -9,8 +9,7 @@ public class MenuManager : MonoBehaviour
     public string levelName;
     [SerializeField]private GameObject optionMenu;
     [SerializeField]private GameObject CloseMenu;
-    [HideInInspector]public bool isMusicMuted;
-    [HideInInspector]public bool isSFXMuted;
+    [HideInInspector] public bool isSFXMuted;
 
     [Header("Music")]
     public Image musicImg;
@@ -75,14 +74,14 @@ public class MenuManager : MonoBehaviour
     {
         if (MusicManager.musicInstance.audio.mute == false)
         {
-            isMusicMuted = true;
+           
             musicImg.sprite = MuteImg;
             MusicManager.musicInstance.audio.mute = true;
             
         }
         else if(MusicManager.musicInstance.audio.mute)
         {
-            isMusicMuted = false;
+            
             musicImg.sprite = OrigImg;
             MusicManager.musicInstance.audio.mute = false;
         }

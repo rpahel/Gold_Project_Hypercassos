@@ -9,7 +9,7 @@ public class PauseMenuManager : MonoBehaviour
     
     public GameObject pauseMenuUI;
     public GameObject pauseMenuButton;
-    public Player playerSFX;
+    
     
     [Header("Music")]
     public Image musicButtonImg;
@@ -27,7 +27,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Start()
     {
-        playerSFX = GameObject.FindWithTag("Player").GetComponent<Player>();
+        
         
         if (MusicManager.musicInstance.audio.mute == false)
         {
@@ -39,13 +39,15 @@ public class PauseMenuManager : MonoBehaviour
             musicButtonImg.sprite = MuteImg;
         }
 
-        if (SfxManager.sfxInstance.audio.mute == false)
+        if (MenuManager.menuInstance.isSFXMuted == false)
         {
             sfxButtonImg.sprite = OrigImg;
+            SfxManager.sfxInstance.audio.mute = false;
         }
-        else if (SfxManager.sfxInstance.audio.mute)
+        else if (MenuManager.menuInstance.isSFXMuted)
         {
             sfxButtonImg.sprite = MuteImg;
+            SfxManager.sfxInstance.audio.mute = true;
             
         }
     }
@@ -79,14 +81,14 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (MusicManager.musicInstance.audio.mute == false)
         {
-            MenuManager.menuInstance.isMusicMuted = true;
+            
             musicButtonImg.sprite = MuteImg;
             MusicManager.musicInstance.audio.mute = true;
             
         }
         else if(MusicManager.musicInstance.audio.mute)
         {
-            MenuManager.menuInstance.isMusicMuted = false;
+            
             musicButtonImg.sprite = OrigImg;
             MusicManager.musicInstance.audio.mute = false;
         }
@@ -96,19 +98,17 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (SfxManager.sfxInstance.audio.mute == false)
         {
-            MenuManager.menuInstance.isSFXMuted = true;
+           
             sfxButtonImg.sprite = MuteImg;
             SfxManager.sfxInstance.audio.mute = true;
 
-            playerSFX.source.mute = true;
+            
         }
         else if(SfxManager.sfxInstance.audio.mute)
         {
-            MenuManager.menuInstance.isSFXMuted = false;
+            
             sfxButtonImg.sprite = OrigImg;
             SfxManager.sfxInstance.audio.mute = false;
-            playerSFX.source.mute = false;
-            
             
         }
         

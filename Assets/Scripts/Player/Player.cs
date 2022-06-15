@@ -71,6 +71,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         GetInput();
+
+        if (SfxManager.sfxInstance.audio.mute)
+        {
+            source.mute = true;
+        }
+        else
+        {
+            source.mute = false;
+        }
     }
     void playMovementSound()
     {
