@@ -18,8 +18,8 @@ public class PlayerBody : MonoBehaviour
 
     [Tooltip("The prefab of a body circle.")]
     [SerializeField] private GameObject bodyCircle;
-    private GameObject followingBodyCircle;
     [SerializeField] private int bodyCirclesCount;
+    private GameObject followingBodyCircle;
 
     private List<Vector2> positionList;
 
@@ -120,5 +120,17 @@ public class PlayerBody : MonoBehaviour
         }
 
         positionList = new List<Vector2>();
+    }
+
+    public void HideBody()
+    {
+        GetComponent<SpriteRenderer>().enabled = false;
+        followingBodyCircle.GetComponent<BodyBehaviour>().HideBodyCircle();
+    }
+
+    public void ShowBody()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+        followingBodyCircle.GetComponent<BodyBehaviour>().ShowBodyCircle();
     }
 }

@@ -118,12 +118,12 @@ public class Player : MonoBehaviour
         }
         else if (tag == "Box" || tag == "ExplosiveBox")
         {
-            if(collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
+            if (collision.gameObject.GetComponent<ObstacleBehaviour>().canClimb)
             {
                 gravityCenter = collision.transform.position;
             }
         }
-        else if(tag == "Earth")
+        else if (tag == "Earth")
         {
             gravityCenter = worldCenter;
         }
@@ -291,5 +291,32 @@ public class Player : MonoBehaviour
             sens += Time.deltaTime * freinage;
             sens = Mathf.Clamp(sens, -1f, 0f);
         }
+    }
+
+    /// <summary>
+    /// Smoothly translates the position of the player to the target location.
+    /// </summary>
+    /// <param name="target"> The target position.</param>
+    /// <param name="time"> Duration of the translation.</param>
+
+    public void SmoothGoTo(Vector3 target, float time)
+    {
+        StartCoroutine(SmoothGoing(target, time));
+    }
+
+    private IEnumerator SmoothGoing(Vector3 target, float time)
+    {
+        GetComponent<PlayerBody>().HideBody();
+        Vector3 iniPos = transform.position;
+        for (float i = 0f; i < 1f; i += Time.deltaTime * (1 / time))
+        {
+            Freeze();
+            transform.position = Vector3.Lerp(iniPos, target, i);
+            yield return null;
+        }
+
+        GetComponent<PlayerBody>().ShowBody();
+        UnFreeze();
+        yield break;
     }
 }

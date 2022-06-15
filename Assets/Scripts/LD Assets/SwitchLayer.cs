@@ -9,10 +9,14 @@ public class SwitchLayer : MonoBehaviour
     //                                       -  VARIABLES  -                                       //
     //=============================================================================================//
 
+    [Tooltip("Put an object here only if you want the player to teleport somewhere precise."), SerializeField]
+    private Transform LayerTpTarget;
+    [Tooltip("Put an object here only if you want the player to teleport somewhere precise."), SerializeField, Range(0f, 2f)]
+    private float TpTime;
     [Tooltip("True if you want this to be the level ending."), SerializeField]
     private bool isEnding;
-    [Tooltip("True if you want this switch to take you up, False for down."), SerializeField]
-    private bool goUp;
+    [Tooltip("Choose if this tp takes you up, down, or on the same layer (none)."), SerializeField]
+    private Where upOrDown;
 
     private bool canCollide;
     private LevelBehaviour level;
@@ -37,13 +41,19 @@ public class SwitchLayer : MonoBehaviour
                 return;
             }
 
-            if (goUp)
+            if (LayerTpTarget)
+            {
+                Vector3 target = new Vector3(LayerTpTarget.position.x, LayerTpTarget.position.y, collision.transform.position.z);
+                collision.GetComponent<Player>().SmoothGoTo(target, TpTime);
+            }
+
+            if (upOrDown == Where.UP)
             {
                 level.RequestLayerUp();
                 StartCoroutine(colliTimer());
                 PlayAchievement.instance.UnlockAchievement("202637246791");
             }
-            else
+            else if (upOrDown == Where.DOWN)
             {
                 level.RequestLayerDown();
                 StartCoroutine(colliTimer());
@@ -62,4 +72,11 @@ public class SwitchLayer : MonoBehaviour
         canCollide = true;
         yield break;
     }
+}
+
+enum Where
+{
+    UP = 0,
+    DOWN = 1,
+    NONE = 2
 }
