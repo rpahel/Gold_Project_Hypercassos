@@ -35,7 +35,6 @@ public class MenuManager : MonoBehaviour
         }
 
         menuInstance = this;
-        DontDestroyOnLoad(this);
     }
     private void Update()
     {
