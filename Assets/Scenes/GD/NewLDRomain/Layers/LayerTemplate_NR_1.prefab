@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 224bd8bf431ee3046910da1322234891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerParameters: {fileID: 11400000, guid: f9c9267d97a93b144aab805b83496d9d, type: 2}
+  layerParameters: {fileID: 11400000, guid: 4b0aad35ded005d45870959a49e6fea3, type: 2}
   greyed: {fileID: 107411772689828110}
   cache: {fileID: 107411771967951249}
 --- !u!1 &107411772689828110
@@ -1375,7 +1375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049422, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19833896
+      value: 0.42275947
       objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049422, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_LocalScale.z
@@ -1383,11 +1383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049422, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.796
+      value: 9.676
       objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049422, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.012
+      value: 2.944
       objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049422, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_LocalPosition.z
