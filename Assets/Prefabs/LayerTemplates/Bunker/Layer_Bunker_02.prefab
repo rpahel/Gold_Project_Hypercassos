@@ -5772,6 +5772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: elevator
       objectReference: {fileID: 0}
+    - target: {fileID: 2669730692952733667, guid: 76d77757e1e7f3b428af0da2fcc4becb, type: 3}
+      propertyPath: m_RotationalOffset
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76d77757e1e7f3b428af0da2fcc4becb, type: 3}
 --- !u!4 &6920585908736242955 stripped
