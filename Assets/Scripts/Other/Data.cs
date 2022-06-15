@@ -9,7 +9,11 @@ namespace Data
     public enum WormType
     {
         Normal,
-        Bunker
+        Apple,
+        Tree,
+        Bunker,
+        Terre,
+        Space
     }
 
 

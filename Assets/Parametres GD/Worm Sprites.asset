@@ -16,3 +16,18 @@ MonoBehaviour:
   - wormType: 0
     headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
     bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+  - wormType: 1
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+  - wormType: 2
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+  - wormType: 3
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+  - wormType: 4
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+  - wormType: 5
+    headSprite: {fileID: -1013551761, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
+    bodySprite: {fileID: 448842562, guid: e902066652090f4459b8dd9ded1565a7, type: 3}
