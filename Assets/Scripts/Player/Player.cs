@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        if (tag == "Climbable" || tag == "BoxBlocker")
+        if (tag == "Climbable" )
         {
             gravityCenter = collision.transform.position;
         }
