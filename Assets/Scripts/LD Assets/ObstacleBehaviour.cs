@@ -41,9 +41,10 @@ public class ObstacleBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "BoxBlocker")
+        if(collision.gameObject.tag == "BoxBlocker" && OnGround())
         {
             canClimb = true;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
