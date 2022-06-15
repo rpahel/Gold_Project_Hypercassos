@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class Player : MonoBehaviour
     private Vector2 limitEndPos;
     private Vector2 tpPointPos;
 
+    [Header("Audio")]
+    private AudioSource source;
+    public AudioClip moveClip;
+    
+    public bool mustplayAudio, stopAudio;
     // Properties
     public float Angle { get { return angle; } }
     public float Speed { get { return speed; } set { speed = value; } }
@@ -51,6 +57,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         coll = GetComponent<CircleCollider2D>();
+        source = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -65,7 +72,24 @@ public class Player : MonoBehaviour
     {
         GetInput();
     }
-
+    void playMovementSound()
+    {
+        
+        
+        if (!source.isPlaying)
+        {
+            source.Play();
+        }
+        
+    }
+    void StopMovementSound()
+    {
+        if (source.isPlaying)
+        {
+            source.Stop();
+            
+        }
+    }
     private void FixedUpdate()
     {
         if (frozen)
@@ -206,14 +230,17 @@ public class Player : MonoBehaviour
             if (xPos > (3 * (Screen.width / 5f)))
             {
                 GoRight();
+                playMovementSound();
             }
             else if (xPos < (2 * (Screen.width / 5f)))
             {
                 GoLeft();
+                playMovementSound();
             }
             else
             {
                 Brake();
+                StopMovementSound();
             }
         }
         else if (Input.GetAxis("Horizontal") != 0f) // Keyboard controls
@@ -221,16 +248,20 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0f)
             {
                 GoRight();
+                playMovementSound();
             }
             else if (Input.GetAxis("Horizontal") < 0f)
             {
                 GoLeft();
+                playMovementSound();
             }
         }
         else
         {
             Brake();
+            StopMovementSound();
         }
+        playMovementSound();
     }
 
     private void GoRight()
