@@ -81,6 +81,11 @@ public class LayerBehaviour : MonoBehaviour
         {
             boxes[i].SetActive(false);
         }
+
+        for (int i = 0; i < explosiveBoxes.Length; i++)
+        {
+            explosiveBoxes[i].SetActive(false);
+        }
     }
 
     public void EnableBox()
@@ -88,6 +93,11 @@ public class LayerBehaviour : MonoBehaviour
         for (int i = 0; i < boxes.Length; i++)
         {
             boxes[i].SetActive(true);
+        }
+
+        for (int i = 0; i < explosiveBoxes.Length; i++)
+        {
+            explosiveBoxes[i].SetActive(true);
         }
     }
 
