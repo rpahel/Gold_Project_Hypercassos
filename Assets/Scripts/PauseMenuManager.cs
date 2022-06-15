@@ -72,7 +72,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void MuteMusic()
     {

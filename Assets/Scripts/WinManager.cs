@@ -26,8 +26,27 @@ public class WinManager : MonoBehaviour
         TimeSpan time = StopWatch.GetComponent<StopWatch>().time;
         finalTimeText.text = time.ToString(@"mm\:ss\:fff");
         StopWatch.SetActive(false);
-        
-        
+
+        switch (time.TotalSeconds)
+        {
+            case < 120 when activeScene == 2:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
+                break;
+            case < 120 when activeScene == 3:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBg");
+                break;
+            case < 120 when activeScene == 4:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBw");
+                break;
+            case < 120 when activeScene == 5:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCA");
+                break;
+            case < 120 when activeScene == 6:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQEA");
+                break;
+            default:
+                    break;
+        }
     
     }
 
@@ -72,9 +91,14 @@ public class WinManager : MonoBehaviour
         SceneManager.LoadScene("LevelSelection");
     }
 
-    public void Quit()
+    public void Retry()
     {
-        Application.Quit();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(nextSceneLoad);
     }
 
     IEnumerator WaitToWin(float time)
