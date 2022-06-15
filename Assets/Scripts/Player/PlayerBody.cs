@@ -125,12 +125,22 @@ public class PlayerBody : MonoBehaviour
     public void HideBody()
     {
         GetComponent<SpriteRenderer>().enabled = false;
-        followingBodyCircle.GetComponent<BodyBehaviour>().HideBodyCircle();
+        if(followingBodyCircle)
+            followingBodyCircle.GetComponent<BodyBehaviour>().HideBodyCircle();
     }
 
     public void ShowBody()
     {
         GetComponent<SpriteRenderer>().enabled = true;
-        followingBodyCircle.GetComponent<BodyBehaviour>().ShowBodyCircle();
+        if (followingBodyCircle)
+            followingBodyCircle.GetComponent<BodyBehaviour>().ShowBodyCircle();
+    }
+
+    public void DestroyBody()
+    {
+        if (followingBodyCircle)
+            followingBodyCircle.GetComponent<BodyBehaviour>().DestroyBodyCircle();
+
+        Destroy(gameObject);
     }
 }
