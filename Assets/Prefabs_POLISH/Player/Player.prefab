@@ -147,7 +147,6 @@ MonoBehaviour:
   limitEnd: 16
   tpPoint: 12
   moveClip: {fileID: 0}
-  maxVolume: 1
   mustplayAudio: 0
   stopAudio: 0
 --- !u!114 &3905063427664214320
@@ -166,6 +165,7 @@ MonoBehaviour:
   wormType: 0
   bodyCircle: {fileID: 6582422351894135176, guid: 83f1adb9cd1c23249ba20154b5a6d946, type: 3}
   bodyCirclesCount: 6
+  sfx: {fileID: 8300000, guid: 2f391be8a86db2142b1ec3c59d4e2ee0, type: 3}
 --- !u!82 &681283138829856268
 AudioSource:
   m_ObjectHideFlags: 0
