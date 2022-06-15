@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: decd8afc4583495459ea4dc082018e92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfx: {fileID: 8300000, guid: e9766e16305e47448ab3c914f9f4e99d, type: 3}
   isActive: 0
   DoortoClose: []
   DoortoOpen: []

@@ -23,6 +23,8 @@ public class PlayerBody : MonoBehaviour
 
     private List<Vector2> positionList;
 
+    public AudioClip sfx;
+
     //=============================================================================================//
     //                                         -  UNITY  -                                         //
     //=============================================================================================//
@@ -139,7 +141,11 @@ public class PlayerBody : MonoBehaviour
     public void DestroyBody()
     {
         if (followingBodyCircle)
+        {
+            SfxManager.sfxInstance.audio.PlayOneShot(sfx);
             followingBodyCircle.GetComponent<BodyBehaviour>().DestroyBodyCircle();
+        }
+            
 
         Destroy(gameObject);
     }

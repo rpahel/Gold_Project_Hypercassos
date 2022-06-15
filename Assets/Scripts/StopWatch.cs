@@ -8,7 +8,7 @@ public class StopWatch : MonoBehaviour
 {
     public bool StopWatchActive;
     private float currentTime;
-    [HideInInspector] public TimeSpan time;
+    public TimeSpan time;
     
     void Start()
     {

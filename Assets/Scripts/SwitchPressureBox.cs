@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SwitchPressureBox : MonoBehaviour
 {
+    public AudioClip sfx;
+    
     private SpriteRenderer sprite;
     public bool isActive;
     
@@ -43,6 +45,7 @@ public class SwitchPressureBox : MonoBehaviour
         if (col.tag == "Box")
         {
             isActive = true;
+            SfxManager.sfxInstance.audio.PlayOneShot(sfx);
             animator.SetBool("Down", true);
             boxIn = true;
         }
