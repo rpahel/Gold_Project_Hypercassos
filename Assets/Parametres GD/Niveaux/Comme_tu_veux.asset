@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06d0cf890157dc4ba96fd47a5ea801a, type: 3}
+  m_Name: Comme_tu_veux
+  m_EditorClassIdentifier: 
+  levelLayers:
+  - {fileID: 107411772664210324, guid: ae4b5661d230fc54bbfa7103e34ca80b, type: 3}
+  - {fileID: 107411772664210324, guid: 8b0f2c794f5179a488fb48bfb0a61be2, type: 3}
+  - {fileID: 107411772664210324, guid: 34a04b0b38ec5e84cb966bdccd9786c9, type: 3}
+  - {fileID: 107411772664210324, guid: e0ab0f4a60d98ad49965e7b98416ad01, type: 3}
