@@ -25,7 +25,9 @@ public class MultiClonage : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             layerCount = level.CurrentLayer + 1;
-            level.LevelLayers[layerCount].Discover();
+            if (layerCount !<= level.maxLayer)
+                level.LevelLayers[layerCount].Discover();
+            
             if (playerClone == null)
             {
                 playerClone = Instantiate(playerPrefabs, target.position,Quaternion.identity);

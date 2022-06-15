@@ -18,7 +18,7 @@ public class LevelBehaviour : MonoBehaviour
     private List<LayerBehaviour> levelLayers;
     
     public AudioClip sfx;
-
+    public int maxLayer;
     // Properties
     public int CurrentLayer { get { return currentLayer; } }
     public List<LayerBehaviour> LevelLayers { get { return levelLayers; } }
@@ -37,7 +37,7 @@ public class LevelBehaviour : MonoBehaviour
         currentLayer = 1;
         levelLayers = new List<LayerBehaviour>();
         player = FindObjectOfType<Player>();
-
+        maxLayer = levelLayers.Count;
         // Set each layer position and scale
         StartCoroutine(LayerSetup());
     }
