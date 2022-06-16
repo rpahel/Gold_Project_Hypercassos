@@ -6450,8 +6450,8 @@ MonoBehaviour:
   - {fileID: 1244396350}
   - {fileID: 1719865474}
   - {fileID: 977465736}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1976471488}
+  - {fileID: 1992782473}
 --- !u!4 &1947104323
 Transform:
   m_ObjectHideFlags: 0
