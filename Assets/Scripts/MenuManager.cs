@@ -37,6 +37,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.A))
         {
             PlayerPrefs.DeleteAll();
