@@ -3902,6 +3902,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 107411772664210323}
     m_Modifications:
+    - target: {fileID: 9164411995883049420, guid: bb724b22bce9391479cb7609a087524a, type: 3}
+      propertyPath: m_Size.y
+      value: 3.4719665
+      objectReference: {fileID: 0}
+    - target: {fileID: 9164411995883049420, guid: bb724b22bce9391479cb7609a087524a, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.235983
+      objectReference: {fileID: 0}
     - target: {fileID: 9164411995883049421, guid: bb724b22bce9391479cb7609a087524a, type: 3}
       propertyPath: m_Name
       value: BoxBlocker
