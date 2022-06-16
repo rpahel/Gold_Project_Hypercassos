@@ -760,9 +760,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8927238204424066571}
-  - component: {fileID: 6107737532463878408}
   m_Layer: 0
-  m_Name: Colliders (1)
+  m_Name: TWO SQUARE COLLIDERS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,22 +784,6 @@ Transform:
   m_Father: {fileID: 107411772664210323}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 48.2}
---- !u!114 &6107737532463878408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764398710574991709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c71e478d3471249992203e1c203b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombreDeTrous: 2
-  epaisseurSol: 0.2
-  groundColor: {r: 0.6226415, g: 0, b: 0.032252688, a: 1}
-  groundMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &2528636209328992398
 GameObject:
   m_ObjectHideFlags: 0
