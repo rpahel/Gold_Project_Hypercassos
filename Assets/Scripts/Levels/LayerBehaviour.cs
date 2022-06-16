@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LayerBehaviour : MonoBehaviour
 {
@@ -14,10 +15,14 @@ public class LayerBehaviour : MonoBehaviour
     private GameObject greyed;
     [Tooltip("The gameObject that will act as a cover to hide the layer."), SerializeField]
     private GameObject cache;
+    [Tooltip("Pointlights object where every point lights are located."), SerializeField]
+    private Transform spotLights;
 
     private SpriteRenderer greyedRenderer;
     private SpriteRenderer cacheRenderer;
     private AnimationCurve scaleCurve;
+    private List<Light2D> spotLightsList = new List<Light2D>();
+    private List<float> spotLightsIniRadius = new List<float>();
     private List<GenerateCollider> grounds;
     private GameObject[] boxes;
     private GameObject[] explosiveBoxes;
@@ -42,6 +47,11 @@ public class LayerBehaviour : MonoBehaviour
         explosiveBoxes = GameObject.FindGameObjectsWithTag("ExplosiveBox");
         boxes = GameObject.FindGameObjectsWithTag("Box");
         scaleCurve = layerParameters.ScaleCurve;
+        for(int i = 0; i < spotLights.childCount; i++)
+        {
+            spotLightsList.Add(spotLights.GetChild(i).GetComponent<Light2D>());
+            spotLightsIniRadius.Add(spotLightsList[i].pointLightOuterRadius);
+        }
     }
 
     private void Start()
@@ -222,6 +232,10 @@ public class LayerBehaviour : MonoBehaviour
         {
             float Beta = scaleCurve.Evaluate(l);
             transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
+            for(int i = 0; i < spotLightsList.Count; i++)
+            {
+                spotLightsList[i].pointLightOuterRadius = spotLightsIniRadius[i] * transform.localScale.x;
+            }
             yield return null;
         }
 
@@ -255,6 +269,10 @@ public class LayerBehaviour : MonoBehaviour
         {
             float Beta = scaleCurve.Evaluate(l);
             transform.localScale = Vector3.Lerp(initialScale, targetScale, Beta);
+            for (int i = 0; i < spotLightsList.Count; i++)
+            {
+                spotLightsList[i].pointLightOuterRadius = spotLightsIniRadius[i] * transform.localScale.x;
+            }
             yield return null;
         }
 
