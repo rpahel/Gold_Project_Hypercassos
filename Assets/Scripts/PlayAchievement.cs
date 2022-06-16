@@ -9,6 +9,8 @@ public class PlayAchievement : MonoBehaviour
     public static PlayAchievement instance;
     [HideInInspector]
     public int numberOfLayer;
+
+    public int speedAchievement = 0;
     private void Awake()
     {
         

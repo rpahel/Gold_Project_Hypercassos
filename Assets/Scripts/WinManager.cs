@@ -19,9 +19,6 @@ public class WinManager : MonoBehaviour
     public Animator animVerEat;
    
     
-
-    
-
     private void Start()
     {
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
@@ -43,23 +40,23 @@ public class WinManager : MonoBehaviour
         {
             case < 45 when activeScene == 2:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
-                PlayerPrefs.SetInt("SpeedAchievement", 1);
+                PlayAchievement.instance.speedAchievement++;
                 break;
             case < 85  when activeScene == 3:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBg");
-                PlayerPrefs.SetInt("SpeedAchievement", 2);
+                PlayAchievement.instance.speedAchievement++;
                 break;
             case < 90  when activeScene == 4:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBw");
-                PlayerPrefs.SetInt("SpeedAchievement", 3);
+                PlayAchievement.instance.speedAchievement++;
                 break;
             case < 80  when activeScene == 5:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCA");
-                PlayerPrefs.SetInt("SpeedAchievement", 4);
+                PlayAchievement.instance.speedAchievement++;
                 break;
             case < 75  when activeScene == 6:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQEA");
-                PlayerPrefs.SetInt("SpeedAchievement", 5);
+                PlayAchievement.instance.speedAchievement++;
                 break;
             default:
                     break;
@@ -100,6 +97,13 @@ public class WinManager : MonoBehaviour
             {
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCQ");
                 
+            }
+            else
+            {
+                if (PlayAchievement.instance.speedAchievement > PlayerPrefs.GetInt("levelAt"))
+                {
+                    PlayerPrefs.SetInt("SpeedAchievement", PlayAchievement.instance.speedAchievement);
+                }
             }
 
             switch (activeScene)
