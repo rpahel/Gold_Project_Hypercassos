@@ -15,7 +15,7 @@ public class WinManager : MonoBehaviour
     public Animator animator;
     private int activeScene;
     private Animator level;
-   
+    private int speedAchievement = 0;
     
 
     
@@ -40,18 +40,23 @@ public class WinManager : MonoBehaviour
         {
             case < 45 when activeScene == 2:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
+                speedAchievement++;
                 break;
             case < 85  when activeScene == 3:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBg");
+                speedAchievement++;
                 break;
             case < 90  when activeScene == 4:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBw");
+                speedAchievement++;
                 break;
             case < 80  when activeScene == 5:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCA");
+                speedAchievement++;
                 break;
             case < 75  when activeScene == 6:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQEA");
+                speedAchievement++;
                 break;
             default:
                     break;
@@ -69,7 +74,10 @@ public class WinManager : MonoBehaviour
             col.GetComponent<PlayerBody>().HideBody();
             level.SetTrigger("Resize");
 
-            
+            if (speedAchievement == 5)
+            {
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCQ");
+            }
             
             GetStopWatch();
             StartCoroutine(WaitToWin(WaitBeforeWin));
