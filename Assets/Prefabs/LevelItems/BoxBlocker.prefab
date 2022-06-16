@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 9164411995883049422}
   - component: {fileID: 9164411995883049423}
   - component: {fileID: 9164411995883049420}
-  - component: {fileID: 9164411995883049425}
-  - component: {fileID: 9164411995883049424}
   m_Layer: 0
   m_Name: BoxBlocker
   m_TagString: BoxBlocker
@@ -113,41 +111,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &9164411995883049425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9164411995883049421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eefcaacdef11734285b3e2a2e59f233, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldCenter: {x: 0, y: -11}
-  gForce: 0
-  enableGravity: 0
-  canClimb: 1
-  isClone: 0
---- !u!50 &9164411995883049424
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9164411995883049421}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
