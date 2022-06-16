@@ -8,14 +8,15 @@ public class ObstacleBehaviour : MonoBehaviour
     //                                       -  VARIABLES  -                                       //
     //=============================================================================================//
 
-    public Vector2         worldCenter;
+    public Vector2          worldCenter;
     public  bool            enableGravity;
+    public  bool            dontFreezeOnSwitchLayer;
 
     private float           gForce;
     private float           angle;
     private Rigidbody2D     rb;
     private Vector2         toWorldCenter;
-    private Vector2          gravityForce;
+    private Vector2         gravityForce;
     private BoxCollider2D   coll;
     [HideInInspector]
     public  bool            canClimb;
@@ -48,13 +49,13 @@ public class ObstacleBehaviour : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "BoxBlocker")
-        {
-            canClimb = false;
-        }
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "BoxBlocker")
+    //    {
+    //        canClimb = false;
+    //    }
+    //}
 
     //=============================================================================================//
     //                                      -  CUSTOM CODE  -                                      //
@@ -113,5 +114,10 @@ public class ObstacleBehaviour : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void MakeOrphan()
+    {
+        transform.parent = null;
     }
 }

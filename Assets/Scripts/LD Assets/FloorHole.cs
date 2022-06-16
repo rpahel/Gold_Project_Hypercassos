@@ -14,6 +14,8 @@ public class FloorHole : MonoBehaviour
     private float targetPositionFromBelow;
     [SerializeField, Range(0f, 2f)]
     private float cooldownTimer;
+    [SerializeField]
+    private bool solidify;
 
     private LevelBehaviour levelBehaviour;
     private LayerBehaviour layerBehaviour;
@@ -95,7 +97,8 @@ public class FloorHole : MonoBehaviour
 
     private IEnumerator PosTranslation(Transform t, Vector3 dir)
     {
-        coll.isTrigger = false;
+        if(solidify)
+            coll.isTrigger = false;
 
         Vector2 ini = t.position;
         Vector2 target = t.position + dir;
