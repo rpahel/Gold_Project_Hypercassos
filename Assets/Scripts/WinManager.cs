@@ -42,19 +42,19 @@ public class WinManager : MonoBehaviour
 
         switch (time.TotalSeconds)
         {
-            case < 120 when activeScene == 2:
+            case < 45 when activeScene == 2:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
                 break;
-            case < 120 when activeScene == 3:
+            case < 85  when activeScene == 3:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBg");
                 break;
-            case < 120 when activeScene == 4:
+            case < 90  when activeScene == 4:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBw");
                 break;
-            case < 120 when activeScene == 5:
+            case < 80  when activeScene == 5:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCA");
                 break;
-            case < 120 when activeScene == 6:
+            case < 75  when activeScene == 6:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQEA");
                 break;
             default:
