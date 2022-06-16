@@ -14,11 +14,19 @@ public class WinManager : MonoBehaviour
     public int nextSceneLoad;
     public Animator animator;
     private int activeScene;
+    private Animator level;
+   
+    
+
+    
 
     private void Start()
     {
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
         activeScene = SceneManager.GetActiveScene().buildIndex;
+        
+        level = GameObject.Find("Level").GetComponent<Animator>();
+        
     }
     
     private void GetStopWatch()
@@ -31,7 +39,6 @@ public class WinManager : MonoBehaviour
         switch (time.TotalSeconds)
         {
             case < 120 when activeScene == 2:
-                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
                 break;
             case < 120 when activeScene == 3:
@@ -56,6 +63,12 @@ public class WinManager : MonoBehaviour
     {
         if (col.CompareTag("Player"))
         {
+            col.GetComponent<Player>().speed = 0;
+            col.GetComponent<CircleCollider2D>().enabled = false;
+            level.SetTrigger("Resize");
+
+            
+            
             GetStopWatch();
             StartCoroutine(WaitToWin(WaitBeforeWin));
 
@@ -92,6 +105,8 @@ public class WinManager : MonoBehaviour
                 default:
                     break;
             }
+            
+            
             
         }
     }
