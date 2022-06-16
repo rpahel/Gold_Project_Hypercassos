@@ -44,18 +44,23 @@ public class WinManager : MonoBehaviour
         {
             case < 45 when activeScene == 2:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
+                PlayerPrefs.SetInt("SpeedAchievement", 1);
                 break;
             case < 85  when activeScene == 3:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBg");
+                PlayerPrefs.SetInt("SpeedAchievement", 2);
                 break;
             case < 90  when activeScene == 4:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBw");
+                PlayerPrefs.SetInt("SpeedAchievement", 3);
                 break;
             case < 80  when activeScene == 5:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCA");
+                PlayerPrefs.SetInt("SpeedAchievement", 4);
                 break;
             case < 75  when activeScene == 6:
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQEA");
+                PlayerPrefs.SetInt("SpeedAchievement", 5);
                 break;
             default:
                     break;
@@ -92,7 +97,11 @@ public class WinManager : MonoBehaviour
                     PlayerPrefs.SetInt("levelAt", nextSceneLoad);
                 }
             }
-            
+
+            if (PlayerPrefs.GetInt("SpeedAchievement") == 5)
+            {
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQCQ");
+            }
 
             switch (activeScene)
             {
