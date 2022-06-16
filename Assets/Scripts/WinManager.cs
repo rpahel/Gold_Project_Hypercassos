@@ -10,7 +10,6 @@ public class WinManager : MonoBehaviour
     public GameObject WinMenu;
     public StopWatch StopWatch;
     public TextMeshProUGUI finalTimeText;
-    public float WaitBeforeWin;
     public int nextSceneLoad;
     public Animator animator;
     private int activeScene;
@@ -79,7 +78,6 @@ public class WinManager : MonoBehaviour
             
             
             GetStopWatch();
-            StartCoroutine(WaitToWin(WaitBeforeWin));
 
             if (SceneManager.GetActiveScene().buildIndex == 6)
             {
@@ -137,12 +135,6 @@ public class WinManager : MonoBehaviour
         StartCoroutine(WaitToNext());
     }
 
-    IEnumerator WaitToWin(float time)
-    {
-        yield return new WaitForSeconds(time);
-        WinMenu.SetActive(true);
-    }
-
     IEnumerator WaitToNext()
     {
         yield return new WaitForSeconds(1.4f);
@@ -159,9 +151,10 @@ public class WinManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
         camera2.player = level.gameObject;
+        level.gameObject.transform.Rotate(0, 0, 0);
         yield return new WaitForSeconds(1f);
         animVerEat.SetTrigger("Go");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         WinMenu.SetActive(true);
 
     }
