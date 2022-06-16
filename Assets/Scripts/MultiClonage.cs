@@ -24,10 +24,12 @@ public class MultiClonage : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if(collision.CompareTag("Player"))
         {
             layerCount = level.CurrentLayer + 1;
-            if (layerCount < level.maxLayer)
+            
+            if (level.CurrentLayer <= level.LevelLayers.Count)
             {
                 level.LevelLayers[layerCount].Discover();
             }
