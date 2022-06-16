@@ -15,6 +15,9 @@ public class WinManager : MonoBehaviour
     public Animator animator;
     private int activeScene;
     private Animator level;
+    private CameraRotation camera2;
+
+    public Animator animVerEat;
    
     
 
@@ -26,6 +29,7 @@ public class WinManager : MonoBehaviour
         activeScene = SceneManager.GetActiveScene().buildIndex;
         
         level = GameObject.Find("Level").GetComponent<Animator>();
+        camera2 = GameObject.Find("CameraController").GetComponent<CameraRotation>();
         
     }
     
@@ -65,9 +69,12 @@ public class WinManager : MonoBehaviour
         {
             col.GetComponent<Player>().speed = 0;
             col.GetComponent<CircleCollider2D>().enabled = false;
+            col.GetComponent<Animator>().enabled = true;
+            col.GetComponent<Player>().Freeze();
             col.GetComponent<Animator>().SetTrigger("End");
-            col.GetComponent<PlayerBody>().HideBody();
+            col.GetComponent<PlayerBody>().DestroyBody(false);
             level.SetTrigger("Resize");
+            StartCoroutine(WaitForStopAnim());
 
             
             
@@ -146,6 +153,17 @@ public class WinManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1.4f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    IEnumerator WaitForStopAnim()
+    {
+        yield return new WaitForSeconds(0.7f);
+        camera2.player = level.gameObject;
+        yield return new WaitForSeconds(1f);
+        animVerEat.SetTrigger("Go");
+        yield return new WaitForSeconds(5f);
+        WinMenu.SetActive(true);
+
     }
 
 }
