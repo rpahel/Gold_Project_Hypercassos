@@ -138,7 +138,7 @@ public class PlayerBody : MonoBehaviour
             followingBodyCircle.GetComponent<BodyBehaviour>().ShowBodyCircle();
     }
 
-    public void DestroyBody()
+    public void DestroyBody(bool alsoDestroyHead = true)
     {
         if (followingBodyCircle)
         {
@@ -146,7 +146,7 @@ public class PlayerBody : MonoBehaviour
             followingBodyCircle.GetComponent<BodyBehaviour>().DestroyBodyCircle();
         }
             
-
-        Destroy(gameObject);
+        if(alsoDestroyHead)
+            Destroy(gameObject);
     }
 }
