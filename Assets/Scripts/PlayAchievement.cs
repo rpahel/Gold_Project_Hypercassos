@@ -11,6 +11,7 @@ public class PlayAchievement : MonoBehaviour
     public int numberOfLayer;
     private void Awake()
     {
+        
         DontDestroyOnLoad(gameObject);
         if (instance != null)
         {
