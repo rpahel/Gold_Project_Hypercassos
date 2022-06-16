@@ -310,7 +310,6 @@ MonoBehaviour:
   levelName: LevelSelection
   optionMenu: {fileID: 1788911512}
   CloseMenu: {fileID: 698039223}
-  isMusicMuted: 0
   isSFXMuted: 0
   musicImg: {fileID: 2081259319}
   sfxImg: {fileID: 1653106539}

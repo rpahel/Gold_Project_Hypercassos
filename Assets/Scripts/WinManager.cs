@@ -12,6 +12,7 @@ public class WinManager : MonoBehaviour
     public TextMeshProUGUI finalTimeText;
     public float WaitBeforeWin;
     public int nextSceneLoad;
+    public Animator animator;
     private int activeScene;
 
     private void Start()
@@ -30,6 +31,7 @@ public class WinManager : MonoBehaviour
         switch (time.TotalSeconds)
         {
             case < 120 when activeScene == 2:
+                PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
                 PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQBQ");
                 break;
             case < 120 when activeScene == 3:
@@ -101,18 +103,32 @@ public class WinManager : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        animator.SetTrigger("Close");
+        StartCoroutine(WaitToRetry());
     }
 
     public void NextLevel()
     {
-        SceneManager.LoadScene(nextSceneLoad);
+        animator.SetTrigger("Close");
+        StartCoroutine(WaitToNext());
     }
 
     IEnumerator WaitToWin(float time)
     {
         yield return new WaitForSeconds(time);
         WinMenu.SetActive(true);
+    }
+
+    IEnumerator WaitToNext()
+    {
+        yield return new WaitForSeconds(1.4f);
+        SceneManager.LoadScene(nextSceneLoad);
+    }
+
+    IEnumerator WaitToRetry()
+    {
+        yield return new WaitForSeconds(1.4f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

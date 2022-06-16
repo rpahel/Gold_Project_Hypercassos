@@ -22,6 +22,8 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Mute And Original")]
     public Sprite MuteImg;
     public Sprite OrigImg;
+
+    public Animator animator;
     
 
 
@@ -74,8 +76,9 @@ public class PauseMenuManager : MonoBehaviour
     public void Retry()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+        animator.SetTrigger("Close");
+        StartCoroutine(WaitForRetry());
+
     }
     public void MuteMusic()
     {
@@ -112,6 +115,12 @@ public class PauseMenuManager : MonoBehaviour
             
         }
         
+    }
+
+    IEnumerator WaitForRetry()
+    {
+        yield return new WaitForSeconds(1.4f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
 }

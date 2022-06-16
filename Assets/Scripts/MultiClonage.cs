@@ -14,6 +14,8 @@ public class MultiClonage : MonoBehaviour
     public int layerCount;
     private GameObject levelObject;
     private LevelBehaviour level;
+    public bool destroyBox = false;
+    public bool destroyPlayer = false;
     private void Awake()
     {
         levelObject = FindObjectOfType<LevelBehaviour>().gameObject;
@@ -39,8 +41,8 @@ public class MultiClonage : MonoBehaviour
             }
             else
             {
-
-                playerClone.GetComponent<PlayerBody>().DestroyBody();
+                if (destroyPlayer)
+                    playerClone.GetComponent<PlayerBody>().DestroyBody();
             }
         }
         else if(collision.CompareTag("Box"))
@@ -52,7 +54,8 @@ public class MultiClonage : MonoBehaviour
             }
             else
             {
-                Destroy(boxClone.transform.gameObject);
+                if (destroyBox)
+                    Destroy(boxClone.transform.gameObject);
             }
             Debug.Log("Box trigger");
         }
