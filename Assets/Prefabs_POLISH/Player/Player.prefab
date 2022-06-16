@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7444773174230914435}
   - component: {fileID: 3905063427664214320}
   - component: {fileID: 681283138829856268}
+  - component: {fileID: 1217559861355600163}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -32,7 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -146,6 +147,7 @@ MonoBehaviour:
   limitStart: 9.5
   limitEnd: 16
   tpPoint: 12
+  source: {fileID: 0}
   moveClip: {fileID: 0}
   mustplayAudio: 0
   stopAudio: 0
@@ -262,3 +264,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1217559861355600163
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2208509951350658037}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3c7b172e5139e624e8d88b9e4f88b131, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

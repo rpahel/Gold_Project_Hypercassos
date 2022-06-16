@@ -65,6 +65,8 @@ public class WinManager : MonoBehaviour
         {
             col.GetComponent<Player>().speed = 0;
             col.GetComponent<CircleCollider2D>().enabled = false;
+            col.GetComponent<Animator>().SetTrigger("End");
+            col.GetComponent<PlayerBody>().HideBody();
             level.SetTrigger("Resize");
 
             
