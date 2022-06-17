@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     //=============================================================================================//
@@ -65,6 +67,12 @@ public class Player : MonoBehaviour
         if (!isClone)
         {
             frozen = true;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 7)
+        {
+            PlayAchievement.instance.UnlockAchievement("CgkIx4L88PIFEAIQDQ");
+            print("gg");
         }
     }
 
