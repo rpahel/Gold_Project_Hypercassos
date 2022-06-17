@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3905063427664214320, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: wormType
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6126466356070670629, guid: 2baa7e9046e0b824ca5798dc333dc37c, type: 3}
       propertyPath: m_Sprite
@@ -657,7 +657,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1554348073
-  m_SortingLayer: -2
+  m_SortingLayer: -7
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ceb5c3361b10e05459022d0ec31a20af, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.40392157}
@@ -875,7 +875,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1554348073
-  m_SortingLayer: -2
+  m_SortingLayer: -7
   m_SortingOrder: -10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.07123676, g: 0.03337487, b: 0.084905684, a: 1}
