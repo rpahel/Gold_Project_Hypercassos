@@ -89,24 +89,24 @@ public class Player : MonoBehaviour
             source.mute = false;
         }
     }
-    void playMovementSound()
-    {
-        
-        
-        if (!source.isPlaying)
-        {
-            source.Play();
-        }
-        
-    }
-    void StopMovementSound()
-    {
-        if (source.isPlaying)
-        {
-            source.Stop();
-            
-        }
-    }
+    //void playMovementSound()
+    //{
+    //    
+    //    
+    //    if (!source.isPlaying)
+    //    {
+    //        source.Play();
+    //    }
+    //    
+    //}
+    //void StopMovementSound()
+    //{
+    //    if (source.isPlaying)
+    //    {
+    //        source.Stop();
+    //        
+    //    }
+    //}
     private void FixedUpdate()
     {
         if (frozen)
@@ -247,17 +247,17 @@ public class Player : MonoBehaviour
             if (xPos > (3 * (Screen.width / 5f)))
             {
                 GoRight();
-                playMovementSound();
+                //playMovementSound();
             }
             else if (xPos < (2 * (Screen.width / 5f)))
             {
                 GoLeft();
-                playMovementSound();
+                //playMovementSound();
             }
             else
             {
                 Brake();
-                StopMovementSound();
+                //StopMovementSound();
             }
         }
         else if (Input.GetAxis("Horizontal") != 0f) // Keyboard controls
@@ -265,20 +265,20 @@ public class Player : MonoBehaviour
             if (Input.GetAxis("Horizontal") > 0f)
             {
                 GoRight();
-                playMovementSound();
+                //playMovementSound();
             }
             else if (Input.GetAxis("Horizontal") < 0f)
             {
                 GoLeft();
-                playMovementSound();
+                //playMovementSound();
             }
         }
         else
         {
             Brake();
-            StopMovementSound();
+            //StopMovementSound();
         }
-        playMovementSound();
+        //playMovementSound();
     }
 
     private void GoRight()
