@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9164411995883049422}
   - component: {fileID: 9164411995883049423}
   - component: {fileID: 9164411995883049420}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoxBlocker
   m_TagString: BoxBlocker
   m_Icon: {fileID: 0}

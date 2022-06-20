@@ -18,7 +18,7 @@ TagManager:
   - UI
   - test
   - LiquidEffectLayer
-  - 
+  - BoxBlocker
   - 
   - 
   - 
@@ -45,6 +45,9 @@ TagManager:
   m_SortingLayers:
   - name: BackBackground
     uniqueID: 2740619223
+    locked: 0
+  - name: CloseBackGround
+    uniqueID: 457892347
     locked: 0
   - name: Back5
     uniqueID: 2088068145
