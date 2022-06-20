@@ -15,6 +15,7 @@ public class WinManager : MonoBehaviour
     private int activeScene;
     private Animator level;
     private CameraRotation camera2;
+    private GameObject mainCamera;
 
     public Animator animVerEat;
    
@@ -26,7 +27,7 @@ public class WinManager : MonoBehaviour
         
         level = GameObject.Find("Level").GetComponent<Animator>();
         camera2 = GameObject.Find("CameraController").GetComponent<CameraRotation>();
-        
+        mainCamera = GameObject.Find("Main Camera");
     }
     
     private void GetStopWatch()
@@ -165,6 +166,7 @@ public class WinManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.7f);
         camera2.player = level.gameObject;
+        mainCamera.transform.localPosition = new Vector3(0, 11, 0);
         level.gameObject.transform.Rotate(0, 0, 0);
         yield return new WaitForSeconds(1f);
         animVerEat.SetTrigger("Go");

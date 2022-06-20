@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc93b25ac491324469edcb274795bf85
+guid: 9f649d6ad1ce0a54d9b38e3c0105a5c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 600
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -114,7 +114,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: EggSprite_2
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 360
+        width: 660
+        height: 708
+      alignment: 9
+      pivot: {x: 0.49741045, y: 0.5230024}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e88119ec0c7af4e9262f3dd2ac929a
+      internalID: -318311713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EggSprite_9
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 421
+        width: 660
+        height: 621
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a5951ac21818f940a8c14da49ac846e
+      internalID: 1267769701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -125,7 +167,43 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      EggSprite_11: 813142450
+      EggSprite_17: -1003107000
+      EggSprite_30: 1993684050
+      EggSprite_26: 913668532
+      EggSprite_35: 613462249
+      EggSprite_14: -494352221
+      EggSprite_24: -1139791381
+      EggSprite_1: 843590383
+      EggSprite_12: -1801802491
+      EggSprite_25: 796010562
+      EggSprite_15: -1200217748
+      EggSprite_27: 931798384
+      EggSprite_5: -1521478247
+      EggSprite_31: 1765246110
+      EggSprite_9: 1267769701
+      EggSprite_13: 1453874743
+      EggSprite_33: -179741325
+      EggSprite_3: 1036809688
+      EggSprite_6: 1636760408
+      EggSprite_23: 545849900
+      EggSprite_16: -1609903231
+      EggSprite_18: -745326944
+      EggSprite_20: -614805043
+      EggSprite_29: -1146042093
+      EggSprite_21: 239084736
+      EggSprite_34: -146603793
+      EggSprite_4: 533964682
+      EggSprite_19: -460262056
+      EggSprite_2: -318311713
+      EggSprite_7: 804252290
+      EggSprite_10: 608551078
+      EggSprite_22: -2100033984
+      EggSprite_0: -2134456095
+      EggSprite_32: -2056114924
+      EggSprite_28: -1129124378
+      EggSprite_8: 271901952
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
